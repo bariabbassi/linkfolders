@@ -1,7 +1,7 @@
-import Head from 'next/head'
-import Header from './header'
-import Footer from './footer'
-import styled from "styled-components"
+import Head from 'next/head';
+import Header from './header';
+import Footer from './footer';
+import styled from 'styled-components';
 
 const Main = styled.main`
   width: 100%;
@@ -12,20 +12,17 @@ const Main = styled.main`
   flex-direction: column;
   align-items: stretch;
   justify-content: stretch; */
-`
+`;
 
-export const siteEmoji = '📂'
-export const siteTitle = 'Linkfolders'
-export const description = 'Keep all your Links organised in one place'
+export const siteEmoji = '📂';
+export const siteTitle = 'Linkfolders';
+export const description = 'Keep all your Links organised in one place';
 
 const Layout = ({ children }) => (
   <div>
     <Head>
       <link rel="icon" href="/favicon.ico" />
-      <meta
-        name="description"
-        content={description}
-      />
+      <meta name="description" content={description} />
       <meta name="og:title" content={siteTitle} />
       <meta name="twitter:card" content="summary_large_image" />
     </Head>
@@ -34,6 +31,6 @@ const Layout = ({ children }) => (
     <Main>{children}</Main>
     <Footer />
   </div>
-)
+);
 
-export default Layout
+export default Layout;

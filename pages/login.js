@@ -1,23 +1,23 @@
-import Head from 'next/head'
-import Layout, { siteTitle } from '../components/layout'
+import Head from 'next/head';
+import Layout, { siteTitle } from '../components/layout';
 
 const Login = () => (
-    <Layout>
-        <Head>
-            <title>{siteTitle} - Login</title>
-        </Head>
+  <Layout>
+    <Head>
+      <title>{siteTitle} - Login</title>
+    </Head>
 
-        <h1>Login</h1>
-        <label>Email</label>
-        <br />
-        <input></input>
-        <br />
-        <label>Password</label>
-        <br />
-        <input></input>
-        <br />
-        <button>Login</button>
-    </Layout>
-)
+    <h1>Login</h1>
+    <label>Email</label>
+    <br />
+    <input></input>
+    <br />
+    <label>Password</label>
+    <br />
+    <input></input>
+    <br />
+    <button>Login</button>
+  </Layout>
+);
 
-export default Login
+export default Login;
