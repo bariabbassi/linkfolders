@@ -43,7 +43,7 @@ const Container = styled.div`
   width: 90vw; */
 `;
 
-const Home = ({ allPostsData }) => (
+const Home = () => (
   <Layout>
     <Head>
       <title>{siteTitle}</title>
@@ -59,7 +59,7 @@ const Home = ({ allPostsData }) => (
           Share
         </h1>
         <p>
-          LinkFolders helps you bookmark and organize all your links in folders
+          {siteTitle} helps you bookmark and organize all your links in folders
           <br />
           so you can quickly grab them and share them whenever you want.
         </p>
@@ -68,13 +68,13 @@ const Home = ({ allPostsData }) => (
         </div>
       </HeroContainer>
     </HeroSection>
-    {/* <Section>
+    <Section>
       <Container>
         <h1></h1>
         <p>
         </p>
       </Container>
-    </Section> */}
+    </Section>
   </Layout>
 );
 
