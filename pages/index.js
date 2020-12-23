@@ -43,41 +43,41 @@ const Container = styled.div`
   width: 90vw; */
 `
 
-export default function Home({ allPostsData }) {
-  return (
-    <Layout>
-      <Head>
-        <title>{siteTitle}</title>
-      </Head>
-      
-      <HeroSection>
-        <HeroContainer>
-        <h1>
-          Bookmark
-          <br />
-          Organize
-          <br />
-          Share
-        </h1>
+const Home = ({ allPostsData }) => (
+  <Layout>
+    <Head>
+      <title>{siteTitle}</title>
+    </Head>
+    
+    <HeroSection>
+      <HeroContainer>
+      <h1>
+        Bookmark
+        <br />
+        Organize
+        <br />
+        Share
+      </h1>
+      <p>
+        LinkFolders helps you bookmark and organize all your links in folders
+        <br />
+        so you can quickly grab them and share them whenever you want.
+      </p>
+      <div>
+      <A>
+        Sign up for free →
+      </A>
+      </div>
+      </HeroContainer>
+    </HeroSection>
+    {/* <Section>
+      <Container>
+        <h1></h1>
         <p>
-          LinkFolders helps you bookmark and organize all your links in folders
-          <br />
-          so you can quickly grab them and share them whenever you want.
         </p>
-        <div>
-        <A>
-          Sign up for free →
-        </A>
-        </div>
-        </HeroContainer>
-      </HeroSection>
-      {/* <Section>
-        <Container>
-          <h1></h1>
-          <p>
-          </p>
-        </Container>
-      </Section> */}
-    </Layout>
-  )
-}
+      </Container>
+    </Section> */}
+  </Layout>
+)
+
+export default Home

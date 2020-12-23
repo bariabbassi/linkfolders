@@ -17,22 +17,22 @@ const PriceCard = styled.div`
     background: rgb(152, 200, 245);
 `
 
-export default function Login() {
-    return (
-        <Layout>
-            <Head>
-                <title>{siteTitle} - Pricing</title>
-            </Head>
+const Pricing = () => (
+    <Layout>
+        <Head>
+            <title>{siteTitle} - Pricing</title>
+        </Head>
 
-            <h1>Pricing</h1>
-            <Container>
-                <PriceCard>
-                    <h3>Free</h3>
-                </PriceCard>
-                <PriceCard>
-                    <h3>9$</h3>
-                </PriceCard>
-            </Container>
-        </Layout>
-    )
-}
+        <h1>Pricing</h1>
+        <Container>
+            <PriceCard>
+                <h3>Free</h3>
+            </PriceCard>
+            <PriceCard>
+                <h3>9$</h3>
+            </PriceCard>
+        </Container>
+    </Layout>
+)
+
+export default Pricing

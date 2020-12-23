@@ -1,8 +1,7 @@
 import Head from 'next/head'
 import Layout, { siteTitle } from '../components/layout'
 
-// Sign up
-export default () => (
+const Signup = () => (
     <Layout>
         <Head>
             <title>{siteTitle} - Sign up</title>
@@ -24,3 +23,5 @@ export default () => (
         <button>Sign up</button>
     </Layout>
 )
+
+export default Signup
