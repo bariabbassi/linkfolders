@@ -1,4 +1,4 @@
-// import Layout from '../components/layout';
+// import Layout from '../components/Layout';
 // import { getAllFolderIds, getFolderData } from '../lib/folders';
 
 // const Folder = ({ folderData }) => (

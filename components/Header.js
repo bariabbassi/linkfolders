@@ -59,7 +59,7 @@ const Header = ({ siteEmoji, siteTitle }) => (
       </h3>
       <div>
         <List>
-          <Item>
+          {/* <Item>
             <h3>
               <Link href="/pricing">
                 <a>Pricing</a>
@@ -79,7 +79,7 @@ const Header = ({ siteEmoji, siteTitle }) => (
                 <A>Sign up for free</A>
               </Link>
             </h3>
-          </Item>
+          </Item> */}
         </List>
       </div>
     </Nav>

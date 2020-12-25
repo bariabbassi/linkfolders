@@ -1,6 +1,7 @@
 import Head from 'next/head';
-import Layout, { siteTitle } from '../components/layout';
+import Layout, { siteTitle } from '../components/Layout';
 import styled from 'styled-components';
+import Subscribe from '../components/ Subscribe';
 
 const HeroSection = styled.section`
   width: 100%;
@@ -15,23 +16,6 @@ const HeroContainer = styled.div`
   margin-top: 10vh;
   max-width: 900px;
   width: 90vw;
-`;
-
-const A = styled.a`
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 600;
-  padding: 22px;
-  margin-top: 30px;
-  border-radius: 35px;
-  background: #09f;
-  &:hover {
-    color: #f4f4f4;
-    background: #0af;
-  }
-  &:active {
-    background: #4564f5;
-  }
 `;
 
 const Section = styled.section`
@@ -63,16 +47,14 @@ const Home = () => (
           <br />
           so you can quickly grab them and share them whenever you want.
         </p>
-        <div>
-          <A>Sign up for free →</A>
-        </div>
+        <h4>We’re in private beta. Drop in your email for updates.</h4>
+        <Subscribe />
       </HeroContainer>
     </HeroSection>
     <Section>
       <Container>
         <h1></h1>
-        <p>
-        </p>
+        <p></p>
       </Container>
     </Section>
   </Layout>
