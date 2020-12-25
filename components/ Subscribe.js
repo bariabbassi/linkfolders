@@ -7,15 +7,12 @@ import fetcher from '@/utils/fetcher';
 import styled from 'styled-components';
 
 const Container = styled.div`
+  white-space: nowrap;
   display: inline-block;
-  /* border-radius: 0.5rem;
-  border: 2px solid black; */
 `;
 
 const Input = styled.input`
   font-size: 1.17rem;
-  max-width: 300px;
-  width: 90vw;
   padding: 1rem 1.5rem 1rem 1rem;
   border-radius: 0.5rem 0 0 0.5rem;
   border: 4px solid #fc0;
@@ -31,7 +28,7 @@ const Button = styled.button`
   border: 4px solid #fc0;
   cursor: pointer;
   &:hover {
-    color: #f4f4f4;
+    color: #fc1;
     background: #0af;
   }
   &:active {
