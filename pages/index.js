@@ -8,19 +8,15 @@ const HeroSection = styled.section`
   display: flex;
   align-items: flex-start;
   justify-content: center;
-`;
-
-const HeroContainer = styled.div`
-  margin-top: 20vh;
-  max-width: 1200px;
-  width: 100%;
   margin-right: 2rem;
   margin-left: 2rem;
 `;
 
-const Section = styled.section``;
-
-const Container = styled.div``;
+const HeroContainer = styled.div`
+  margin-top: 15vh;
+  max-width: 1200px;
+  width: 100%;
+`;
 
 const Home = () => (
   <Layout>
@@ -44,12 +40,6 @@ const Home = () => (
         <Subscribe />
       </HeroContainer>
     </HeroSection>
-    <Section>
-      <Container>
-        <h1></h1>
-        <p></p>
-      </Container>
-    </Section>
   </Layout>
 );
 
