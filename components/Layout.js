@@ -10,10 +10,6 @@ const Layout = ({ children }) => (
   <div>
     <Head>
       <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
-      {/* <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap"
-        rel="stylesheet"
-      /> */}
       <link href="/favicons/favicon.ico" rel="shortcut icon" />
       <link href="/favicons/site.webmanifest" rel="manifest" />
       <link
