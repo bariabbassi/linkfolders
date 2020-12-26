@@ -1,38 +1,26 @@
 import Head from 'next/head';
 import Header from './Header';
 import Footer from './Footer';
-import styled from 'styled-components';
-
-const Main = styled.main`
-  width: 100%;
-  /* position: absolute;
-  display: flex;
-  top: 0;
-  left: 0;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: stretch; */
-`;
 
 export const siteEmoji = '📂';
 export const siteTitle = 'Linkfolders';
-export const description = 'Keep all your Links organised in one place';
+export const description = 'A file system for the web';
 
 const Layout = ({ children }) => (
   <div>
     <Head>
-      <meta name="og:title" content={siteTitle} />
-      <meta name="description" content={description} />
-      <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
-      <meta content="#ffffff" name="theme-color" />
-      <meta content="#ffffff" name="msapplication-TileColor" />
-      <meta content="/favicons/browserconfig.xml" name="msapplication-config" />
+      <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
+      {/* <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap"
+        rel="stylesheet"
+      /> */}
       <link href="/favicons/favicon.ico" rel="shortcut icon" />
       <link href="/favicons/site.webmanifest" rel="manifest" />
       <link
-        rel="apple-touch-icon"
-        sizes="180x180"
-        href="/favicons/apple-touch-icon.png"
+        rel="icon"
+        type="image/png"
+        sizes="16x16"
+        href="/favicons/favicon-16x16.png"
       />
       <link
         rel="icon"
@@ -41,10 +29,9 @@ const Layout = ({ children }) => (
         href="/favicons/favicon-32x32.png"
       />
       <link
-        rel="icon"
-        type="image/png"
-        sizes="16x16"
-        href="/favicons/favicon-16x16.png"
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="/favicons/apple-touch-icon.png"
       />
       <link rel="manifest" href="/favicons/site.webmanifest" />
       <link
@@ -52,12 +39,16 @@ const Layout = ({ children }) => (
         href="/favicons/safari-pinned-tab.svg"
         color="#f5b200"
       />
+      <meta name="og:title" content={siteTitle} />
+      <meta name="description" content={description} />
+      <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
+      <meta content="/favicons/browserconfig.xml" name="msapplication-config" />
       <meta name="msapplication-TileColor" content="#ffc40d" />
       <meta name="theme-color" content="#ffffff" />
     </Head>
 
     <Header siteEmoji={siteEmoji} siteTitle={siteTitle} />
-    <Main>{children}</Main>
+    <main>{children}</main>
     <Footer />
   </div>
 );

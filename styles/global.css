@@ -8,8 +8,6 @@ body {
   -webkit-font-smoothing: antialiased;
   text-size-adjust: 100%;
   text-rendering: optimizelegibility;
-  display: flex;
-  justify-content: center;
   scroll-behavior: smooth;
   background: white;
   color: black;

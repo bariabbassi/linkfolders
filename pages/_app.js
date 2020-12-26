@@ -13,7 +13,6 @@ export default class MyApp extends App {
     const { Component, pageProps } = this.props;
     return (
       <ThemeProvider theme={theme}>
-        <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
         <Component {...pageProps} />
       </ThemeProvider>
     );
