@@ -47,16 +47,25 @@ const A = styled.a`
   }
 `;
 
+const Name = styled.a`
+  display: flex;
+`;
+
+const Logo = styled.img`
+  width: 40px;
+  margin-right: 0.5rem;
+  padding-bottom: 0.5rem;
+`;
+
 const Header = ({ siteEmoji, siteTitle }) => (
   <StyledHeader>
     <Nav>
-      <h3>
-        <Link href="/">
-          <a>
-            {siteEmoji} {siteTitle}
-          </a>
-        </Link>
-      </h3>
+      <Link href="/">
+        <Name>
+          <Logo src="/linkfolders.svg" alt="Linkfolders Logo" />
+          <h3>{siteTitle}</h3>
+        </Name>
+      </Link>
       <div>
         <List>
           {/* <Item>

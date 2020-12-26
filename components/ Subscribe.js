@@ -15,24 +15,22 @@ const Input = styled.input`
   font-size: 1.17rem;
   padding: 1rem 1.5rem 1rem 1rem;
   border-radius: 0.5rem 0 0 0.5rem;
-  border: 4px solid #fc0;
+  border: 4px solid #ffcc00;
 `;
 
 const Button = styled.button`
-  /* color: #fff; */
   font-size: 1.17rem;
   font-weight: 600;
-  background: #fc0;
+  background: #ffcc00;
   padding: 1rem 1.5rem 1rem 1rem;
   border-radius: 0 0.5rem 0.5rem 0;
   border: 4px solid #fc0;
-  cursor: pointer;
   &:hover {
-    color: #fc1;
-    background: #0af;
+    background: #f7c701;
+    border-color: #f7c701;
   }
   &:active {
-    background: #4564f5;
+    background: #ffd93f;
   }
 `;
 
