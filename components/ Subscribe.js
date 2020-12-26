@@ -3,7 +3,6 @@ import Link from 'next/link';
 import useSWR from 'swr';
 // import format from 'comma-number';
 // import { trackGoal } from 'fathom-client';
-import fetcher from '@/utils/fetcher';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -25,7 +24,7 @@ const Button = styled.button`
   padding: 1rem 1.5rem 1rem 1rem;
   margin-right: 2rem;
   border-radius: 0 0.5rem 0.5rem 0;
-  border: 4px solid #fc0;
+  border: 4px solid #ffcc00;
   &:hover {
     background: #f7c701;
     border-color: #f7c701;
@@ -78,8 +77,6 @@ const Button = styled.button`
 const Subscribe = () => {
   const [form, setForm] = useState(false);
   const inputEl = useRef(null);
-  //   const { data } = useSWR('/api/subscribers', fetcher);
-  //   const subscriberCount = format(data?.count);
 
   const subscribe = async (e) => {
     e.preventDefault();

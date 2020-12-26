@@ -1,10 +1,14 @@
 import App from 'next/app';
-import '../styles/global.css';
 import { ThemeProvider } from 'styled-components';
+
+import '../styles/global.css';
+import { AuthProvider } from '@/lib/auth';
 
 const theme = {
   colors: {
-    babyblue: 'rgb(152, 200, 245)'
+    yellow: '#ffcc00',
+    darkyellow: '#f7c701',
+    lightyellow: '#ffd93f'
   }
 };
 
@@ -13,7 +17,9 @@ export default class MyApp extends App {
     const { Component, pageProps } = this.props;
     return (
       <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
+        <AuthProvider>
+          <Component {...pageProps} />
+        </AuthProvider>
       </ThemeProvider>
     );
   }
