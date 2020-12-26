@@ -21,9 +21,14 @@ export const description = 'Keep all your Links organised in one place';
 const Layout = ({ children }) => (
   <div>
     <Head>
-      <link rel="icon" href="/favicons/favicon.ico" />
-      <meta name="description" content={description} />
       <meta name="og:title" content={siteTitle} />
+      <meta name="description" content={description} />
+      <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
+      <meta content="#ffffff" name="theme-color" />
+      <meta content="#ffffff" name="msapplication-TileColor" />
+      <meta content="/favicons/browserconfig.xml" name="msapplication-config" />
+      <link href="/favicons/favicon.ico" rel="shortcut icon" />
+      <link href="/favicons/site.webmanifest" rel="manifest" />
       <link
         rel="apple-touch-icon"
         sizes="180x180"
