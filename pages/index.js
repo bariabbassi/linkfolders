@@ -8,23 +8,19 @@ const HeroSection = styled.section`
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  /* background: rgb(152, 200, 245); */
 `;
 
 const HeroContainer = styled.div`
-  margin-top: 15vh;
+  margin-top: 20vh;
   max-width: 1200px;
-  width: 90vw;
-`;
-
-const Section = styled.section`
   width: 100%;
+  margin-right: 2rem;
+  margin-left: 2rem;
 `;
 
-const Container = styled.div`
-  /* max-width: 900px;
-  width: 90vw; */
-`;
+const Section = styled.section``;
+
+const Container = styled.div``;
 
 const Home = () => (
   <Layout>
