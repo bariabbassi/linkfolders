@@ -14,7 +14,7 @@ const HeroSection = styled.section`
 
 const HeroContainer = styled.div`
   margin-top: 15vh;
-  max-width: 1200px;
+  max-width: 1500px;
   width: 100%;
 `;
 
