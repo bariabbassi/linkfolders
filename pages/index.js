@@ -36,7 +36,9 @@ const Home = () => (
           <br />
           so you can quickly grab them whenever you need them.
         </p>
-        <h4>We’re in private beta. Drop in your email for updates.</h4>
+        <h4>
+          We’re in private beta. Drop in your email to join the wait list.
+        </h4>
         <Subscribe />
       </HeroContainer>
     </HeroSection>
