@@ -18,7 +18,7 @@ export default async (req, res) => {
     };
 
     const response = await fetch(
-      DATACENTER`https://${DATACENTER}.api.mailchimp.com/3.0/lists/${LIST_ID}/members`,
+      `https://${DATACENTER}.api.mailchimp.com/3.0/lists/${LIST_ID}/members`,
       {
         body: JSON.stringify(data),
         headers: {
