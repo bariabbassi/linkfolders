@@ -31,7 +31,7 @@ export default async (req, res) => {
 
     if (response.status >= 400) {
       return res.status(400).json({
-        error: `There was an error subscribing to the newsletter. Shoot me an email at [me@leerob.io] and I'll add you to the list.`
+        error: `There was an error joining the wait list. Shoot me an email at [bari@abbas.si] and I'll add you to the list.`
       });
     }
 
