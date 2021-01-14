@@ -1,5 +1,4 @@
 import { useState, useRef } from 'react';
-import { trackGoal } from 'fathom-client';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -66,7 +65,6 @@ const Subscribe = () => {
       return;
     }
 
-    trackGoal('JYFUFMSF', 0);
     inputEl.current.value = '';
     setForm({
       state: 'success',

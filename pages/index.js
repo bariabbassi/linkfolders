@@ -1,6 +1,6 @@
 import Head from 'next/head';
-import Layout, { siteTitle } from '../components/Layout';
 import styled from 'styled-components';
+import { Button, ButtonGroup, Heading, Text } from '@chakra-ui/react';
 
 import Subscribe from '@/components/ Subscribe';
 import { useAuth } from '@/lib/auth';
@@ -24,35 +24,28 @@ const Home = () => {
   const auth = useAuth();
 
   return (
-    <Layout>
-      <Head>
-        <title>{siteTitle}</title>
-      </Head>
-
-      <HeroSection>
-        <HeroContainer>
-          <h1>
-            A file system
-            <br />
-            for the web
-          </h1>
-          <p>
-            {siteTitle} helps you bookmark and organize all your links in
-            folders
-            <br />
-            so you can quickly grab them whenever you need them.
-          </p>
-          <h4>
-            We’re in private beta. Drop in your email to join the waiting list.
-          </h4>
-          <button onClick={(e) => auth.signinWithGitHub()}>
-            Login with Github
-          </button>
-          <div>{auth?.user?.email}</div>
-          <Subscribe />
-        </HeroContainer>
-      </HeroSection>
-    </Layout>
+    <HeroSection>
+      <HeroContainer>
+        <Heading>All your links in one place</Heading>
+        <Text>
+          Linkfolders helps you bookmark and organize all your links in folders
+          <br />
+          so you can quickly grab them whenever you need them.
+        </Text>
+        <h4>
+          We’re in private beta. Drop in your email to join the waiting list.
+        </h4>
+        <Button onClick={(e) => auth.signinWithGitHub()}>
+          Login with Github
+        </Button>
+        {/* <button onClick={(e) => auth.signinWithGitHub()}>
+          Login with Github
+        </button> */}
+        <button onClick={(e) => auth.signout()}>Sign out</button>
+        <div>{auth?.user?.email}</div>
+        <Subscribe />
+      </HeroContainer>
+    </HeroSection>
   );
 };
 
