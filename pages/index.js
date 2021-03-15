@@ -1,51 +1,39 @@
 import Head from 'next/head';
-import styled from 'styled-components';
-import { Button, ButtonGroup, Heading, Text } from '@chakra-ui/react';
+import { Button, Heading, Text, Box, Flex } from '@chakra-ui/react';
 
-import Subscribe from '@/components/ Subscribe';
+import Subscribe from '@/components/Subscribe';
 import { useAuth } from '@/lib/auth';
-
-const HeroSection = styled.section`
-  width: 100%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  margin-right: 2rem;
-  margin-left: 2rem;
-`;
-
-const HeroContainer = styled.div`
-  margin-top: 15vh;
-  max-width: 1500px;
-  width: 100%;
-`;
 
 const Home = () => {
   const auth = useAuth();
 
   return (
-    <HeroSection>
-      <HeroContainer>
+    <Box py={16}>
+      <Flex as="main" direction="column" maxW="700px" margin="0 auto">
         <Heading>All your links in one place</Heading>
         <Text>
-          Linkfolders helps you bookmark and organize all your links in folders
+          Linkfolders helps you bookmark, organize, and store links
           <br />
-          so you can quickly grab them whenever you need them.
+          so you can quickly share them.
         </Text>
         <h4>
           We’re in private beta. Drop in your email to join the waiting list.
         </h4>
-        <Button onClick={(e) => auth.signinWithGitHub()}>
-          Login with Github
-        </Button>
-        {/* <button onClick={(e) => auth.signinWithGitHub()}>
-          Login with Github
-        </button> */}
-        <button onClick={(e) => auth.signout()}>Sign out</button>
-        <div>{auth?.user?.email}</div>
+        {auth.user ? (
+          // <Button as="a" href="/folders">
+          //   Open folders
+          // </Button>
+          <Button onClick={(e) => auth.signout()}>
+            Sign out {auth?.user?.email}
+          </Button>
+        ) : (
+          <Button onClick={(e) => auth.signinWithGitHub()}>
+            Login with Github
+          </Button>
+        )}
         <Subscribe />
-      </HeroContainer>
-    </HeroSection>
+      </Flex>
+    </Box>
   );
 };
 
