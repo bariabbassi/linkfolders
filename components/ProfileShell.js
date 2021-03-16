@@ -1,8 +1,7 @@
-import React from 'react';
 import { Flex, Image, Heading, Link, Button } from '@chakra-ui/react';
 import NextLink from 'next/link';
 
-const ProfileShell = ({ children, photoUrl, name }) => (
+const ProfileShell = ({ name, photoUrl, children }) => (
   <Flex
     flexDirection="column"
     alignItems="center"

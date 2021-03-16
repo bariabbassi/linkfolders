@@ -10,10 +10,10 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Button
+  Button,
+  useDisclosure
 } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
-import { useDisclosure } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 
 const AddLinkModal = () => {
@@ -48,7 +48,6 @@ const AddLinkModal = () => {
                 ref={register({ required: true })}
               />
             </FormControl>
-
             <FormControl mt={4}>
               <FormLabel>Name</FormLabel>
               <Input
@@ -58,7 +57,6 @@ const AddLinkModal = () => {
               />
             </FormControl>
           </ModalBody>
-
           <ModalFooter>
             <Button colorScheme="blue" mr={3} type="submit">
               Save

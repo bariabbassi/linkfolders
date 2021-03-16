@@ -1,6 +1,21 @@
-import { Flex, Text, Icon, Link, Button, Box } from '@chakra-ui/react';
+import {
+  Flex,
+  Text,
+  Icon,
+  Link,
+  Button,
+  ButtonGroup,
+  IconButton,
+  Box,
+  Heading,
+  Image,
+  Editable,
+  EditableInput,
+  EditablePreview
+} from '@chakra-ui/react';
 import useSWR from 'swr';
 
+import AccountShell from '@/components/AccountShell';
 import ProfileEditShell from '@/components/ProfileEditShell';
 import TreeSkeleton from '@/components/TreeSkeleton';
 import TreeEdit from '@/components/TreeEdit';
@@ -9,22 +24,22 @@ import fetcher from '@/utils/fetcher';
 
 const Edit = () => {
   const { user } = useAuth();
-  const { data } = useSWR(() => `/api/profiles/${user.username}`, fetcher); //useSWR('/api/profiles/satoshi', fetcher);
+  const { data } = useSWR(() => `/api/profiles/${user.username}`, fetcher);
 
   if (!data) {
     return (
-      <ProfileEditShell>
+      <AccountShell>
         <TreeSkeleton />
-      </ProfileEditShell>
+      </AccountShell>
     );
   }
 
   return (
-    <ProfileEditShell>
-      <Box w="500px" maxW="100vw" mr={6}>
-        <TreeEdit children={data?.profile?.children} isRoot={true} />
-      </Box>
-    </ProfileEditShell>
+    <AccountShell>
+      <ProfileEditShell profile={data?.profile}>
+        <TreeEdit children={data?.profile?.children} />
+      </ProfileEditShell>
+    </AccountShell>
   );
 };
 

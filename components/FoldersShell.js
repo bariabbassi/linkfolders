@@ -1,4 +1,3 @@
-import React from 'react';
 import { Flex, IconButton, Heading } from '@chakra-ui/react';
 import { ArrowBackIcon } from '@chakra-ui/icons';
 

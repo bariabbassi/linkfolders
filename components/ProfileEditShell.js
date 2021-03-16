@@ -1,55 +1,102 @@
-import React from 'react';
-import { Box, Button, Flex, Link, Avatar, Icon } from '@chakra-ui/react';
-import NextLink from 'next/link';
+import {
+  Flex,
+  Text,
+  Icon,
+  Link,
+  Button,
+  ButtonGroup,
+  IconButton,
+  Box,
+  Heading,
+  Avatar,
+  AvatarBadge,
+  Editable,
+  EditableInput,
+  EditablePreview,
+  FormControl
+} from '@chakra-ui/react';
+import { EditIcon, CheckIcon, CloseIcon } from '@chakra-ui/icons';
+import { useForm } from 'react-hook-form';
 
-import { useAuth } from '@/lib/auth';
+const ProfileEditShell = ({ profile, children }) => {
+  const { register, handleSubmit } = useForm();
+  const onUpdateProfile = (values) => {
+    console.log(onSubmit, values);
+  };
 
-const ProfileEditShell = ({ children }) => {
-  const { user } = useAuth();
+  const updateName = () => console.log('updateName', profile?.name);
+  const updateUsername = () => console.log('updateUsername');
+  const EditableControls = ({ isEditing, onSubmit, onCancel, onEdit }) => {
+    return isEditing ? (
+      <ButtonGroup alignItems="center" justify="center" size="sm" ml={4}>
+        <IconButton icon={<CheckIcon />} onClick={onSubmit} />
+        <IconButton icon={<CloseIcon />} onClick={onCancel} />
+      </ButtonGroup>
+    ) : (
+      <Flex alignItems="center" justify="center" ml={4}>
+        <IconButton size="sm" icon={<EditIcon />} onClick={onEdit} />
+      </Flex>
+    );
+  };
 
   return (
-    <Box backgroundColor="pink.100" h="100vh">
-      <Flex backgroundColor="white" mb={[8, 16]} w="full">
-        <Flex
-          alignItems="center"
-          justifyContent="space-between"
-          pt={4}
-          pb={4}
-          maxW="1250px"
-          margin="0 auto"
-          w="full"
-          px={8}
-          h="60px"
+    <Flex
+      flexDirection="column"
+      alignItems="center"
+      as="form"
+      onSubmit={handleSubmit(onUpdateProfile)}
+    >
+      <Avatar mb={2} size="2xl" name={profile?.name} src={profile?.photoUrl}>
+        <AvatarBadge border="none" p={4}>
+          <IconButton size="sm" color="gray.700" icon={<EditIcon />} />
+        </AvatarBadge>
+      </Avatar>
+      <Heading as="h1" size="lg" mt={2} ml={12}>
+        <Editable
+          d="flex"
+          textAlign="center"
+          defaultValue={profile?.name}
+          isPreviewFocusable={false}
+          submitOnBlur={false}
         >
-          <Flex align="center">
-            <NextLink href="/" passHref>
-              <Link>
-                <Icon name="logo" size="24px" mr={8} />
-              </Link>
-            </NextLink>
-            <NextLink href="/sites" passHref>
-              <Link mr={4}>Sites</Link>
-            </NextLink>
-            <NextLink href="/feedback" passHref>
-              <Link>Feedback</Link>
-            </NextLink>
-          </Flex>
-          <Flex justifyContent="center" alignItems="center">
-            {user && (
-              <NextLink href="/account" passHref>
-                <Button as="a" variant="ghost" mr={2}>
-                  Account
-                </Button>
-              </NextLink>
-            )}
-            <Avatar size="sm" src={user?.photoUrl} />
-          </Flex>
-        </Flex>
-      </Flex>
-      <Flex margin="0 auto" direction="column" maxW="1250px" px={[0, 8, 8]}>
+          {(props) => (
+            <>
+              <EditablePreview />
+
+              <EditableInput
+                name="name"
+                value={profile?.name}
+                ref={register({ required: true })}
+              />
+              <EditableControls {...props} />
+            </>
+          )}
+        </Editable>
+      </Heading>
+      <Heading as="h2" size="sm" mb={10} mt={2} ml={12}>
+        <Editable
+          d="flex"
+          textAlign="center"
+          defaultValue={profile?.username}
+          isPreviewFocusable={false}
+          submitOnBlur={false}
+        >
+          {(props) => (
+            <>
+              <EditablePreview />
+              <EditableInput />
+              <EditableControls {...props} />
+            </>
+          )}
+        </Editable>
+      </Heading>
+      <Box w="500px" maxW="100vw" mr={6}>
         {children}
-      </Flex>
-    </Box>
+        <Flex align="space-between" type="submit">
+          <Button>Submit</Button>
+        </Flex>
+      </Box>
+    </Flex>
   );
 };
 

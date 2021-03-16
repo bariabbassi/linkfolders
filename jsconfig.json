@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "jsx": "react",
     "paths": {
       "@/components/*": ["components/*"],
       "@/lib/*": ["lib/*"],

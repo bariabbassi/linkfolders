@@ -11,13 +11,13 @@ import {
   FormLabel,
   Input,
   Button,
-  useToast
+  useToast,
+  useDisclosure
 } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
-import { useDisclosure } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
-import { useAuth } from '@/lib/auth';
 
+import { useAuth } from '@/lib/auth';
 import { createFolder } from '@/lib/db';
 
 const AddFolderModal = () => {
@@ -49,7 +49,7 @@ const AddFolderModal = () => {
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent as="form" onSubmit={handleSubmit(onCreateFolder)}>
+        <ModalContent as="" onSubmit={handleSubmit(onCreateFolder)}>
           <ModalHeader>Add a new folder</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>

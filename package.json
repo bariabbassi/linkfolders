@@ -8,10 +8,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "@atlaskit/button": "^15.1.5",
-    "@atlaskit/icon": "^21.4.0",
-    "@atlaskit/navigation": "^22.0.1",
-    "@atlaskit/tree": "^8.2.0",
     "@chakra-ui/icons": "^1.0.3",
     "@chakra-ui/react": "^1.1.4",
     "@emotion/react": "^11.1.4",
@@ -26,7 +22,6 @@
     "next": "^10.0.0",
     "next-seo": "^4.17.0",
     "react": "16.13.1",
-    "react-beautiful-dnd": "^13.0.0",
     "react-dom": "16.13.1",
     "react-hook-form": "^6.15.4",
     "styled-components": "^5.2.1",
