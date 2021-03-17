@@ -18,7 +18,6 @@ import useSWR from 'swr';
 import AccountShell from '@/components/AccountShell';
 import ProfileEditShell from '@/components/ProfileEditShell';
 import TreeSkeleton from '@/components/TreeSkeleton';
-import TreeEdit from '@/components/TreeEdit';
 import { useAuth } from '@/lib/auth';
 import fetcher from '@/utils/fetcher';
 
@@ -36,9 +35,7 @@ const Edit = () => {
 
   return (
     <AccountShell>
-      <ProfileEditShell profile={data?.profile}>
-        <TreeEdit children={data?.profile?.children} />
-      </ProfileEditShell>
+      <ProfileEditShell profile={data?.profile} />
     </AccountShell>
   );
 };

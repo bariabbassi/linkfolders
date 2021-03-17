@@ -40,7 +40,8 @@ const TreeNode = ({ child, index }) => {
         <Box
           d="flex"
           alignItems="center"
-          height="46px"
+          pt={3}
+          pb={3}
           pl={7}
           lineHeight="1.2"
           transition="all 0.2s cubic-bezier(.08,.52,.52,1)"

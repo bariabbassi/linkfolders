@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Flex,
   Text,
@@ -13,15 +14,21 @@ import {
   Editable,
   EditableInput,
   EditablePreview,
-  FormControl
+  FormControl,
+  FormLabel,
+  Input
 } from '@chakra-ui/react';
 import { EditIcon, CheckIcon, CloseIcon } from '@chakra-ui/icons';
 import { useForm } from 'react-hook-form';
 
+import TreeEdit from '@/components/TreeEdit';
+
 const ProfileEditShell = ({ profile, children }) => {
   const { register, handleSubmit } = useForm();
+  const [tree, setTree] = useState(profile?.children);
+  console.log(tree);
   const onUpdateProfile = (values) => {
-    console.log(onSubmit, values);
+    console.log('onSubmit', values);
   };
 
   const updateName = () => console.log('updateName', profile?.name);
@@ -51,49 +58,63 @@ const ProfileEditShell = ({ profile, children }) => {
           <IconButton size="sm" color="gray.700" icon={<EditIcon />} />
         </AvatarBadge>
       </Avatar>
-      <Heading as="h1" size="lg" mt={2} ml={12}>
-        <Editable
-          d="flex"
-          textAlign="center"
-          defaultValue={profile?.name}
-          isPreviewFocusable={false}
-          submitOnBlur={false}
-        >
-          {(props) => (
-            <>
-              <EditablePreview />
-
-              <EditableInput
-                name="name"
-                value={profile?.name}
-                ref={register({ required: true })}
-              />
-              <EditableControls {...props} />
-            </>
-          )}
-        </Editable>
-      </Heading>
-      <Heading as="h2" size="sm" mb={10} mt={2} ml={12}>
-        <Editable
-          d="flex"
-          textAlign="center"
-          defaultValue={profile?.username}
-          isPreviewFocusable={false}
-          submitOnBlur={false}
-        >
-          {(props) => (
-            <>
-              <EditablePreview />
-              <EditableInput />
-              <EditableControls {...props} />
-            </>
-          )}
-        </Editable>
-      </Heading>
+      <FormControl
+        mt={2}
+        ml={12}
+        d="flex"
+        flexDirection="column"
+        alignItems="center"
+      >
+        <Heading as="h1" size="lg">
+          <Editable
+            d="flex"
+            textAlign="center"
+            defaultValue={profile?.name}
+            isPreviewFocusable={false}
+            submitOnBlur={false}
+          >
+            {(props) => (
+              <>
+                <EditablePreview />
+                <EditableInput name="name" ref={register({ required: true })} />
+                <EditableControls {...props} />
+              </>
+            )}
+          </Editable>
+        </Heading>
+      </FormControl>
+      <FormControl
+        mt={2}
+        ml={12}
+        d="flex"
+        flexDirection="column"
+        alignItems="center"
+      >
+        <Heading as="h2" size="sm" mb={10}>
+          <Editable
+            d="flex"
+            textAlign="center"
+            defaultValue={profile?.username}
+            isPreviewFocusable={false}
+            submitOnBlur={false}
+          >
+            {(props) => (
+              <>
+                <EditablePreview />
+                <EditableInput
+                  name="username"
+                  ref={register({ required: true })}
+                />
+                <EditableControls {...props} />
+              </>
+            )}
+          </Editable>
+        </Heading>
+      </FormControl>
       <Box w="500px" maxW="100vw" mr={6}>
-        {children}
-        <Flex align="space-between" type="submit">
-          <Button>Submit</Button>
+        <TreeEdit children={profile.children} setTree={setTree} />
+        <Flex align="space-between">
+          <Button type="submit">Submit</Button>
         </Flex>
       </Box>
     </Flex>
