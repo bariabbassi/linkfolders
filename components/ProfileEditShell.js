@@ -31,12 +31,18 @@ const ProfileEditShell = ({ profile, children }) => {
     console.log('onSubmit', values);
   };
 
-  const updateName = () => console.log('updateName', profile?.name);
-  const updateUsername = () => console.log('updateUsername');
+  const updateName = () => {
+    close;
+    console.log('updateName', profile?.name);
+  };
+  const updateUsername = (onSubmit) => {
+    console.log('updateUsername');
+    onSubmit();
+  };
   const EditableControls = ({ isEditing, onSubmit, onCancel, onEdit }) => {
     return isEditing ? (
       <ButtonGroup alignItems="center" justify="center" size="sm" ml={4}>
-        <IconButton icon={<CheckIcon />} onClick={onSubmit} />
+        <IconButton icon={<CheckIcon />} type="submit" />
         <IconButton icon={<CloseIcon />} onClick={onCancel} />
       </ButtonGroup>
     ) : (
@@ -47,42 +53,41 @@ const ProfileEditShell = ({ profile, children }) => {
   };
 
   return (
-    <Flex
-      flexDirection="column"
-      alignItems="center"
-      as="form"
-      onSubmit={handleSubmit(onUpdateProfile)}
-    >
+    <Flex flexDirection="column" alignItems="center">
       <Avatar mb={2} size="2xl" name={profile?.name} src={profile?.photoUrl}>
         <AvatarBadge border="none" p={4}>
           <IconButton size="sm" color="gray.700" icon={<EditIcon />} />
         </AvatarBadge>
       </Avatar>
-      <FormControl
-        mt={2}
-        ml={12}
-        d="flex"
-        flexDirection="column"
-        alignItems="center"
-      >
-        <Heading as="h1" size="lg">
-          <Editable
-            d="flex"
-            textAlign="center"
-            defaultValue={profile?.name}
-            isPreviewFocusable={false}
-            submitOnBlur={false}
-          >
-            {(props) => (
-              <>
-                <EditablePreview />
-                <EditableInput name="name" ref={register({ required: true })} />
-                <EditableControls {...props} />
-              </>
-            )}
-          </Editable>
-        </Heading>
-      </FormControl>
+
+      <Heading as="h1" size="lg">
+        <Editable
+          d="flex"
+          textAlign="center"
+          defaultValue={profile?.name}
+          isPreviewFocusable={false}
+          submitOnBlur={false}
+        >
+          {(props) => (
+            <>
+              <EditablePreview />
+              <Flex
+                as="form"
+                onSubmit={handleSubmit(updateName(props.onSubmit))}
+              >
+                <FormControl>
+                  <EditableInput
+                    name="name"
+                    ref={register({ required: true })}
+                  />
+                </FormControl>
+              </Flex>
+              <EditableControls {...props} />
+            </>
+          )}
+        </Editable>
+      </Heading>
+
       <FormControl
         mt={2}
         ml={12}
@@ -114,7 +119,7 @@ const ProfileEditShell = ({ profile, children }) => {
       <Box w="500px" maxW="100vw" mr={6}>
         <TreeEdit children={profile.children} setTree={setTree} />
         <Flex align="space-between">
-          <Button type="submit">Submit</Button>
+          <Button>Submit</Button>
         </Flex>
       </Box>
     </Flex>
