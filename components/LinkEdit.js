@@ -26,6 +26,8 @@ import { EditIcon, CheckIcon, CloseIcon, DeleteIcon } from '@chakra-ui/icons';
 import { mutate } from 'swr';
 import { useForm } from 'react-hook-form';
 
+import { useProfile, useProfileUpdate } from '@/components/ProfileContext';
+
 const Link = ({ name, setIsEditing }) => (
   <Flex p={3} w="100%" align="center" justify="space-between">
     <Heading as="h2" size="sm">
@@ -44,6 +46,10 @@ const Link = ({ name, setIsEditing }) => (
 );
 
 const LinkForm = ({ name, link, setIsEditing }) => {
+  const profile = useProfile();
+  const updateLink = useProfileUpdate();
+  updateLink();
+
   const { register, handleSubmit } = useForm();
   const onUpdateLink = (values) => {
     console.log(values);

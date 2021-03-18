@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, createContext } from 'react';
 import {
   Flex,
   Text,
@@ -22,19 +22,24 @@ import { EditIcon, CheckIcon, CloseIcon } from '@chakra-ui/icons';
 import { useForm } from 'react-hook-form';
 
 import TreeEdit from '@/components/TreeEdit';
+import { useProfile } from '@/components/ProfileContext';
 
-const ProfileEditShell = ({ profile, children }) => {
+export const ProfileContext = createContext();
+
+const ProfileEditShell = () => {
+  const profile = useProfile();
+
   const { register, handleSubmit } = useForm();
   const [tree, setTree] = useState(profile?.children);
-  console.log(tree);
+  console.log(profile);
   const onUpdateProfile = (values) => {
     console.log('onSubmit', values);
   };
 
-  const updateName = () => {
-    close;
-    console.log('updateName', profile?.name);
+  const updateName = (values) => {
+    console.log('updateName', values);
   };
+
   const updateUsername = (onSubmit) => {
     console.log('updateUsername');
     onSubmit();
@@ -68,23 +73,26 @@ const ProfileEditShell = ({ profile, children }) => {
           isPreviewFocusable={false}
           submitOnBlur={false}
         >
-          {(props) => (
-            <>
-              <EditablePreview />
-              <Flex
-                as="form"
-                onSubmit={handleSubmit(updateName(props.onSubmit))}
-              >
-                <FormControl>
-                  <EditableInput
-                    name="name"
-                    ref={register({ required: true })}
-                  />
-                </FormControl>
-              </Flex>
-              <EditableControls {...props} />
-            </>
-          )}
+          {(props) => {
+            const onUpdateName = (values) => {
+              updateName(values);
+              close;
+            };
+            return (
+              <>
+                <EditablePreview />
+                <Flex as="form" onSubmit={handleSubmit(onUpdateName)}>
+                  <FormControl>
+                    <EditableInput
+                      name="name"
+                      ref={register({ required: true })}
+                    />
+                  </FormControl>
+                  <EditableControls {...props} />
+                </Flex>
+              </>
+            );
+          }}
         </Editable>
       </Heading>
 

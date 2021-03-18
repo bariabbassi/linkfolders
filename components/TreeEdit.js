@@ -10,10 +10,13 @@ import {
 } from '@chakra-ui/react';
 import { ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
 
+import { useProfile, useProfileUpdate } from '@/components/ProfileContext';
 import LinkEdit from '@/components/LinkEdit';
 import FolderEdit from '@/components/FolderEdit';
 
 const TreeEdit = ({ children, setChildren }) => {
+  const profile = useProfile();
+
   return (
     <List w="100%" d="flex" flexDirection="column" align="stretch">
       {children?.map((child, index) => (

@@ -20,6 +20,7 @@ import ProfileEditShell from '@/components/ProfileEditShell';
 import TreeSkeleton from '@/components/TreeSkeleton';
 import { useAuth } from '@/lib/auth';
 import fetcher from '@/utils/fetcher';
+import { ProfileProvider } from '@/components/ProfileContext';
 
 const Edit = () => {
   const { user } = useAuth();
@@ -35,7 +36,9 @@ const Edit = () => {
 
   return (
     <AccountShell>
-      <ProfileEditShell profile={data?.profile} />
+      <ProfileProvider data={data}>
+        <ProfileEditShell />
+      </ProfileProvider>
     </AccountShell>
   );
 };
