@@ -99,7 +99,9 @@ const ETree = () => {
 
   return (
     <AccountShell>
-      <NewTree data={data?.profile?.children} />
+      <Box w="500px" maxW="100vw" mr={6}>
+        <NewTree data={data?.profile?.children} />
+      </Box>
     </AccountShell>
   );
 };

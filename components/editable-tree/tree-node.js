@@ -1,24 +1,29 @@
-import EditableItem from '@/components/editable-tree/editable-item';
-// import '@/styles/tree-node.css';
+import { List } from '@chakra-ui/react';
+import EditableLink from '@/components/editable-tree/EditableLink';
+import EditableFolder from '@/components/editable-tree/EditableFolder';
 
 const TreeNode = ({ children, ...otherProps }) => {
   const hasChildren = children !== undefined;
 
   const renderChildren = (children) => {
     return (
-      <ul>
+      <List pl={7}>
         {children.map((nodeProps) => {
           const { id, ...others } = nodeProps;
           return <TreeNode key={id} {...others} />;
         })}
-      </ul>
+      </List>
     );
   };
 
   return (
     <li>
       <div className="TreeNode">
-        <EditableItem {...otherProps} />
+        {{ ...otherProps }.url ? (
+          <EditableLink {...otherProps} />
+        ) : (
+          <EditableFolder {...otherProps} />
+        )}
       </div>
       {hasChildren && renderChildren(children)}
     </li>

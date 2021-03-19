@@ -3,7 +3,6 @@ import TreeNode from '@/components/editable-tree/tree-node';
 import AddButton from '@/components/editable-tree/add-button';
 import ControlPanel from '@/components/editable-tree/control-panel';
 import TextView from '@/components/editable-tree/text-view';
-// import '@/styles/tree.css';
 
 class Tree extends Component {
   constructor(props) {
@@ -13,8 +12,11 @@ class Tree extends Component {
       savedNodes: []
     };
     this.changeName = this.changeName.bind(this);
+    this.changeUrl = this.changeUrl.bind(this);
     this.addRootElement = this.addRootElement.bind(this);
     this.addChild = this.addChild.bind(this);
+    this.addLink = this.addLink.bind(this);
+    this.addFolder = this.addFolder.bind(this);
     this.removeNode = this.removeNode.bind(this);
     this.saveState = this.saveState.bind(this);
     this.loadState = this.loadState.bind(this);
@@ -33,8 +35,8 @@ class Tree extends Component {
           name,
           url,
           changeName: this.changeName(id),
-          removeNode: this.removeNode(id),
-          addChild: this.addChild(id)
+          changeUrl: this.changeUrl(id),
+          deleteLink: this.removeNode(id)
         };
       } else {
         const { name, children } = nodes[i];
@@ -48,22 +50,11 @@ class Tree extends Component {
             : undefined,
           changeName: this.changeName(id),
           removeNode: this.removeNode(id),
-          addChild: this.addChild(id)
+          addChild: this.addChild(id),
+          addLink: this.addLink(id),
+          addFolder: this.addFolder(id)
         };
       }
-
-      // } else {
-      //   nodesCopy[i] = {
-      //     children: hasChildren
-      //       ? this.initializedСopy(children, id)
-      //       : undefined,
-      //     changeName: this.changeName(id),
-      //     removeNode: this.removeNode(id),
-      //     addChild: this.addChild(id),
-      //     id,
-      //     name
-      //   };
-      // }
     }
     return nodesCopy;
   }
@@ -85,15 +76,34 @@ class Tree extends Component {
     };
   }
 
+  changeUrl(id) {
+    return (newUrl) => {
+      id = id.split('.').map((str) => parseInt(str));
+      const nodes = this.initializedСopy(this.state.nodes);
+      let changingNode = nodes[id[0] - 1];
+
+      if (id.length > 1) {
+        for (let i = 1; i < id.length; i++) {
+          changingNode = changingNode.children[id[i] - 1];
+        }
+      }
+
+      changingNode.url = newUrl;
+      this.setState({ nodes });
+    };
+  }
+
   addRootElement() {
     const id = this.state.nodes.length ? `${this.state.nodes.length + 1}` : '1';
     const newNode = {
+      id,
+      name: '',
       children: undefined,
       changeName: this.changeName(id),
       removeNode: this.removeNode(id),
       addChild: this.addChild(id),
-      id,
-      name: ''
+      addLink: this.addLink(id),
+      addFolder: this.addFolder(id)
     };
 
     const nodes = [...this.state.nodes, newNode];
@@ -125,8 +135,79 @@ class Tree extends Component {
           changeName: this.changeName(id),
           removeNode: this.removeNode(id),
           addChild: this.addChild(id),
+          addLink: this.addLink(id),
+          addFolder: this.addFolder(id),
           id,
           name: ''
+        }
+      ];
+
+      this.setState({ nodes });
+    };
+  }
+
+  addLink(id) {
+    return () => {
+      id = id.split('.').map((str) => parseInt(str));
+      const nodes = this.initializedСopy(this.state.nodes);
+      let changingNode = nodes[id[0] - 1];
+
+      if (id.length > 1) {
+        for (let i = 1; i < id.length; i++) {
+          changingNode = changingNode.children[id[i] - 1];
+        }
+      }
+
+      if (changingNode.children === undefined) {
+        changingNode.children = [];
+      }
+
+      id = `${id.join('.')}.${changingNode.children.length + 1}`;
+
+      changingNode.children = [
+        ...changingNode.children,
+        {
+          id,
+          name: '',
+          children: undefined,
+          changeName: this.changeName(id),
+          removeNode: this.removeNode(id),
+          addLink: this.addLink(id),
+          addFolder: this.addFolder(id)
+        }
+      ];
+
+      this.setState({ nodes });
+    };
+  }
+
+  addFolder(id) {
+    return () => {
+      id = id.split('.').map((str) => parseInt(str));
+      const nodes = this.initializedСopy(this.state.nodes);
+      let changingNode = nodes[id[0] - 1];
+
+      if (id.length > 1) {
+        for (let i = 1; i < id.length; i++) {
+          changingNode = changingNode.children[id[i] - 1];
+        }
+      }
+
+      if (changingNode.children === undefined) {
+        changingNode.children = [];
+      }
+
+      id = `${id.join('.')}.${changingNode.children.length + 1}`;
+
+      changingNode.children = [
+        ...changingNode.children,
+        {
+          id,
+          name: '',
+          url: '',
+          changeName: this.changeName(id),
+          changeUrl: this.changeUrl(id),
+          removeNode: this.removeNode(id)
         }
       ];
 
@@ -185,12 +266,20 @@ class Tree extends Component {
   simplify(nodes) {
     const nodesCopy = [];
     for (let i = 0; i < nodes.length; i++) {
-      const { children, name } = nodes[i];
-      const hasChildren = children !== undefined && children.length > 0;
-      nodesCopy[i] = {
-        name,
-        children: hasChildren ? this.simplify(children) : undefined
-      };
+      if (nodes[i].url) {
+        const { name, url } = nodes[i];
+        nodesCopy[i] = {
+          name,
+          url
+        };
+      } else {
+        const { children, name } = nodes[i];
+        const hasChildren = children !== undefined && children.length > 0;
+        nodesCopy[i] = {
+          name,
+          children: hasChildren ? this.simplify(children) : undefined
+        };
+      }
     }
     return nodesCopy;
   }
