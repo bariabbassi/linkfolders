@@ -1,7 +1,5 @@
-// import '@/styles/editable-item.css';
-
 const EditableItem = (props) => {
-  const { title, changeTitle, removeNode, addChild } = props;
+  const { name, changeName, removeNode, addChild } = props;
 
   return (
     <div className="EditableItem">
@@ -22,9 +20,9 @@ const EditableItem = (props) => {
       <input
         className="EditableItem-Text"
         onChange={(e) => {
-          changeTitle(e.target.value);
+          changeName(e.target.value);
         }}
-        value={title}
+        value={name}
         placeholder="New Item"
       />
     </div>

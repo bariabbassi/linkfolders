@@ -1,4 +1,5 @@
-import EditableItem from '@/components/editable-item';
+import EditableItem from '@/components/editable-tree/editable-item';
+// import '@/styles/tree-node.css';
 
 const TreeNode = ({ children, ...otherProps }) => {
   const hasChildren = children !== undefined;

@@ -1,8 +1,8 @@
 import { Component } from 'react';
-import TreeNode from '@/components/tree-node';
-import AddButton from '@/components/add-button';
-import ControlPanel from '@/components/control-panel';
-import TextView from '@/components/text-view';
+import TreeNode from '@/components/editable-tree/tree-node';
+import AddButton from '@/components/editable-tree/add-button';
+import ControlPanel from '@/components/editable-tree/control-panel';
+import TextView from '@/components/editable-tree/text-view';
 // import '@/styles/tree.css';
 
 class Tree extends Component {
@@ -12,7 +12,7 @@ class Tree extends Component {
       nodes: this.initializedСopy(this.props.data),
       savedNodes: []
     };
-    this.changeTitle = this.changeTitle.bind(this);
+    this.changeName = this.changeName.bind(this);
     this.addRootElement = this.addRootElement.bind(this);
     this.addChild = this.addChild.bind(this);
     this.removeNode = this.removeNode.bind(this);
@@ -25,23 +25,51 @@ class Tree extends Component {
   initializedСopy(nodes, location) {
     const nodesCopy = [];
     for (let i = 0; i < nodes.length; i++) {
-      const { children, title } = nodes[i];
-      const hasChildren = children !== undefined;
-      const id = location ? `${location}.${i + 1}` : `${i + 1}`;
-      nodesCopy[i] = {
-        children: hasChildren ? this.initializedСopy(children, id) : undefined,
-        changeTitle: this.changeTitle(id),
-        removeNode: this.removeNode(id),
-        addChild: this.addChild(id),
-        id,
-        title
-      };
+      if (nodes[i].url) {
+        const { name, url } = nodes[i];
+        const id = location ? `${location}.${i + 1}` : `${i + 1}`;
+        nodesCopy[i] = {
+          id,
+          name,
+          url,
+          changeName: this.changeName(id),
+          removeNode: this.removeNode(id),
+          addChild: this.addChild(id)
+        };
+      } else {
+        const { name, children } = nodes[i];
+        const hasChildren = children !== undefined;
+        const id = location ? `${location}.${i + 1}` : `${i + 1}`;
+        nodesCopy[i] = {
+          id,
+          name,
+          children: hasChildren
+            ? this.initializedСopy(children, id)
+            : undefined,
+          changeName: this.changeName(id),
+          removeNode: this.removeNode(id),
+          addChild: this.addChild(id)
+        };
+      }
+
+      // } else {
+      //   nodesCopy[i] = {
+      //     children: hasChildren
+      //       ? this.initializedСopy(children, id)
+      //       : undefined,
+      //     changeName: this.changeName(id),
+      //     removeNode: this.removeNode(id),
+      //     addChild: this.addChild(id),
+      //     id,
+      //     name
+      //   };
+      // }
     }
     return nodesCopy;
   }
 
-  changeTitle(id) {
-    return (newTitle) => {
+  changeName(id) {
+    return (newName) => {
       id = id.split('.').map((str) => parseInt(str));
       const nodes = this.initializedСopy(this.state.nodes);
       let changingNode = nodes[id[0] - 1];
@@ -52,7 +80,7 @@ class Tree extends Component {
         }
       }
 
-      changingNode.title = newTitle;
+      changingNode.name = newName;
       this.setState({ nodes });
     };
   }
@@ -61,11 +89,11 @@ class Tree extends Component {
     const id = this.state.nodes.length ? `${this.state.nodes.length + 1}` : '1';
     const newNode = {
       children: undefined,
-      changeTitle: this.changeTitle(id),
+      changeName: this.changeName(id),
       removeNode: this.removeNode(id),
       addChild: this.addChild(id),
       id,
-      title: ''
+      name: ''
     };
 
     const nodes = [...this.state.nodes, newNode];
@@ -94,11 +122,11 @@ class Tree extends Component {
         ...changingNode.children,
         {
           children: undefined,
-          changeTitle: this.changeTitle(id),
+          changeName: this.changeName(id),
           removeNode: this.removeNode(id),
           addChild: this.addChild(id),
           id,
-          title: ''
+          name: ''
         }
       ];
 
@@ -157,10 +185,10 @@ class Tree extends Component {
   simplify(nodes) {
     const nodesCopy = [];
     for (let i = 0; i < nodes.length; i++) {
-      const { children, title } = nodes[i];
+      const { children, name } = nodes[i];
       const hasChildren = children !== undefined && children.length > 0;
       nodesCopy[i] = {
-        title,
+        name,
         children: hasChildren ? this.simplify(children) : undefined
       };
     }

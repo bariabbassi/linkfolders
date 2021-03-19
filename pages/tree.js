@@ -22,66 +22,66 @@ import { useAuth } from '@/lib/auth';
 import fetcher from '@/utils/fetcher';
 import { ProfileProvider } from '@/components/ProfileContext';
 
-import TreeX from '@/components/tree';
+import NewTree from '@/components/editable-tree/new-tree';
 
 const DEFAULT_NODES = [
   {
-    title: 'Tea',
+    name: 'Tea',
     children: [
       {
-        title: 'Black',
+        name: 'Black',
         children: [
           {
-            title: 'Assam'
+            name: 'Assam'
           },
           {
-            title: 'Earl Grey'
+            name: 'Earl Grey'
           },
           {
-            title: 'Lapsang Souchong'
+            name: 'Lapsang Souchong'
           }
         ]
       },
       {
-        title: 'Green',
+        name: 'Green',
         children: [
           {
-            title: 'Japanese Sencha'
+            name: 'Japanese Sencha'
           },
           {
-            title: 'Jasmine Pearls'
+            name: 'Jasmine Pearls'
           }
         ]
       }
     ]
   },
   {
-    title: 'Coffee',
+    name: 'Coffee',
     children: [
       {
-        title: 'Espresso'
+        name: 'Espresso'
       },
       {
-        title: 'Mochaccino'
+        name: 'Mochaccino'
       },
       {
-        title: 'Flat White'
+        name: 'Flat White'
       },
       {
-        title: 'Iced Latte',
+        name: 'Iced Latte',
         children: [
           {
-            title: 'Vanilla'
+            name: 'Vanilla'
           },
           {
-            title: 'Gingerbread'
+            name: 'Gingerbread'
           }
         ]
       }
     ]
   },
   {
-    title: 'Milk'
+    name: 'Milk'
   }
 ];
 
@@ -99,7 +99,7 @@ const ETree = () => {
 
   return (
     <AccountShell>
-      <TreeX data={DEFAULT_NODES} />
+      <NewTree data={data?.profile?.children} />
     </AccountShell>
   );
 };
