@@ -30,8 +30,8 @@ const Tree = ({ children }) => {
 };
 
 const TreeNode = ({ child, index }) => {
-  const isLink = child.url ? true : false;
-  const hasChildren = child.children ? true : false;
+  const isLink = child.url !== undefined;
+  const hasChildren = child.children !== undefined;
   const [isOpen, setIsOpen] = useState(false);
 
   return (

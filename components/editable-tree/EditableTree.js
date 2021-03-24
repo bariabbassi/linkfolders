@@ -1,32 +1,38 @@
 import { Component } from 'react';
-import TreeNode from '@/components/editable-tree/tree-node';
-import AddButton from '@/components/editable-tree/add-button';
-import ControlPanel from '@/components/editable-tree/control-panel';
-import TextView from '@/components/editable-tree/text-view';
+import { Box, Flex, List } from '@chakra-ui/react';
 
-class Tree extends Component {
+import EditableProfileHeader from '@/components/editable-tree/EditableProfileHeader';
+import TreeNode from '@/components/editable-tree/TreeNode';
+import RootButtons from '@/components/editable-tree/RootButtons';
+import ControlPanel from '@/components/editable-tree/ControlPanel';
+import { updateProfile } from '@/lib/db';
+
+class EditableTree extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      nodes: this.initializedСopy(this.props.data),
+      name: this.props.profile?.name,
+      username: this.props.profile?.username,
+      photoUrl: this.props.profile?.photoUrl,
+      nodes: this.initializedСopy(this.props.profile?.children),
       savedNodes: []
     };
     this.changeName = this.changeName.bind(this);
     this.changeUrl = this.changeUrl.bind(this);
-    this.addRootElement = this.addRootElement.bind(this);
-    this.addChild = this.addChild.bind(this);
+    this.addRootLink = this.addRootLink.bind(this);
+    this.addRootFolder = this.addRootFolder.bind(this);
     this.addLink = this.addLink.bind(this);
     this.addFolder = this.addFolder.bind(this);
     this.removeNode = this.removeNode.bind(this);
+    this.changeProfileName = this.changeProfileName.bind(this);
+    this.changeProfileUsername = this.changeProfileUsername.bind(this);
     this.saveState = this.saveState.bind(this);
     this.loadState = this.loadState.bind(this);
-    this.onTextChange = this.onTextChange.bind(this);
-    this.nodesToString = this.nodesToString.bind(this);
   }
 
   initializedСopy(nodes, location) {
     const nodesCopy = [];
-    for (let i = 0; i < nodes.length; i++) {
+    for (let i = 0; i < nodes?.length; i++) {
       if (nodes[i].url) {
         const { name, url } = nodes[i];
         const id = location ? `${location}.${i + 1}` : `${i + 1}`;
@@ -50,7 +56,6 @@ class Tree extends Component {
             : undefined,
           changeName: this.changeName(id),
           removeNode: this.removeNode(id),
-          addChild: this.addChild(id),
           addLink: this.addLink(id),
           addFolder: this.addFolder(id)
         };
@@ -93,7 +98,22 @@ class Tree extends Component {
     };
   }
 
-  addRootElement() {
+  addRootLink() {
+    const id = this.state.nodes.length ? `${this.state.nodes.length + 1}` : '1';
+    const newNode = {
+      id,
+      name: '',
+      url: 'https://',
+      changeName: this.changeName(id),
+      changeUrl: this.changeUrl(id),
+      removeNode: this.removeNode(id)
+    };
+
+    const nodes = [...this.state.nodes, newNode];
+    this.setState({ nodes });
+  }
+
+  addRootFolder() {
     const id = this.state.nodes.length ? `${this.state.nodes.length + 1}` : '1';
     const newNode = {
       id,
@@ -101,49 +121,12 @@ class Tree extends Component {
       children: undefined,
       changeName: this.changeName(id),
       removeNode: this.removeNode(id),
-      addChild: this.addChild(id),
       addLink: this.addLink(id),
       addFolder: this.addFolder(id)
     };
 
     const nodes = [...this.state.nodes, newNode];
     this.setState({ nodes });
-  }
-
-  addChild(id) {
-    return () => {
-      id = id.split('.').map((str) => parseInt(str));
-      const nodes = this.initializedСopy(this.state.nodes);
-      let changingNode = nodes[id[0] - 1];
-
-      if (id.length > 1) {
-        for (let i = 1; i < id.length; i++) {
-          changingNode = changingNode.children[id[i] - 1];
-        }
-      }
-
-      if (changingNode.children === undefined) {
-        changingNode.children = [];
-      }
-
-      id = `${id.join('.')}.${changingNode.children.length + 1}`;
-
-      changingNode.children = [
-        ...changingNode.children,
-        {
-          children: undefined,
-          changeName: this.changeName(id),
-          removeNode: this.removeNode(id),
-          addChild: this.addChild(id),
-          addLink: this.addLink(id),
-          addFolder: this.addFolder(id),
-          id,
-          name: ''
-        }
-      ];
-
-      this.setState({ nodes });
-    };
   }
 
   addLink(id) {
@@ -169,11 +152,10 @@ class Tree extends Component {
         {
           id,
           name: '',
-          children: undefined,
+          url: 'https://',
           changeName: this.changeName(id),
-          removeNode: this.removeNode(id),
-          addLink: this.addLink(id),
-          addFolder: this.addFolder(id)
+          changeUrl: this.changeUrl(id),
+          removeNode: this.removeNode(id)
         }
       ];
 
@@ -204,10 +186,11 @@ class Tree extends Component {
         {
           id,
           name: '',
-          url: '',
+          children: undefined,
           changeName: this.changeName(id),
-          changeUrl: this.changeUrl(id),
-          removeNode: this.removeNode(id)
+          removeNode: this.removeNode(id),
+          addLink: this.addLink(id),
+          addFolder: this.addFolder(id)
         }
       ];
 
@@ -247,20 +230,29 @@ class Tree extends Component {
     };
   }
 
+  changeProfileName(e) {
+    this.setState({ name: e.target.value });
+  }
+
+  changeProfileUsername(e) {
+    this.setState({ username: e.target.value });
+  }
+
   saveState() {
+    updateProfile(
+      this.props.profile?.id,
+      this.profileSimplify(
+        this.state.name,
+        this.state.username,
+        this.state.photoUrl,
+        this.state.nodes
+      )
+    );
     this.setState({ savedNodes: this.initializedСopy(this.state.nodes) });
   }
 
   loadState() {
     this.setState({ nodes: this.initializedСopy(this.state.savedNodes) });
-  }
-
-  onTextChange(e) {
-    this.setState({ nodes: this.initializedСopy(JSON.parse(e.target.value)) });
-  }
-
-  nodesToString() {
-    return JSON.stringify(this.simplify(this.state.nodes), undefined, 2);
   }
 
   simplify(nodes) {
@@ -284,36 +276,71 @@ class Tree extends Component {
     return nodesCopy;
   }
 
+  profileSimplify(name, username, photoUrl, nodes) {
+    const profile = { name, username, photoUrl, children: [] };
+    for (let i = 0; i < nodes.length; i++) {
+      if (nodes[i].url) {
+        const { name, url } = nodes[i];
+        profile.children[i] = {
+          name,
+          url
+        };
+      } else {
+        const { children, name } = nodes[i];
+        const hasChildren = children !== undefined && children.length > 0;
+        profile.children[i] = {
+          name,
+          children: hasChildren ? this.simplify(children) : undefined
+        };
+      }
+    }
+    return profile;
+  }
+
   render() {
-    const { nodes, savedNodes } = this.state;
+    const { name, username, photoUrl, nodes, savedNodes } = this.state;
     const {
-      addRootElement,
+      addRootLink,
+      addRootFolder,
+      changeProfileName,
+      changeProfileUsername,
       saveState,
-      loadState,
-      onTextChange,
-      nodesToString
+      loadState
     } = this;
     const hasSaved = savedNodes.length !== 0;
 
     return (
-      <div className="Tree">
-        <div className="Tree-LeftSide">
+      <Flex mb={5} direction="column" align="center">
+        <EditableProfileHeader
+          {...{
+            name,
+            username,
+            photoUrl,
+            changeProfileName,
+            changeProfileUsername
+          }}
+        />
+        <Box m={3} mb={10}>
+          <Box
+            mt={3}
+            mb={10}
+            borderWidth="1px"
+            borderRadius="lg"
+            overflow="hidden"
+          >
+            <List>
+              {nodes.map((nodeProps) => {
+                const { id, ...others } = nodeProps;
+                return <TreeNode key={id} {...others} />;
+              })}
+            </List>
+            <RootButtons {...{ addRootLink, addRootFolder }} />
+          </Box>
           <ControlPanel {...{ hasSaved, saveState, loadState }} />
-          <ul className="Nodes">
-            {nodes.map((nodeProps) => {
-              const { id, ...others } = nodeProps;
-              return <TreeNode key={id} {...others} />;
-            })}
-          </ul>
-          <AddButton onClick={addRootElement} />
-        </div>
-
-        <div className="Tree-RightSide">
-          <TextView value={nodesToString()} onChange={onTextChange} />
-        </div>
-      </div>
+        </Box>
+      </Flex>
     );
   }
 }
 
-export default Tree;
+export default EditableTree;

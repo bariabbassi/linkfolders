@@ -1,4 +1,4 @@
-// import '@/styles/control-panel.css';
+import { Box, Flex, Button } from '@chakra-ui/react';
 
 const ControlPanel = (props) => {
   const { hasSaved, saveState, loadState } = props;
@@ -17,15 +17,12 @@ const ControlPanel = (props) => {
   };
 
   return (
-    <div className="ControlPanel">
-      <button
-        className="ControlPanel-Button ControlPanel-Button_save"
-        onClick={saveState}
-      >
-        Save
-      </button>
+    <Flex>
+      <Button w="100%" onClick={saveState}>
+        Save changes
+      </Button>
       {renderLoadButton()}
-    </div>
+    </Flex>
   );
 };
 

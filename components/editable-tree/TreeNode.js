@@ -19,7 +19,7 @@ const TreeNode = ({ children, ...otherProps }) => {
   return (
     <li>
       <div className="TreeNode">
-        {{ ...otherProps }.url ? (
+        {{ ...otherProps }.url !== undefined ? (
           <EditableLink {...otherProps} />
         ) : (
           <EditableFolder {...otherProps} />

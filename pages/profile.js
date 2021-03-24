@@ -16,15 +16,17 @@ import {
 import useSWR from 'swr';
 
 import AccountShell from '@/components/AccountShell';
-import ProfileEditShell from '@/components/ProfileEditShell';
+import EditableTree from '@/components/editable-tree/EditableTree';
 import TreeSkeleton from '@/components/TreeSkeleton';
 import { useAuth } from '@/lib/auth';
 import fetcher from '@/utils/fetcher';
-import { ProfileProvider } from '@/components/ProfileContext';
 
-const Edit = () => {
+const EditProfile = () => {
   const { user } = useAuth();
-  const { data } = useSWR(() => `/api/profiles/${user.username}`, fetcher);
+  const { data } = useSWR(
+    user ? [`/api/profiles/${user.username}`, user.toke] : null,
+    fetcher
+  );
 
   if (!data) {
     return (
@@ -36,11 +38,9 @@ const Edit = () => {
 
   return (
     <AccountShell>
-      <ProfileProvider data={data}>
-        <ProfileEditShell />
-      </ProfileProvider>
+      <EditableTree profile={data?.profile} />
     </AccountShell>
   );
 };
 
-export default Edit;
+export default EditProfile;

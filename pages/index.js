@@ -10,6 +10,17 @@ const Home = () => {
   return (
     <Box py={16}>
       <Flex as="main" direction="column" maxW="700px" margin="0 auto">
+        <Head>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+              if (document.cookie && document.cookie.includes('linkfolders-auth')) {
+                window.location.href = "/profile"
+              }
+            `
+            }}
+          />
+        </Head>
         <Heading>All your links in one place</Heading>
         <Text>
           Linkfolders helps you bookmark, organize, and store links
@@ -20,9 +31,6 @@ const Home = () => {
           We’re in private beta. Drop in your email to join the waiting list.
         </h4>
         {auth.user ? (
-          // <Button as="a" href="/folders">
-          //   Open folders
-          // </Button>
           <Button onClick={(e) => auth.signout()}>
             Sign out {auth?.user?.email}
           </Button>

@@ -13,10 +13,11 @@ import { ChevronDownIcon, AddIcon, DeleteIcon } from '@chakra-ui/icons';
 
 const EditableLink = (props) => {
   const { name, changeName, removeNode, addLink, addFolder } = props;
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
 
   return (
     <Box
+      p={3}
       d="flex"
       alignItems="center"
       justifyContent="space-between"
@@ -29,10 +30,11 @@ const EditableLink = (props) => {
     >
       <Flex align="center">
         {/* <ChevronDownIcon /> */}
-        <Heading as="h2" size="sm" pl={1}>
+        <Heading ml={2} mr={4} as="h2" size="sm" pl={1}>
           📂
         </Heading>
         <Input
+          m={1}
           size="sm"
           placeholder="New folder"
           value={name}
@@ -43,24 +45,25 @@ const EditableLink = (props) => {
       </Flex>
       <Flex>
         <Button
+          m={1}
           size="sm"
           aria-label="Add link"
           leftIcon={<AddIcon />}
           onClick={addLink}
-          value
         >
-          Link
+          🔗
         </Button>
         <Button
+          m={1}
           size="sm"
           aria-label="Add folder"
           leftIcon={<AddIcon />}
           onClick={addFolder}
-          value
         >
-          Folder
+          📂
         </Button>
         <IconButton
+          m={1}
           size="sm"
           aria-label="Delete folder"
           icon={<DeleteIcon />}
