@@ -1,4 +1,4 @@
-import { Flex, Text, Icon, Link, Button, Box } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 
 import ProfileShell from '@/components/ProfileShell';
 import TreeSkeleton from '@/components/TreeSkeleton';

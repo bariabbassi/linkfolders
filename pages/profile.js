@@ -1,18 +1,3 @@
-import {
-  Flex,
-  Text,
-  Icon,
-  Link,
-  Button,
-  ButtonGroup,
-  IconButton,
-  Box,
-  Heading,
-  Image,
-  Editable,
-  EditableInput,
-  EditablePreview
-} from '@chakra-ui/react';
 import useSWR from 'swr';
 
 import AccountShell from '@/components/AccountShell';
@@ -24,7 +9,7 @@ import fetcher from '@/utils/fetcher';
 const EditProfile = () => {
   const { user } = useAuth();
   const { data } = useSWR(
-    user ? [`/api/profiles/${user.username}`, user.toke] : null,
+    user ? `/api/profiles/${user.username}` : null,
     fetcher
   );
 

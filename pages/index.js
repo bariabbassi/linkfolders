@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import { Button, Heading, Text, Box, Flex } from '@chakra-ui/react';
 
-import Subscribe from '@/components/Subscribe';
 import { useAuth } from '@/lib/auth';
 
 const Home = () => {
@@ -31,15 +30,16 @@ const Home = () => {
           We’re in private beta. Drop in your email to join the waiting list.
         </h4>
         {auth.user ? (
-          <Button onClick={(e) => auth.signout()}>
+          <Button onClick={(e) => auth.logout()}>
             Sign out {auth?.user?.email}
           </Button>
         ) : (
-          <Button onClick={(e) => auth.signinWithGitHub()}>
-            Login with Github
-          </Button>
+          <>
+            <Button onClick={(e) => auth.loginWithGoogle()}>
+              Sign up with Google
+            </Button>
+          </>
         )}
-        <Subscribe />
       </Flex>
     </Box>
   );

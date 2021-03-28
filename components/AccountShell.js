@@ -1,18 +1,9 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Link,
-  Avatar,
-  Icon,
-  Heading,
-  Image
-} from '@chakra-ui/react';
+import { Box, Button, Flex, Link, Avatar, Heading } from '@chakra-ui/react';
 import NextLink from 'next/link';
 
 import { useAuth } from '@/lib/auth';
 
-const AccountShell = ({ username, name, photoUrl, children }) => {
+const AccountShell = ({ children }) => {
   const { user } = useAuth();
 
   return (
@@ -31,9 +22,11 @@ const AccountShell = ({ username, name, photoUrl, children }) => {
         >
           <Flex align="center">
             <NextLink href="/" passHref>
-              <Link>
-                <Icon name="logo" size="24px" mr={8} />
-              </Link>
+              <Button as="a" variant="ghost" borderRadius={0} mr={3}>
+                <Heading as="h2" size="sm">
+                  📂 Linkfolders
+                </Heading>
+              </Button>
             </NextLink>
             <NextLink href="/sites" passHref>
               <Link mr={4}>Sites</Link>
