@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import NextLink from 'next/link';
 import {
   Box,
@@ -20,11 +19,6 @@ import { useAuth } from '@/lib/auth';
 const Signup = () => {
   const auth = useAuth();
   const { register, handleSubmit } = useForm();
-
-  useEffect(() => {
-    console.log('redirect');
-    auth.getRedirect();
-  }, []);
 
   const onSignUp = (values) => {
     console.log(values, values.email, values.password);
