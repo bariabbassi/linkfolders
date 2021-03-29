@@ -5,7 +5,6 @@ import {
   Heading,
   Button,
   FormControl,
-  FormLabel,
   Input,
   Divider,
   Text,
@@ -20,8 +19,7 @@ const Signup = () => {
   const auth = useAuth();
   const { register, handleSubmit } = useForm();
 
-  const onSignUp = (values) => {
-    console.log(values, values.email, values.password);
+  const onSignup = (values) => {
     auth.signupWithEmail(values.email, values.password);
   };
 
@@ -41,10 +39,11 @@ const Signup = () => {
         w="100%"
         direction="column"
         as="form"
-        onSubmit={handleSubmit(onSignUp)}
+        onSubmit={handleSubmit(onSignup)}
       >
         <FormControl mb={4}>
           <Input
+            type="email"
             name="email"
             placeholder="Email"
             ref={register({ required: true })}
@@ -52,6 +51,7 @@ const Signup = () => {
         </FormControl>
         <FormControl mb={4}>
           <Input
+            type="password"
             name="password"
             placeholder="Password"
             ref={register({ required: true })}

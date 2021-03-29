@@ -5,7 +5,6 @@ import {
   Heading,
   Button,
   FormControl,
-  FormLabel,
   Input,
   Divider,
   Text,
@@ -14,35 +13,38 @@ import {
 import { useForm } from 'react-hook-form';
 
 import TitleShell from '@/components/TitleShell';
+import { useAuth } from '@/lib/auth';
 
-const Signup = () => {
+const Login = () => {
+  const auth = useAuth();
   const { register, handleSubmit } = useForm();
+
+  const onLogin = (values) => {
+    console.log(values, values.email, values.password);
+    auth.loginWithEmail(values.email, values.password);
+  };
 
   return (
     <TitleShell>
       <Heading as="h1" size="2xl">
-        Sign up
+        Log in
       </Heading>
       <Flex w="100%" mt={14} direction="column">
-        <Button mb={4} onClick={(e) => auth.signInWithGitHub()}>
-          Login with Github
-        </Button>
-        <Button onClick={(e) => auth.signInWithGoogle()}>
-          Login with Google
+        <Button onClick={(e) => auth.loginWithGoogle()}>
+          Log in with Google
         </Button>
       </Flex>
       <Divider my={10} />
 
-      <Flex w="100%" direction="column">
+      <Flex
+        w="100%"
+        direction="column"
+        as="form"
+        onSubmit={handleSubmit(onLogin)}
+      >
         <FormControl mb={4}>
           <Input
-            name="name"
-            placeholder="Name"
-            ref={register({ required: true })}
-          />
-        </FormControl>
-        <FormControl mb={4}>
-          <Input
+            type="email"
             name="email"
             placeholder="Email"
             ref={register({ required: true })}
@@ -50,6 +52,7 @@ const Signup = () => {
         </FormControl>
         <FormControl mb={4}>
           <Input
+            type="password"
             name="password"
             placeholder="Password"
             ref={register({ required: true })}
@@ -57,12 +60,12 @@ const Signup = () => {
         </FormControl>
 
         <Button w="100%" mt={5} type="submit">
-          Sign up
+          Log in
         </Button>
         <Text mt={14} align="center">
-          Have an account?{' '}
-          <NextLink href="/login" passHref>
-            <Link color="yellow.500">Log in</Link>
+          Already have an account?{' '}
+          <NextLink href="/signup" passHref>
+            <Link color="yellow.500">Sign up</Link>
           </NextLink>
         </Text>
       </Flex>
@@ -70,4 +73,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Login;
