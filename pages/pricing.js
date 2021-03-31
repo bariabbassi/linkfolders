@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Layout, { siteTitle } from '../components/Layout';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -20,7 +19,7 @@ const PriceCard = styled.div`
 const Pricing = () => (
   <Layout>
     <Head>
-      <title>{siteTitle} - Pricing</title>
+      <title>Linkfolders - Pricing</title>
     </Head>
 
     <h1>Pricing</h1>
