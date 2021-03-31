@@ -13,13 +13,18 @@ import {
   InputLeftElement
 } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
+import { useForm } from 'react-hook-form';
 
 import LandingShell from '@/components/LandingShell';
 import { useAuth } from '@/lib/auth';
+import { checkUsername } from '@/lib/db';
 
 const Home = () => {
   const auth = useAuth();
-  const [username, setUsername] = useState('username');
+  const [username, setUsername] = useState();
+  const { register, handleSubmit } = useForm();
+
+  const onCheckUsername = (values) => checkUsername(values.username);
 
   return (
     <LandingShell>
@@ -34,62 +39,58 @@ const Home = () => {
           }}
         />
       </Head>
-      <Flex backgroundColor="white" mb={[8, 16]} w="100%" h="100%" maxH="500px">
-        <Flex
-          direction="column"
-          align="center"
-          justify="center"
-          px={8}
-          py={4}
-          maxW="1250px"
-          m="0 auto"
-          w="100%"
-          h="100%"
-        >
-          <Heading
-            mb={6}
-            as="h1"
-            size="3xl"
-            fontWeight="900"
-            letterSpacing="tighter"
-          >
-            All your links in one place.
-          </Heading>
-          <Heading mb={14} as="h2" size="md" fontWeight="200">
-            Linkfolders helps organize and share links.
-          </Heading>
-          <Text></Text>
+      <Heading
+        mb={6}
+        as="h1"
+        size="3xl"
+        fontWeight="900"
+        letterSpacing="tighter"
+      >
+        All your links in one place.
+      </Heading>
+      <Heading mb={14} as="h2" size="md" fontWeight="200">
+        Linkfolders helps organize and share links.
+      </Heading>
 
-          <InputGroup size="lg" maxW="500px" w="100%">
-            <Input
-              maxW="450px"
-              w="70%"
-              py={6}
-              pl="9.6rem"
-              placeholder="yourusername"
-            />
-            <InputLeftElement w="9.5rem">
-              <Flex
-                pl={6}
-                pt="0.13rem"
-                direction="column"
-                align="center"
-                justify="center"
-              >
-                <Text>📂 linkfolde.rs/</Text>
-              </Flex>
-            </InputLeftElement>
-            <Button
-              variant="solid"
-              colorScheme="yellow"
-              h="100%"
-              ml={4}
-              rightIcon={<ArrowForwardIcon />}
+      <Flex
+        as="form"
+        align="center"
+        justify="stretch"
+        spacing={1}
+        maxW="450px"
+        w="100%"
+        onSubmit={handleSubmit(onCheckUsername)}
+      >
+        <InputGroup size="lg">
+          <Input
+            py={6}
+            pl="9.6rem"
+            type="username"
+            name="username"
+            placeholder="yourusername"
+          />
+          <InputLeftElement w="9.5rem">
+            <Flex
+              pl={6}
+              pt="0.13rem"
+              direction="column"
+              align="center"
+              justify="center"
             >
-              Sign up
-            </Button>
-          </InputGroup>
-        </Flex>
+              <Text>📂 linkfolde.rs/</Text>
+            </Flex>
+          </InputLeftElement>
+        </InputGroup>
+        <Button
+          type="submit"
+          ml={2}
+          size="lg"
+          variant="solid"
+          colorScheme="yellow"
+          rightIcon={<ArrowForwardIcon />}
+        >
+          Sign up
+        </Button>
       </Flex>
     </LandingShell>
   );

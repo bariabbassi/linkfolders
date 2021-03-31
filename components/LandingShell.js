@@ -60,7 +60,20 @@ const LandingShell = ({ children }) => {
           </Stack>
         </Flex>
       </Flex>
-      {children}
+      <Flex mb={5} direction="column" align="center">
+        <Flex
+          direction="column"
+          align="center"
+          justify="flex-start"
+          p={4}
+          maxW="1250px"
+          margin="0 auto"
+          w="100%"
+          px={8}
+        >
+          {children}
+        </Flex>
+      </Flex>
     </Box>
   );
 };
