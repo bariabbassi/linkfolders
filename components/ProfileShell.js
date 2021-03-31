@@ -3,14 +3,14 @@ import NextLink from 'next/link';
 
 const ProfileShell = ({ name, photoUrl, children }) => (
   <Flex
-    flexDirection="column"
-    alignItems="center"
+    direction="column"
+    align="center"
     justify="space-between"
     w="100vw"
     minH="100vh"
     bg=""
   >
-    <Flex flexDirection="column" alignItems="center">
+    <Flex direction="column" align="center">
       <Image
         borderRadius="full"
         boxSize="150px"
@@ -25,7 +25,7 @@ const ProfileShell = ({ name, photoUrl, children }) => (
       {children}
     </Flex>
     <NextLink href="/" passHref>
-      <Button as="a" variant="ghost" borderRadius={0} mb={3} mt={12}>
+      <Button as="a" variant="ghost" mb={3} mt={12}>
         <Heading as="h2" size="sm">
           📂 Linkfolders
         </Heading>

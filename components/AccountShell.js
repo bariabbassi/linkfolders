@@ -4,25 +4,24 @@ import NextLink from 'next/link';
 import { useAuth } from '@/lib/auth';
 
 const AccountShell = ({ children }) => {
-  const { user } = useAuth();
+  const auth = useAuth();
 
   return (
     <Box backgroundColor="" h="100vh">
-      <Flex backgroundColor="white" mb={[8, 16]} w="full">
+      <Flex backgroundColor="white" mb={[8, 16]} w="100%">
         <Flex
-          alignItems="center"
-          justifyContent="space-between"
-          pt={4}
-          pb={4}
-          maxW="1250px"
-          margin="0 auto"
-          w="full"
+          align="center"
+          justify="space-between"
           px={8}
+          py={4}
+          maxW="1250px"
+          m="0 auto"
+          w="100%"
           h="60px"
         >
           <Flex align="center">
             <NextLink href="/" passHref>
-              <Button as="a" variant="ghost" borderRadius={0} mr={3}>
+              <Button as="a" variant="ghost" mr={3}>
                 <Heading as="h2" size="sm">
                   📂 Linkfolders
                 </Heading>
@@ -36,14 +35,14 @@ const AccountShell = ({ children }) => {
             </NextLink>
           </Flex>
           <Flex justifyContent="center" alignItems="center">
-            {user && (
-              <NextLink href="/account" passHref>
-                <Button as="a" variant="ghost" mr={2}>
-                  Account
+            {auth.user && (
+              <>
+                <Button variant="ghost" mr={2} onClick={(e) => auth.logout()}>
+                  Log out
                 </Button>
-              </NextLink>
+                <Avatar size="sm" src={auth.user?.photoUrl} />
+              </>
             )}
-            <Avatar size="sm" src={user?.photoUrl} />
           </Flex>
         </Flex>
       </Flex>

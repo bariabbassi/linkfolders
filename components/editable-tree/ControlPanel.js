@@ -21,7 +21,6 @@ const ControlPanel = (props) => {
       <Button w="100%" onClick={saveState}>
         Save changes
       </Button>
-      {renderLoadButton()}
     </Flex>
   );
 };

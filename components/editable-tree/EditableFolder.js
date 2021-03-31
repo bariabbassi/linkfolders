@@ -24,6 +24,7 @@ const EditableLink = (props) => {
       height="88px"
       pl={3}
       lineHeight="1.2"
+      borderRadius="base"
       transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
       color="gray.600"
       _hover={{ bg: 'gray.100' }}

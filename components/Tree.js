@@ -22,9 +22,11 @@ import { ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
 const Tree = ({ children }) => {
   return (
     <List w="100%" d="flex" flexDirection="column" align="stretch">
-      {children?.map((child, index) => (
-        <TreeNode key={index} child={child} index={index} />
-      ))}
+      {children !== undefined &&
+        children.length > 0 &&
+        children.map((child, index) => (
+          <TreeNode key={index} child={child} index={index} />
+        ))}
     </List>
   );
 };
@@ -44,6 +46,7 @@ const TreeNode = ({ child, index }) => {
           pb={3}
           pl={7}
           lineHeight="1.2"
+          borderRadius="base"
           transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
           color="gray.600"
           cursor="pointer"
@@ -75,6 +78,7 @@ const TreeNode = ({ child, index }) => {
             height="46px"
             pl={3}
             lineHeight="1.2"
+            borderRadius="base"
             transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
             color="gray.600"
             cursor="pointer"

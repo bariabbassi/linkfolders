@@ -29,7 +29,7 @@ const TitleShell = ({ children }) => {
           h="60px"
         >
           <NextLink href="/" passHref>
-            <Button as="a" variant="ghost" borderRadius={0} mr={3}>
+            <Button as="a" variant="ghost" mr={3}>
               <Heading as="h2" size="sm">
                 📂 Linkfolders
               </Heading>

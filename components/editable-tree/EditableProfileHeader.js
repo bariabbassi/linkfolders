@@ -25,10 +25,17 @@ const EditableProfileHeader = (props) => {
           <IconButton size="sm" color="gray.700" icon={<EditIcon />} />
         </AvatarBadge>
       </Avatar>
-      <Input mb={3} size="md" value={name} onChange={changeProfileName} />
+      <Input
+        mb={3}
+        size="md"
+        placeholder="Name"
+        value={name}
+        onChange={changeProfileName}
+      />
       <Input
         mb={3}
         size="sm"
+        placeholder="Username"
         value={username}
         onChange={changeProfileUsername}
       />
