@@ -13,6 +13,7 @@ import {
   InputLeftElement
 } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
+import NextLink from 'next/link';
 import { useForm } from 'react-hook-form';
 
 import LandingShell from '@/components/LandingShell';
@@ -22,9 +23,21 @@ import { checkUsername } from '@/lib/db';
 const Home = () => {
   const auth = useAuth();
   const [username, setUsername] = useState();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, errors } = useForm({
+    mode: 'onChange'
+  });
 
-  const onCheckUsername = (values) => checkUsername(values.username);
+  const onCheckUsername = (values) => {
+    onsole.log('onSubmit');
+    console.log('username', values.username);
+    console.log('errors', errors.username);
+  };
+
+  const onChange = (username) => {
+    console.log('onChange');
+    console.log('username', username);
+    console.log('errors', errors.username);
+  };
 
   return (
     <LandingShell>
@@ -57,9 +70,10 @@ const Home = () => {
         align="center"
         justify="stretch"
         spacing={1}
-        maxW="450px"
+        maxW="460px"
         w="100%"
         onSubmit={handleSubmit(onCheckUsername)}
+        onChange={(e) => onChange(e.target.value)}
       >
         <InputGroup size="lg">
           <Input
@@ -68,7 +82,17 @@ const Home = () => {
             type="username"
             name="username"
             placeholder="yourusername"
+            value={username}
+            ref={register({
+              minLength: 3,
+              maxLength: 30,
+              pattern: /([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)/g
+              // validate: (input) => checkUsername(input)
+            })}
+            // isInvalid={errors.username}
+            focusBorderColor={errors.username !== undefined && 'crimson'}
           />
+
           <InputLeftElement w="9.5rem">
             <Flex
               pl={6}
@@ -81,16 +105,19 @@ const Home = () => {
             </Flex>
           </InputLeftElement>
         </InputGroup>
-        <Button
-          type="submit"
-          ml={2}
-          size="lg"
-          variant="solid"
-          colorScheme="yellow"
-          rightIcon={<ArrowForwardIcon />}
-        >
-          Sign up
-        </Button>
+        <Text>errors: {errors.username?.type}</Text>
+        <NextLink href={`/sigup?username=${username}`} passHref>
+          <Button
+            as="a"
+            ml={2}
+            size="lg"
+            variant="solid"
+            colorScheme="yellow"
+            rightIcon={<ArrowForwardIcon />}
+          >
+            Sign up
+          </Button>
+        </NextLink>
       </Flex>
     </LandingShell>
   );
