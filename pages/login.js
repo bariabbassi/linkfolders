@@ -20,7 +20,6 @@ const Login = () => {
   const { register, handleSubmit } = useForm();
 
   const onLogin = (values) => {
-    console.log(values, values.email, values.password);
     auth.loginWithEmail(values.email, values.password);
   };
 
