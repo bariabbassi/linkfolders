@@ -3,11 +3,11 @@ import { Box } from '@chakra-ui/react';
 import ProfileShell from '@/components/ProfileShell';
 import TreeSkeleton from '@/components/TreeSkeleton';
 import Tree from '@/components/Tree';
-import { getAllProfiles, getProfile } from '@/lib/db-admin';
+import { getAllProfiles, getProfileWithUsername } from '@/lib/db-admin';
 
 export async function getStaticProps(context) {
   const username = context.params.username;
-  const { profile } = await getProfile(username);
+  const { profile } = await getProfileWithUsername(username);
 
   return {
     props: {
