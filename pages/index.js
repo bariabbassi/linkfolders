@@ -15,6 +15,7 @@ import {
 import { ArrowForwardIcon } from '@chakra-ui/icons';
 import NextLink from 'next/link';
 import useSWR from 'swr';
+import { useForm } from 'react-hook-form';
 
 import LandingShell from '@/components/LandingShell';
 import { useAuth } from '@/lib/auth';
@@ -36,25 +37,65 @@ const isValidUsername = (username) => {
 
 const Home = () => {
   const auth = useAuth();
+  const { register, handleBlur, errors } = useForm({
+    mode: 'onBlur'
+  });
   const [username, setUsername] = useState();
   const regEx = /^([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)$/;
   const [form, setForm] = useState(false);
-  const inputEl = useRef(null);
   const { data } = useSWR(
-    isValidUsername(username)
-      ? `/api/usernames/${username}/availability`
-      : null,
+    form.state === 'valid' ? `/api/usernames/${username}/availability` : null,
     fetcher
   );
 
   // const { data } = useSWR(`/api/usernames/${username}/availability`, fetcher);
 
-  const getUsernameAvailability = () => {
-    // if (data.status === 200) {
-    //   return true;
-    // } else if (data.status === 204) {
-    //   return false;
-    // }
+  const isValid = (username) => {
+    if (username === undefined || username.length === 0) {
+      setForm({
+        state: 'empty',
+        message: ''
+      });
+      return false;
+    } else if (username?.length < 3) {
+      setForm({
+        state: 'short',
+        message: `😥 Sorry! @${username} is too short`
+      });
+    } else if (username?.length > 30) {
+      setForm({
+        state: 'long',
+        message: `😥 Sorry! @${username} is too long`
+      });
+    } else if (!regEx.test(username)) {
+      setForm({
+        state: 'not-valid',
+        message: `😥 Sorry! @${username} is not valid`
+      });
+      // } else if (data?.vailable !== true) {
+      //   console.log('NOT available');
+      //   setForm({
+      //     state: 'error',
+      //     message: `😥 Sorry! @${username} is already taken`
+      //   });
+      // } else if (data?.vailable === true) {
+      //   console.log('available');
+      //   setForm({
+      //     state: 'success',
+      //     message: `🎉 Hooray! @${username} is available`
+      //   });
+    } else {
+      console.log(data?.available);
+      setForm({
+        state: 'valid',
+        message: `🎉 Hooray! @${username} is available`
+      });
+      console.log(data?.available);
+      console.log('valid  --', username);
+      return true;
+    }
+    console.log('Not valid  --', username, form);
+    return false;
   };
 
   const subscribe = async (e) => {
@@ -100,7 +141,6 @@ const Home = () => {
         message: `🎉 Hooray! @${username} is available`
       });
     }
-    setUsername(username);
   };
 
   return (
@@ -116,7 +156,6 @@ const Home = () => {
           }}
         />
       </Head>
-
       <Heading
         mb={6}
         as="h1"
@@ -147,9 +186,12 @@ const Home = () => {
               name="username"
               placeholder="yourusername"
               value={username}
-              onChange={subscribe}
+              ref={register({
+                validate: (input) => isValid(input)
+              })}
+              // isInvalid={errors.username}
+              focusBorderColor={errors.username !== undefined && 'crimson'}
             />
-
             <InputLeftElement w="9.5rem">
               <Flex
                 pl={6}
