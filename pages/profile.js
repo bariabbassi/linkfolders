@@ -8,10 +8,7 @@ import fetcher from '@/utils/fetcher';
 
 const EditProfile = () => {
   const { user } = useAuth();
-  const { data } = useSWR(
-    user ? `/api/profiles/${user.username}` : null,
-    fetcher
-  );
+  const { data } = useSWR(user ? `/api/profiles/${user.uid}` : null, fetcher);
 
   if (!data) {
     return (

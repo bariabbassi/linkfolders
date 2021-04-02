@@ -1,9 +1,11 @@
-import { getProfileWithUsername } from '@/lib/db-admin';
+import { getUsername, getProfile } from '@/lib/db-admin';
 
 export default async (req, res) => {
   try {
     const { username } = req.query;
-    const { profile } = await getProfileWithUsername(username);
+    const { profile } = await getUsername(username).then((res) =>
+      getProfile(res.uid)
+    );
 
     res.status(200).json({ profile });
   } catch (error) {
