@@ -14,7 +14,7 @@ import SignupUsername from '@/components/Signup/SignupUsername';
 const SignupWithEmail = ({ usernameQuery }) => {
   const router = useRouter();
   const auth = useAuth();
-  const { handleSubmit, register, errors } = useForm({ mode: 'onBlur' });
+  const { handleSubmit, register, errors } = useForm({ mode: 'onTouched' });
 
   const onSubmit = (values) => {
     console.log(vallues, errors);
@@ -45,7 +45,6 @@ const SignupWithEmail = ({ usernameQuery }) => {
           <FormErrorMessage>{errors.email.message}</FormErrorMessage>
         )}
       </FormControl>
-
       <FormControl isInvalid={errors.password}>
         <Input
           type="password"
@@ -55,7 +54,7 @@ const SignupWithEmail = ({ usernameQuery }) => {
             required: 'Password is required',
             minLength: {
               value: 5,
-              message: 'Password must be at least 5 haracters long'
+              message: 'Password must be at least 5 characters long'
             }
           })}
         />
@@ -63,7 +62,6 @@ const SignupWithEmail = ({ usernameQuery }) => {
           <FormErrorMessage>{errors.password.message}</FormErrorMessage>
         )}
       </FormControl>
-
       <Button type="submit">Sign up with Email</Button>
     </Stack>
   );

@@ -8,7 +8,7 @@ import SignupUsername from '@/components/Signup/SignupUsername';
 const SignupWithGoogle = ({ usernameQuery }) => {
   const router = useRouter();
   const auth = useAuth();
-  const { handleSubmit, register, errors } = useForm({ mode: 'onBlur' });
+  const { handleSubmit, register, errors } = useForm({ mode: 'onTouched' });
 
   const onSubmit = (values) => {
     console.log(values, errors);
@@ -16,7 +16,7 @@ const SignupWithGoogle = ({ usernameQuery }) => {
   };
 
   return (
-    <Stack w="100%" as="form" onSubmit={handleSubmit(onSubmit)}>
+    <Stack spacing={5} as="form" onSubmit={handleSubmit(onSubmit)}>
       <SignupUsername
         usernameQuery={usernameQuery}
         register={register}
