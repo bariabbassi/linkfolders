@@ -17,7 +17,7 @@ import { useAuth } from '@/lib/auth';
 
 const Login = () => {
   const auth = useAuth();
-  const { register, handleSubmit } = useForm();
+  const { handleSubmit, register } = useForm();
 
   const onLogin = (values) => {
     auth.loginWithEmail(values.email, values.password);
