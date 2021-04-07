@@ -1,13 +1,4 @@
-import {
-  Box,
-  Stack,
-  Button,
-  Flex,
-  Link,
-  Avatar,
-  Heading,
-  Image
-} from '@chakra-ui/react';
+import { Box, Button, Flex, Avatar, Heading, Image } from '@chakra-ui/react';
 import NextLink from 'next/link';
 
 import { useAuth } from '@/lib/auth';
@@ -48,30 +39,31 @@ const UserShell = ({ children }) => {
             </NextLink> */}
           </Flex>
           <Flex justifyContent="center" alignItems="center">
-            {auth.user ? (
-              <>
-                <Button variant="ghost" mr={2} onClick={(e) => auth.logout()}>
-                  Log out
-                </Button>
-                <Avatar
-                  size="sm"
-                  name={auth.user.name}
-                  src={auth.user.photoUrl}
-                />
-              </>
-            ) : null
-            // <Stack direction="row" spacing={4}>
-            //   <NextLink href="/login" passHref>
-            //     <Button as="a" variant="outline" colorScheme="yellow">
-            //       Log in
-            //     </Button>
-            //   </NextLink>
-            //   <NextLink href="/signup" passHref>
-            //     <Button as="a" variant="solid" colorScheme="yellow">
-            //       Sign up
-            //     </Button>
-            //   </NextLink>
-            // </Stack>
+            {
+              auth.user ? (
+                <>
+                  <Button variant="ghost" mr={2} onClick={(e) => auth.logout()}>
+                    Log out
+                  </Button>
+                  <Avatar
+                    size="sm"
+                    name={auth.user.name}
+                    src={auth.user.photoUrl}
+                  />
+                </>
+              ) : null
+              // <Stack direction="row" spacing={4}>
+              //   <NextLink href="/login" passHref>
+              //     <Button as="a" variant="outline" colorScheme="yellow">
+              //       Log in
+              //     </Button>
+              //   </NextLink>
+              //   <NextLink href="/signup" passHref>
+              //     <Button as="a" variant="solid" colorScheme="yellow">
+              //       Sign up
+              //     </Button>
+              //   </NextLink>
+              // </Stack>
             }
           </Flex>
         </Flex>

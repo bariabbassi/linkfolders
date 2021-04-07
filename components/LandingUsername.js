@@ -15,7 +15,9 @@ import Router from 'next/router';
 import useSWR from 'swr';
 import { useForm } from 'react-hook-form';
 
-const Username = () => {
+import { LinkfoldersIcon } from '@/styles/icons';
+
+const LandingUsername = () => {
   const { handleSubmit, register } = useForm({
     mode: 'onBlur'
   });
@@ -116,12 +118,15 @@ const Username = () => {
           <InputLeftElement w="9.5rem">
             <Flex
               pl={6}
-              pt="0.13rem"
+              pt="0.37rem"
               direction="column"
               align="center"
               justify="center"
             >
-              <Text>📂 linkfolde.rs/</Text>
+              <Text>
+                <LinkfoldersIcon width="5" height="5" mb={2} mr={2} />
+                linkfolde.rs/
+              </Text>
             </Flex>
           </InputLeftElement>
         </InputGroup>
@@ -155,4 +160,4 @@ const Username = () => {
   );
 };
 
-export default Username;
+export default LandingUsername;

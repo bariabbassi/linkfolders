@@ -1,6 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
-export const siteEmoji = '📂';
 export const siteTitle = 'Linkfolders';
 export const description = 'A your links in one place';
 

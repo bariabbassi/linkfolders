@@ -9,6 +9,8 @@ import {
 } from '@chakra-ui/react';
 import { ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
 
+import { LinkfoldersIcon } from '@/styles/icons';
+
 const Tree = ({ children }) => {
   return (
     <List>
@@ -83,7 +85,8 @@ const TreeNode = ({ child, index }) => {
           >
             {isOpen ? <ChevronDownIcon /> : <ChevronRightIcon />}
             <Heading as="h2" size="sm" pl={1}>
-              📂 &nbsp; {child.name}
+              <LinkfoldersIcon width="6" height="6" mb={1} />
+              {child.name}
             </Heading>
           </Box>
           {hasChildren && (

@@ -10,7 +10,6 @@ const EditableLink = (props) => {
       d="flex"
       alignItems="center"
       justifyContent="space-between"
-      lineHeight="1.2"
       borderRadius="base"
       transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
       color="gray.600"
@@ -18,14 +17,13 @@ const EditableLink = (props) => {
     >
       <Flex align="center">
         {url === 'https://' ? (
-          <Heading m={2} mr={3} as="h2" size="sm" pl={1}>
+          <Heading as="h2" mr={1} size="sm" pl={1}>
             🔗
           </Heading>
         ) : (
           <Image
-            m={2}
-            mr={4}
-            boxSize="24px"
+            mr={1}
+            boxSize="30px"
             src={`https://s2.googleusercontent.com/s2/favicons?domain=${url}&sz=32`}
             alt={name}
           />
@@ -53,7 +51,7 @@ const EditableLink = (props) => {
         </Flex>
       </Flex>
       <IconButton
-        m={1}
+        ml={3}
         size="sm"
         aria-label="Remove node"
         icon={<DeleteIcon />}

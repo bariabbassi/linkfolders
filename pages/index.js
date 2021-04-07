@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { Heading } from '@chakra-ui/react';
 
 import LandingShell from '@/components/LandingShell';
-import Username from '@/components/Username';
+import LandingUsername from '@/components/LandingUsername';
 
 const Home = () => {
   return (
@@ -31,7 +31,7 @@ const Home = () => {
       <Heading mb={14} as="h2" size="md" fontWeight="200">
         Linkfolders helps organize and share links.
       </Heading>
-      <Username />
+      <LandingUsername />
     </LandingShell>
   );
 };
