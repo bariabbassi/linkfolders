@@ -1,10 +1,11 @@
 import NextLink from 'next/link';
 import {
-  Box,
+  Stack,
   Flex,
   Heading,
   Button,
   FormControl,
+  FormErrorMessage,
   Input,
   Divider,
   Text,
@@ -17,9 +18,9 @@ import { useAuth } from '@/lib/auth';
 
 const Login = () => {
   const auth = useAuth();
-  const { handleSubmit, register } = useForm();
+  const { handleSubmit, register, errors } = useForm();
 
-  const onLogin = (values) => {
+  const onSubmit = (values) => {
     auth.loginWithEmail(values.email, values.password);
   };
 
@@ -28,33 +29,47 @@ const Login = () => {
       <Heading as="h1" size="2xl">
         Log in
       </Heading>
-      <Flex
-        mt={14}
-        w="100%"
-        direction="column"
-        as="form"
-        onSubmit={handleSubmit(onLogin)}
-      >
-        <FormControl mb={4}>
-          <Input
-            type="email"
-            name="email"
-            placeholder="Email"
-            ref={register({ required: true })}
-          />
-        </FormControl>
-        <FormControl mb={4}>
-          <Input
-            type="password"
-            name="password"
-            placeholder="Password"
-            ref={register({ required: true })}
-          />
-        </FormControl>
+      <Flex mt={16} w="100%" direction="column">
+        <Stack spacing={5} as="form" onSubmit={handleSubmit(onSubmit)}>
+          <FormControl isInvalid={errors.email}>
+            <Input
+              type="email"
+              name="email"
+              placeholder="Email"
+              ref={register({
+                required: 'Email is required',
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: 'Invalid email address'
+                }
+              })}
+            />
+            {errors.email && (
+              <FormErrorMessage>{errors.email.message}</FormErrorMessage>
+            )}
+          </FormControl>
+          <FormControl isInvalid={errors.password}>
+            <Input
+              type="password"
+              name="password"
+              placeholder="Password"
+              ref={register({
+                required: 'Password is required',
+                minLength: {
+                  value: 5,
+                  message: 'Password must be at least 5 characters long'
+                }
+              })}
+            />
+            {errors.password && (
+              <FormErrorMessage>{errors.password.message}</FormErrorMessage>
+            )}
+          </FormControl>
+          <Button colorScheme="yellow" type="submit">
+            Log in with Email
+          </Button>
+        </Stack>
 
-        <Button w="100%" mt={5} type="submit">
-          Log in with Email
-        </Button>
         <Divider my={10} />
         <Flex w="100%" direction="column">
           <Button onClick={(e) => auth.loginWithGoogle()}>

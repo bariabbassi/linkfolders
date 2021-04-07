@@ -5,14 +5,12 @@ import {
   FormErrorMessage,
   Input
 } from '@chakra-ui/react';
-import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 
 import { useAuth } from '@/lib/auth';
 import SignupUsername from '@/components/Signup/SignupUsername';
 
 const SignupWithEmail = ({ usernameQuery }) => {
-  const router = useRouter();
   const auth = useAuth();
   const { handleSubmit, register, errors } = useForm({ mode: 'onTouched' });
 
@@ -61,7 +59,9 @@ const SignupWithEmail = ({ usernameQuery }) => {
           <FormErrorMessage>{errors.password.message}</FormErrorMessage>
         )}
       </FormControl>
-      <Button type="submit">Sign up with Email</Button>
+      <Button colorScheme="yellow" type="submit">
+        Sign up with Email
+      </Button>
     </Stack>
   );
 };
