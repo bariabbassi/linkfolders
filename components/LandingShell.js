@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 
+import { LinkfoldersIcon } from '@/styles/icons';
 import { useAuth } from '@/lib/auth';
 
 const LandingShell = ({ children }) => {
@@ -29,19 +30,22 @@ const LandingShell = ({ children }) => {
         >
           <Stack direction="row" spacing={3}>
             <NextLink href="/" passHref>
-              <Button as="a" variant="ghost">
-                <Heading as="h2" size="md">
-                  📂 Linkfolders
-                </Heading>
+              <Button
+                as="a"
+                variant="ghost"
+                mr={3}
+                leftIcon={<LinkfoldersIcon width="8" height="8" mb={2} />}
+              >
+                <Heading size="sm">Linkfolders</Heading>
               </Button>
             </NextLink>
             <NextLink href="/blog" passHref>
-              <Button as="a" variant="ghost">
+              <Button as="a" variant="ghost" fontWeight="400">
                 Blog
               </Button>
             </NextLink>
             <NextLink href="/pricing" passHref>
-              <Button as="a" variant="ghost">
+              <Button as="a" variant="ghost" fontWeight="400">
                 Pricing
               </Button>
             </NextLink>

@@ -1,6 +1,7 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Stack } from '@chakra-ui/react';
 
-import ProfileShell from '@/components/ProfileShell';
+import AccountShell from '@/components/AccountShell';
+import ProfileHeader from '@/components/ProfileHeader';
 import TreeSkeleton from '@/components/TreeSkeleton';
 import Tree from '@/components/Tree';
 import { getAllUsernames, getUsername, getProfile } from '@/lib/db-admin';
@@ -35,18 +36,25 @@ export async function getStaticPaths() {
 const Profile = ({ profile }) => {
   if (!profile) {
     return (
-      <ProfileShell>
+      <AccountShell>
         <TreeSkeleton />
-      </ProfileShell>
+      </AccountShell>
     );
   }
 
   return (
-    <ProfileShell photoUrl={profile.photoUrl} name={profile.name}>
-      <Box w="500px" maxW="100vw" mr={6}>
-        <Tree children={profile.children} />
-      </Box>
-    </ProfileShell>
+    <AccountShell>
+      <Stack w="100%" maxW="550px">
+        <ProfileHeader
+          name={profile.name}
+          photoUrl={profile.photoUrl}
+          username={profile.username}
+        />
+        <Box borderWidth="1px" borderRadius="lg" overflow="hidden">
+          <Tree children={profile.children} />
+        </Box>
+      </Stack>
+    </AccountShell>
   );
 };
 

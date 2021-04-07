@@ -1,27 +1,17 @@
 import { useState } from 'react';
 import {
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionIcon,
-  AccordionPanel,
   Box,
   List,
   ListItem,
-  Link,
   Image,
-  Button,
   Collapse,
-  Flex,
-  Heading,
-  LinkBox,
-  LinkOverlay
+  Heading
 } from '@chakra-ui/react';
 import { ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
 
 const Tree = ({ children }) => {
   return (
-    <List w="100%" d="flex" flexDirection="column" align="stretch">
+    <List>
       {children !== undefined &&
         children.length > 0 &&
         children.map((child, index) => (
@@ -37,18 +27,16 @@ const TreeNode = ({ child, index }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <ListItem key={index} pl={6} w="100%">
+    <ListItem key={index}>
       {isLink ? (
         <Box
           d="flex"
           alignItems="center"
-          pt={3}
-          pb={3}
-          pl={7}
-          lineHeight="1.2"
+          height="57px"
+          px={7}
+          py={1}
           borderRadius="base"
           transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
-          color="gray.600"
           cursor="pointer"
           _hover={{ bg: 'gray.100' }}
           _active={{
@@ -62,7 +50,7 @@ const TreeNode = ({ child, index }) => {
           onClick={() => window.open(`${child.url}`)}
         >
           <Image
-            boxSize="24px"
+            w="30px"
             src={`https://s2.googleusercontent.com/s2/favicons?domain=${child.url}&sz=32`}
             alt={child.name}
           />
@@ -75,12 +63,12 @@ const TreeNode = ({ child, index }) => {
           <Box
             d="flex"
             alignItems="center"
-            height="46px"
-            pl={3}
+            height="57px"
+            px={3}
+            py={1}
             lineHeight="1.2"
             borderRadius="base"
             transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
-            color="gray.600"
             cursor="pointer"
             _hover={{ bg: 'gray.100' }}
             _active={{
@@ -100,7 +88,9 @@ const TreeNode = ({ child, index }) => {
           </Box>
           {hasChildren && (
             <Collapse in={isOpen}>
-              <Tree children={child.children} />
+              <List pl={6}>
+                <Tree children={child.children} />
+              </List>
             </Collapse>
           )}
         </>

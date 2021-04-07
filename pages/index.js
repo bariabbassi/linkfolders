@@ -1,31 +1,10 @@
-import { useState, useRef } from 'react';
 import Head from 'next/head';
-import {
-  Button,
-  Heading,
-  Text,
-  Box,
-  Flex,
-  Stack,
-  Input,
-  InputGroup,
-  InputLeftElement
-} from '@chakra-ui/react';
-import { ArrowForwardIcon } from '@chakra-ui/icons';
-import NextLink from 'next/link';
-import useSWR from 'swr';
-import { useForm } from 'react-hook-form';
+import { Heading } from '@chakra-ui/react';
 
-import { useAuth } from '@/lib/auth';
 import LandingShell from '@/components/LandingShell';
 import Username from '@/components/Username';
 
 const Home = () => {
-  const auth = useAuth();
-  // const { register } = useForm({
-  //   mode: 'onBlur'
-  // });
-
   return (
     <LandingShell>
       <Head>

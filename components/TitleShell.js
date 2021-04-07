@@ -2,6 +2,8 @@ import Head from 'next/head';
 import NextLink from 'next/link';
 import { Box, Flex, Heading, Button } from '@chakra-ui/react';
 
+import { LinkfoldersIcon } from '@/styles/icons';
+
 const TitleShell = ({ children }) => {
   return (
     <Box backgroundColor="" h="100vh">
@@ -29,10 +31,13 @@ const TitleShell = ({ children }) => {
           h="60px"
         >
           <NextLink href="/" passHref>
-            <Button as="a" variant="ghost">
-              <Heading as="h2" size="md">
-                📂 Linkfolders
-              </Heading>
+            <Button
+              as="a"
+              variant="ghost"
+              mr={3}
+              leftIcon={<LinkfoldersIcon width="8" height="8" mb={2} />}
+            >
+              <Heading size="sm">Linkfolders</Heading>
             </Button>
           </NextLink>
         </Flex>

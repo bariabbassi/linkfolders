@@ -1,38 +1,50 @@
-import { Box, Button, Flex, Link, Avatar, Heading } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Flex,
+  Link,
+  Avatar,
+  Heading,
+  Image
+} from '@chakra-ui/react';
 import NextLink from 'next/link';
 
 import { useAuth } from '@/lib/auth';
+import { LinkfoldersIcon } from '@/styles/icons';
 
 const AccountShell = ({ children }) => {
   const auth = useAuth();
 
   return (
-    <Box backgroundColor="" h="100vh">
-      <Flex backgroundColor="white" mb={[8, 16]} w="100%">
+    <Box backgroundColor="white" h="100vh">
+      <Flex backgroundColor="white" w="100%">
         <Flex
           align="center"
           justify="space-between"
-          px={8}
+          px={2}
           py={4}
-          maxW="1250px"
           m="0 auto"
+          maxW="1250px"
           w="100%"
           h="60px"
         >
           <Flex align="center">
             <NextLink href="/" passHref>
-              <Button as="a" variant="ghost" mr={3}>
-                <Heading as="h2" size="sm">
-                  📂 Linkfolders
-                </Heading>
+              <Button
+                as="a"
+                variant="ghost"
+                mr={3}
+                leftIcon={<LinkfoldersIcon width="8" height="8" mb={2} />}
+              >
+                <Heading size="sm">Linkfolders</Heading>
               </Button>
             </NextLink>
-            <NextLink href="/sites" passHref>
+            {/* <NextLink href="/sites" passHref>
               <Link mr={4}>Sites</Link>
             </NextLink>
             <NextLink href="/feedback" passHref>
               <Link>Feedback</Link>
-            </NextLink>
+            </NextLink> */}
           </Flex>
           <Flex justifyContent="center" alignItems="center">
             {auth.user && (
@@ -46,17 +58,17 @@ const AccountShell = ({ children }) => {
           </Flex>
         </Flex>
       </Flex>
-      <Flex mb={5} direction="column" align="center">
+      <Flex direction="column" align="center">
         <Flex
           direction="column"
           align="center"
           justify="flex-start"
-          p={4}
-          maxW="400px"
-          margin="0 auto"
+          maxW="1250px"
           w="100%"
-          px={8}
+          px={3}
+          pb={5}
         >
+          <Image src="../public/linkfolders.svg" width="100px" />
           {children}
         </Flex>
       </Flex>
