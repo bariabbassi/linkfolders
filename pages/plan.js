@@ -1,11 +1,11 @@
 import { Stack, Heading, Button } from '@chakra-ui/react';
 import NextLink from 'next/link';
 
-import AccountShell from '@/components/AccountShell';
+import UserShell from '@/components/UserShell';
 
 const Plan = () => {
   return (
-    <AccountShell>
+    <UserShell>
       <Heading as="h1" size="2xl">
         Plan
       </Heading>
@@ -25,7 +25,7 @@ const Plan = () => {
           </Button>
         </Stack>
       </Stack>
-    </AccountShell>
+    </UserShell>
   );
 };
 

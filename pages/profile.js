@@ -1,6 +1,6 @@
 import useSWR from 'swr';
 
-import AccountShell from '@/components/AccountShell';
+import UserShell from '@/components/UserShell';
 import EditableTree from '@/components/editable-tree/EditableTree';
 import TreeSkeleton from '@/components/TreeSkeleton';
 import { useAuth } from '@/lib/auth';
@@ -12,16 +12,16 @@ const EditProfile = () => {
 
   if (!data) {
     return (
-      <AccountShell>
+      <UserShell>
         <TreeSkeleton />
-      </AccountShell>
+      </UserShell>
     );
   }
 
   return (
-    <AccountShell>
+    <UserShell>
       <EditableTree profile={data?.profile} />
-    </AccountShell>
+    </UserShell>
   );
 };
 

@@ -1,5 +1,6 @@
 import {
   Box,
+  Stack,
   Button,
   Flex,
   Link,
@@ -12,7 +13,7 @@ import NextLink from 'next/link';
 import { useAuth } from '@/lib/auth';
 import { LinkfoldersIcon } from '@/styles/icons';
 
-const AccountShell = ({ children }) => {
+const UserShell = ({ children }) => {
   const auth = useAuth();
 
   return (
@@ -47,14 +48,31 @@ const AccountShell = ({ children }) => {
             </NextLink> */}
           </Flex>
           <Flex justifyContent="center" alignItems="center">
-            {auth.user && (
+            {auth.user ? (
               <>
                 <Button variant="ghost" mr={2} onClick={(e) => auth.logout()}>
                   Log out
                 </Button>
-                <Avatar size="sm" src={auth.user?.photoUrl} />
+                <Avatar
+                  size="sm"
+                  name={auth.user.name}
+                  src={auth.user.photoUrl}
+                />
               </>
-            )}
+            ) : null
+            // <Stack direction="row" spacing={4}>
+            //   <NextLink href="/login" passHref>
+            //     <Button as="a" variant="outline" colorScheme="yellow">
+            //       Log in
+            //     </Button>
+            //   </NextLink>
+            //   <NextLink href="/signup" passHref>
+            //     <Button as="a" variant="solid" colorScheme="yellow">
+            //       Sign up
+            //     </Button>
+            //   </NextLink>
+            // </Stack>
+            }
           </Flex>
         </Flex>
       </Flex>
@@ -76,4 +94,4 @@ const AccountShell = ({ children }) => {
   );
 };
 
-export default AccountShell;
+export default UserShell;

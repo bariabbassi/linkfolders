@@ -1,6 +1,6 @@
 import { Box, Stack } from '@chakra-ui/react';
 
-import AccountShell from '@/components/AccountShell';
+import UserShell from '@/components/UserShell';
 import ProfileHeader from '@/components/ProfileHeader';
 import TreeSkeleton from '@/components/TreeSkeleton';
 import Tree from '@/components/Tree';
@@ -36,14 +36,14 @@ export async function getStaticPaths() {
 const Profile = ({ profile }) => {
   if (!profile) {
     return (
-      <AccountShell>
+      <UserShell>
         <TreeSkeleton />
-      </AccountShell>
+      </UserShell>
     );
   }
 
   return (
-    <AccountShell>
+    <UserShell>
       <Stack w="100%" maxW="550px">
         <ProfileHeader
           name={profile.name}
@@ -54,7 +54,7 @@ const Profile = ({ profile }) => {
           <Tree children={profile.children} />
         </Box>
       </Stack>
-    </AccountShell>
+    </UserShell>
   );
 };
 
