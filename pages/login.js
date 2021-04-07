@@ -28,14 +28,8 @@ const Login = () => {
       <Heading as="h1" size="2xl">
         Log in
       </Heading>
-      <Flex w="100%" mt={14} direction="column">
-        <Button onClick={(e) => auth.loginWithGoogle()}>
-          Log in with Google
-        </Button>
-      </Flex>
-      <Divider my={10} />
-
       <Flex
+        mt={14}
         w="100%"
         direction="column"
         as="form"
@@ -59,8 +53,14 @@ const Login = () => {
         </FormControl>
 
         <Button w="100%" mt={5} type="submit">
-          Log in
+          Log in with Email
         </Button>
+        <Divider my={10} />
+        <Flex w="100%" direction="column">
+          <Button onClick={(e) => auth.loginWithGoogle()}>
+            Log in with Google
+          </Button>
+        </Flex>
         <Text mt={14} align="center">
           Already have an account?{' '}
           <NextLink href="/signup" passHref>

@@ -17,8 +17,7 @@ const SignupWithEmail = ({ usernameQuery }) => {
   const { handleSubmit, register, errors } = useForm({ mode: 'onTouched' });
 
   const onSubmit = (values) => {
-    console.log(vallues, errors);
-    auth.loginWithEmail(values.email, values.password, values.username);
+    auth.signupWithEmail(values.email, values.password, values.username);
   };
 
   return (

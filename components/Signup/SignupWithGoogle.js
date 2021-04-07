@@ -6,13 +6,11 @@ import { useAuth } from '@/lib/auth';
 import SignupUsername from '@/components/Signup/SignupUsername';
 
 const SignupWithGoogle = ({ usernameQuery }) => {
-  const router = useRouter();
   const auth = useAuth();
   const { handleSubmit, register, errors } = useForm({ mode: 'onTouched' });
 
   const onSubmit = (values) => {
-    console.log(values, errors);
-    auth.loginWithGoogle(values.username);
+    auth.signupWithGoogle(values.username);
   };
 
   return (

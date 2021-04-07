@@ -2,7 +2,6 @@ import { Flex, Heading, Divider, Text, Link } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 
-import { useAuth } from '@/lib/auth';
 import TitleShell from '@/components/TitleShell';
 import SignupWithEmail from '@/components/Signup/SignupWithEmail';
 import SignupWithGoogle from '@/components/Signup/SignupWithGoogle';

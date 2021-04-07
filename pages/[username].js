@@ -3,7 +3,7 @@ import { Box } from '@chakra-ui/react';
 import ProfileShell from '@/components/ProfileShell';
 import TreeSkeleton from '@/components/TreeSkeleton';
 import Tree from '@/components/Tree';
-import { getAllProfiles, getProfile, getUsername } from '@/lib/db-admin';
+import { getAllUsernames, getUsername, getProfile } from '@/lib/db-admin';
 
 export async function getStaticProps(context) {
   const username = context.params.username;
@@ -19,10 +19,10 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  const profiles = await getAllProfiles();
-  const paths = profiles.profiles.map((profile) => ({
+  const data = await getAllUsernames();
+  const paths = data.usernames.map((username) => ({
     params: {
-      username: profile.username.toString()
+      username: username.username
     }
   }));
 
