@@ -84,8 +84,8 @@ const TreeNode = ({ child, index }) => {
             onClick={() => setIsOpen((open) => !open)}
           >
             {isOpen ? <ChevronDownIcon /> : <ChevronRightIcon />}
-            <Heading as="h2" size="sm" pl={1}>
-              <LinkfoldersIcon width="6" height="6" mb={1} />
+            <LinkfoldersIcon width="6" height="6" ml={2} mb={1} />
+            <Heading as="h2" size="sm" pl={3}>
               {child.name}
             </Heading>
           </Box>
