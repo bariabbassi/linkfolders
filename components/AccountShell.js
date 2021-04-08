@@ -4,7 +4,7 @@ import NextLink from 'next/link';
 import { useAuth } from '@/lib/auth';
 import { LinkfoldersIcon } from '@/styles/icons';
 
-const UserShell = ({ children }) => {
+const AccountShell = ({ children }) => {
   const auth = useAuth();
 
   return (
@@ -45,11 +45,13 @@ const UserShell = ({ children }) => {
                   <Button variant="ghost" mr={2} onClick={(e) => auth.logout()}>
                     Log out
                   </Button>
-                  <Avatar
-                    size="sm"
-                    name={auth.user.name}
-                    src={auth.user.photoUrl}
-                  />
+                  <NextLink href={`/${auth.user.username}`} passHref>
+                    <Avatar
+                      size="sm"
+                      name={auth.user.name}
+                      src={auth.user.photoUrl}
+                    />
+                  </NextLink>
                 </>
               ) : null
               // <Stack direction="row" spacing={4}>
@@ -85,4 +87,4 @@ const UserShell = ({ children }) => {
   );
 };
 
-export default UserShell;
+export default AccountShell;
