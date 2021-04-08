@@ -50,7 +50,7 @@ const Profile = ({ profile }) => {
           photoUrl={profile.photoUrl}
           username={profile.username}
         />
-        <Box borderWidth="1px" borderRadius="lg" overflow="hidden">
+        <Box>
           <Tree children={profile.children} />
         </Box>
       </Stack>

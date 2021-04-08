@@ -7,7 +7,7 @@ const ProfileHeader = ({ name, photoUrl, username }) => (
       <Heading as="h1" size="lg">
         {name}
       </Heading>
-      <Heading as="h2" size="sm" color="grey.800" fontWeight="400">
+      <Heading as="h2" size="sm" fontWeight="400">
         @{username}
       </Heading>
     </Stack>

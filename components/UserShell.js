@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Avatar, Heading, Image } from '@chakra-ui/react';
+import { Box, Button, Flex, Avatar, Heading } from '@chakra-ui/react';
 import NextLink from 'next/link';
 
 import { useAuth } from '@/lib/auth';
@@ -78,7 +78,6 @@ const UserShell = ({ children }) => {
           px={3}
           pb={5}
         >
-          <Image src="../public/linkfolders.svg" width="100px" />
           {children}
         </Flex>
       </Flex>

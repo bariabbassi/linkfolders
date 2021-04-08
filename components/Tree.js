@@ -32,6 +32,10 @@ const TreeNode = ({ child, index }) => {
     <ListItem key={index}>
       {isLink ? (
         <Box
+          borderWidth="1px"
+          borderRadius="lg"
+          overflow="hidden"
+          my={2}
           d="flex"
           alignItems="center"
           height="57px"
@@ -52,7 +56,7 @@ const TreeNode = ({ child, index }) => {
           onClick={() => window.open(`${child.url}`)}
         >
           <Image
-            w="30px"
+            w="32px"
             src={`https://s2.googleusercontent.com/s2/favicons?domain=${child.url}&sz=32`}
             alt={child.name}
           />
@@ -63,6 +67,10 @@ const TreeNode = ({ child, index }) => {
       ) : (
         <>
           <Box
+            borderWidth="1px"
+            borderRadius="lg"
+            overflow="hidden"
+            my={2}
             d="flex"
             alignItems="center"
             height="57px"
