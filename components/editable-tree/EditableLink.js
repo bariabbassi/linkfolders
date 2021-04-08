@@ -6,6 +6,10 @@ const EditableLink = (props) => {
 
   return (
     <Box
+      borderWidth="1px"
+      borderRadius="lg"
+      overflow="hidden"
+      my={2}
       p={3}
       d="flex"
       alignItems="center"

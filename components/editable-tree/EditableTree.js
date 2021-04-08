@@ -321,13 +321,7 @@ class EditableTree extends Component {
           }}
         />
         <Box m={3} mb={10}>
-          <Box
-            mt={3}
-            mb={10}
-            borderWidth="1px"
-            borderRadius="lg"
-            overflow="hidden"
-          >
+          <Box mt={3} mb={10}>
             <List>
               {nodes.map((nodeProps) => {
                 const { id, ...others } = nodeProps;
