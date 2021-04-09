@@ -50,8 +50,8 @@ const SignupWithEmail = ({ usernameQuery }) => {
           ref={register({
             required: 'Password is required',
             minLength: {
-              value: 5,
-              message: 'Password must be at least 5 characters long'
+              value: 6,
+              message: 'Password should be at least 6 characters long'
             }
           })}
         />

@@ -1,4 +1,5 @@
 import { Box, Button, Flex, Avatar, Heading } from '@chakra-ui/react';
+import { EditIcon } from '@chakra-ui/icons';
 import NextLink from 'next/link';
 
 import { useAuth } from '@/lib/auth';
@@ -29,31 +30,36 @@ const ProfileShell = ({ name, photoUrl, children }) => {
             h="82px"
           >
             <Flex align="center">
-              <NextLink href="/" passHref>
-                <>
-                  <Avatar m={3} size="md" name={name} src={photoUrl}></Avatar>
-                  <Heading as="h1" size="lg">
-                    {name}
-                  </Heading>
-                </>
-              </NextLink>
+              <Avatar m={3} size="md" name={name} src={photoUrl}></Avatar>
+              <Heading as="h1" size="lg">
+                {name}
+              </Heading>
+            </Flex>
+            <NextLink href="/profile" passHref>
+              <Button as="a" leftIcon={<EditIcon />}>
+                <Heading as="h3" size="sm">
+                  Edit profile
+                </Heading>
+              </Button>
+            </NextLink>
+          </Flex>
+        </Flex>
+        {auth.user && (
+          <Flex direction="column" align="center">
+            <Flex
+              direction="column"
+              align="center"
+              justify="flex-start"
+              maxW="1250px"
+              w="100vw"
+              px={3}
+              pb={5}
+              mt={16}
+            >
+              {children}
             </Flex>
           </Flex>
-        </Flex>
-        <Flex direction="column" align="center">
-          <Flex
-            direction="column"
-            align="center"
-            justify="flex-start"
-            maxW="1250px"
-            w="100vw"
-            px={3}
-            pb={5}
-            mt={16}
-          >
-            {children}
-          </Flex>
-        </Flex>
+        )}
       </Box>
       <NextLink href="/" passHref>
         <Button

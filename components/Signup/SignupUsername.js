@@ -18,16 +18,16 @@ const SignupUsername = ({ usernameQuery, register, errors }) => {
           required: 'Username is required',
           minLength: {
             value: 3,
-            message: 'Username must be at least 3 characters long'
+            message: 'Username should be at least 3 characters long'
           },
           maxLength: {
             value: 30,
-            message: 'Username must be shorter that 30 characters'
+            message: 'Username should be shorter that 30 characters'
           },
           pattern: {
             value: /^([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)$/,
             message:
-              'Username must contain only letters, numbers, periods, and underscores'
+              'Username should contain only letters, numbers, periods, and underscores'
           },
           validate: async (username) =>
             await fetch(`/api/usernames/${username}/availability`)

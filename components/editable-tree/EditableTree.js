@@ -276,6 +276,8 @@ class EditableTree extends Component {
 
   profileSimplify(name, photoUrl, nodes) {
     const profile = { name, photoUrl, children: [] };
+    if (profile.name === undefined) profile.name = null;
+    if (profile.photoUrl === undefined) profile.photoUrl = null;
     for (let i = 0; i < nodes.length; i++) {
       if (nodes[i].url) {
         const { name, url } = nodes[i];
@@ -288,7 +290,7 @@ class EditableTree extends Component {
         const hasChildren = children !== undefined && children.length > 0;
         profile.children[i] = {
           name,
-          children: hasChildren ? this.simplify(children) : undefined
+          children: hasChildren ? this.simplify(children) : []
         };
       }
     }

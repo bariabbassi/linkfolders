@@ -31,42 +31,31 @@ const AccountShell = ({ children }) => {
                 <Heading size="sm">Linkfolders</Heading>
               </Button>
             </NextLink>
-            {/* <NextLink href="/sites" passHref>
-              <Link mr={4}>Sites</Link>
-            </NextLink>
-            <NextLink href="/feedback" passHref>
-              <Link>Feedback</Link>
-            </NextLink> */}
           </Flex>
           <Flex justifyContent="center" alignItems="center">
-            {
-              auth.user ? (
-                <>
-                  <Button variant="ghost" mr={2} onClick={(e) => auth.logout()}>
-                    Log out
+            {auth.user && (
+              <>
+                <Button mr={2} onClick={(e) => auth.logout()}>
+                  Log out
+                </Button>
+                <NextLink href="/profile" passHref>
+                  <Button
+                    as="a"
+                    leftIcon={
+                      <Avatar
+                        size="sm"
+                        name={auth.user.name}
+                        src={auth.user.photoUrl}
+                      />
+                    }
+                  >
+                    <Heading as="h3" size="sm">
+                      View profile
+                    </Heading>
                   </Button>
-                  <NextLink href="/profile" passHref>
-                    <Avatar
-                      size="sm"
-                      name={auth.user.name}
-                      src={auth.user.photoUrl}
-                    />
-                  </NextLink>
-                </>
-              ) : null
-              // <Stack direction="row" spacing={4}>
-              //   <NextLink href="/login" passHref>
-              //     <Button as="a" variant="outline" colorScheme="yellow">
-              //       Log in
-              //     </Button>
-              //   </NextLink>
-              //   <NextLink href="/signup" passHref>
-              //     <Button as="a" variant="solid" colorScheme="yellow">
-              //       Sign up
-              //     </Button>
-              //   </NextLink>
-              // </Stack>
-            }
+                </NextLink>
+              </>
+            )}
           </Flex>
         </Flex>
       </Flex>
