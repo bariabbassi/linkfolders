@@ -12,7 +12,6 @@ class EditableTree extends Component {
     super(props);
     this.state = {
       name: this.props.profile?.name,
-      username: this.props.profile?.username,
       photoUrl: this.props.profile?.photoUrl,
       nodes: this.initializedСopy(this.props.profile?.children),
       savedNodes: []
@@ -25,7 +24,7 @@ class EditableTree extends Component {
     this.addFolder = this.addFolder.bind(this);
     this.removeNode = this.removeNode.bind(this);
     this.changeProfileName = this.changeProfileName.bind(this);
-    this.changeProfileUsername = this.changeProfileUsername.bind(this);
+    this.changeProfilePhotoUrl = this.changeProfilePhotoUrl.bind(this);
     this.saveState = this.saveState.bind(this);
     this.loadState = this.loadState.bind(this);
   }
@@ -234,8 +233,8 @@ class EditableTree extends Component {
     this.setState({ name: e.target.value });
   }
 
-  changeProfileUsername(e) {
-    this.setState({ username: e.target.value });
+  changeProfilePhotoUrl(e) {
+    this.setState({ photoUrl: e.target.value });
   }
 
   saveState() {
@@ -243,7 +242,6 @@ class EditableTree extends Component {
       this.props.profile?.id,
       this.profileSimplify(
         this.state.name,
-        this.state.username,
         this.state.photoUrl,
         this.state.nodes
       )
@@ -276,8 +274,8 @@ class EditableTree extends Component {
     return nodesCopy;
   }
 
-  profileSimplify(name, username, photoUrl, nodes) {
-    const profile = { name, username, photoUrl, children: [] };
+  profileSimplify(name, photoUrl, nodes) {
+    const profile = { name, photoUrl, children: [] };
     for (let i = 0; i < nodes.length; i++) {
       if (nodes[i].url) {
         const { name, url } = nodes[i];
@@ -298,12 +296,12 @@ class EditableTree extends Component {
   }
 
   render() {
-    const { name, username, photoUrl, nodes, savedNodes } = this.state;
+    const { name, photoUrl, nodes, savedNodes } = this.state;
     const {
       addRootLink,
       addRootFolder,
       changeProfileName,
-      changeProfileUsername,
+      changeProfilePhotoUrl,
       saveState,
       loadState
     } = this;
@@ -314,10 +312,9 @@ class EditableTree extends Component {
         <EditableProfileHeader
           {...{
             name,
-            username,
             photoUrl,
             changeProfileName,
-            changeProfileUsername
+            changeProfilePhotoUrl
           }}
         />
         <Box m={3} mb={10}>

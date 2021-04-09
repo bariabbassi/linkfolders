@@ -10,13 +10,7 @@ import {
 import { EditIcon } from '@chakra-ui/icons';
 
 const EditableProfileHeader = (props) => {
-  const {
-    name,
-    username,
-    photoUrl,
-    changeProfileName,
-    changeProfileUsername
-  } = props;
+  const { name, photoUrl, changeProfileName, changeProfilePhotoUrl } = props;
 
   return (
     <Flex direction="column" align="center">
@@ -31,13 +25,6 @@ const EditableProfileHeader = (props) => {
         placeholder="Name"
         value={name}
         onChange={changeProfileName}
-      />
-      <Input
-        mb={3}
-        size="sm"
-        placeholder="Username"
-        value={username}
-        onChange={changeProfileUsername}
       />
     </Flex>
   );
