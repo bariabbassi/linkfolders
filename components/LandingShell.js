@@ -1,12 +1,4 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Link,
-  Avatar,
-  Heading,
-  Stack
-} from '@chakra-ui/react';
+import { Box, Button, Flex, Heading, Stack } from '@chakra-ui/react';
 import NextLink from 'next/link';
 
 import { LinkfoldersIcon } from '@/styles/icons';
@@ -39,7 +31,7 @@ const LandingShell = ({ children }) => {
                 <Heading size="sm">Linkfolders</Heading>
               </Button>
             </NextLink>
-            <NextLink href="/blog" passHref>
+            {/* <NextLink href="/blog" passHref>
               <Button as="a" variant="ghost" fontWeight="400">
                 Blog
               </Button>
@@ -48,7 +40,7 @@ const LandingShell = ({ children }) => {
               <Button as="a" variant="ghost" fontWeight="400">
                 Pricing
               </Button>
-            </NextLink>
+            </NextLink> */}
           </Stack>
           <Stack direction="row" spacing={4}>
             <NextLink href="/login" passHref>

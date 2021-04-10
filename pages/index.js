@@ -29,7 +29,7 @@ const Home = () => {
         All your links in one place.
       </Heading>
       <Heading mb={14} as="h2" size="md" fontWeight="200">
-        Linkfolders helps organize and share links.
+        Organize your links in folders and share them with the world.
       </Heading>
       <LandingUsername />
     </LandingShell>
