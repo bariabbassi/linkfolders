@@ -1,7 +1,6 @@
 import { Box, Stack } from '@chakra-ui/react';
 
 import ProfileShell from '@/components/ProfileShell';
-// import ProfileHeader from '@/components/ProfileHeader';
 import TreeSkeleton from '@/components/TreeSkeleton';
 import Tree from '@/components/Tree';
 import { getAllUsernames, getUsername, getProfile } from '@/lib/db-admin';
@@ -45,11 +44,6 @@ const Profile = ({ profile }) => {
   return (
     <ProfileShell name={profile.name} photoUrl={profile.photoUrl}>
       <Stack w="100%" maxW="550px">
-        {/* <ProfileHeader
-          name={profile.name}
-          photoUrl={profile.photoUrl}
-          username={profile.username}
-        /> */}
         <Box>
           <Tree children={profile.children} />
         </Box>

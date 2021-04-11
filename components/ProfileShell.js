@@ -35,31 +35,31 @@ const ProfileShell = ({ name, photoUrl, children }) => {
                 {name}
               </Heading>
             </Flex>
-            <NextLink href="/profile" passHref>
-              <Button as="a" leftIcon={<EditIcon />}>
-                <Heading as="h3" size="sm">
-                  Edit profile
-                </Heading>
-              </Button>
-            </NextLink>
+            {auth.user && (
+              <NextLink href="/profile" passHref>
+                <Button as="a" leftIcon={<EditIcon />}>
+                  <Heading as="h3" size="sm">
+                    Edit profile
+                  </Heading>
+                </Button>
+              </NextLink>
+            )}
           </Flex>
         </Flex>
-        {auth.user && (
-          <Flex direction="column" align="center">
-            <Flex
-              direction="column"
-              align="center"
-              justify="flex-start"
-              maxW="1250px"
-              w="100vw"
-              px={3}
-              pb={5}
-              mt={16}
-            >
-              {children}
-            </Flex>
+        <Flex direction="column" align="center">
+          <Flex
+            direction="column"
+            align="center"
+            justify="flex-start"
+            maxW="1250px"
+            w="100vw"
+            px={3}
+            pb={5}
+            mt={16}
+          >
+            {children}
           </Flex>
-        )}
+        </Flex>
       </Box>
       <NextLink href="/" passHref>
         <Button
