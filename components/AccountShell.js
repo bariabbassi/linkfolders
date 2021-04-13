@@ -7,6 +7,21 @@ import { LinkfoldersIcon } from '@/styles/icons';
 const AccountShell = ({ children }) => {
   const auth = useAuth();
 
+  if (auth.user) {
+    console.log(auth.user);
+  } else {
+    console.log('no user');
+  }
+  if (auth.username) {
+    console.log(auth.username);
+  } else {
+    console.log('no username');
+  }
+  if (auth.profile) {
+    console.log(auth.profile);
+  } else {
+    console.log('no profile');
+  }
   return (
     <Box backgroundColor="white" h="100vh">
       <Flex backgroundColor="white" w="100%">

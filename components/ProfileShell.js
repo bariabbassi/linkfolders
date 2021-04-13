@@ -8,6 +8,9 @@ import { LinkfoldersIcon } from '@/styles/icons';
 const ProfileShell = ({ name, photoUrl, children }) => {
   const auth = useAuth();
 
+  if (auth.user) console.log(auth.user);
+  if (auth.username) console.log(auth.username);
+  if (auth.profile) console.log(auth.profile);
   return (
     <Flex
       flexDirection="column"
