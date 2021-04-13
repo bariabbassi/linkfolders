@@ -38,22 +38,24 @@ const AccountShell = ({ children }) => {
                 <Button mr={2} onClick={(e) => auth.logout()}>
                   Log out
                 </Button>
-                <NextLink href="/profile" passHref>
-                  <Button
-                    as="a"
-                    leftIcon={
-                      <Avatar
-                        size="sm"
-                        name={auth.user.name}
-                        src={auth.user.photoUrl}
-                      />
-                    }
-                  >
-                    <Heading as="h3" size="sm">
-                      View profile
-                    </Heading>
-                  </Button>
-                </NextLink>
+                {auth.username && (
+                  <NextLink href={`/${auth.username}`} passHref>
+                    <Button
+                      as="a"
+                      leftIcon={
+                        <Avatar
+                          size="sm"
+                          name={auth.user.name}
+                          src={auth.user.photoUrl}
+                        />
+                      }
+                    >
+                      <Heading as="h3" size="sm">
+                        View profile
+                      </Heading>
+                    </Button>
+                  </NextLink>
+                )}
               </>
             )}
           </Flex>
