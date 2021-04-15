@@ -38,9 +38,10 @@ const AccountShell = ({ children }) => {
                 <Button mr={2} onClick={(e) => auth.logout()}>
                   Log out
                 </Button>
-                <NextLink href="/profile" passHref>
+                <NextLink href={`/${auth.user.username}`} passHref>
                   <Button
                     as="a"
+                    isLoading={auth.loading}
                     leftIcon={
                       <Avatar
                         size="sm"
