@@ -10,7 +10,7 @@ const SignupWithGoogle = ({ usernameQuery }) => {
   const { handleSubmit, register, errors } = useForm({ mode: 'onTouched' });
 
   const onSubmit = (values) => {
-    auth.signupWithGoogle(values.username);
+    auth.signupWithGoogle(values.username.toLowerCase());
   };
 
   return (

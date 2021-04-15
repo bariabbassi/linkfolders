@@ -1,12 +1,6 @@
 import { FormControl, FormErrorMessage, Input } from '@chakra-ui/react';
 
 const SignupUsername = ({ usernameQuery, register, errors }) => {
-  const isAvailable = async (username) => {
-    await fetch(`/api/usernames/${username}/availability`).then(
-      (res) => res.json().available
-    );
-  };
-
   return (
     <FormControl isInvalid={errors.username}>
       <Input

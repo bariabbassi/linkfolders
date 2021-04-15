@@ -15,7 +15,11 @@ const SignupWithEmail = ({ usernameQuery }) => {
   const { handleSubmit, register, errors } = useForm({ mode: 'onTouched' });
 
   const onSubmit = (values) => {
-    auth.signupWithEmail(values.email, values.password, values.username);
+    auth.signupWithEmail(
+      values.email,
+      values.password,
+      values.username.toLowerCase()
+    );
   };
 
   return (
