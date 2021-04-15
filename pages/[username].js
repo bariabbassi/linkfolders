@@ -1,39 +1,21 @@
 import { Box, Stack } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import useSWR from 'swr';
 
 import ProfileShell from '@/components/ProfileShell';
 import TreeSkeleton from '@/components/TreeSkeleton';
 import Tree from '@/components/Tree';
-import { getAllUsernames, getUsername, getProfile } from '@/lib/db-admin';
+import fetcher from '@/utils/fetcher';
 
-export async function getStaticProps(context) {
-  const username = context.params.username;
-  const { profile } = await getUsername(username).then((res) =>
-    getProfile(res.uid)
+const Profile = () => {
+  const router = useRouter();
+  const username = router.query?.username;
+  const { data } = useSWR(
+    username ? `/api/profiles/username/${username}` : null,
+    fetcher
   );
 
-  return {
-    props: {
-      profile
-    }
-  };
-}
-
-export async function getStaticPaths() {
-  const data = await getAllUsernames();
-  const paths = data.usernames.map((username) => ({
-    params: {
-      username: username.username
-    }
-  }));
-
-  return {
-    paths,
-    fallback: false
-  };
-}
-
-const Profile = ({ profile }) => {
-  if (!profile) {
+  if (!data) {
     return (
       <ProfileShell>
         <TreeSkeleton />
@@ -42,10 +24,10 @@ const Profile = ({ profile }) => {
   }
 
   return (
-    <ProfileShell name={profile.name} photoUrl={profile.photoUrl}>
+    <ProfileShell name={data?.profile?.name} photoUrl={data?.profile?.photoUrl}>
       <Stack w="100%" maxW="550px">
         <Box>
-          <Tree children={profile.children} />
+          <Tree children={data?.profile?.children} />
         </Box>
       </Stack>
     </ProfileShell>

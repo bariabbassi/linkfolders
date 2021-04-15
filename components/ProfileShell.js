@@ -20,17 +20,16 @@ const ProfileShell = ({ name, photoUrl, children }) => {
       <Box w="100%">
         <Flex backgroundColor="white" w="100%">
           <Flex
-            align="center"
             justify="space-between"
             px={2}
-            py={4}
+            py={3}
             m="0 auto"
             maxW="1250px"
             w="100%"
             h="82px"
           >
             <Flex align="center">
-              <Avatar m={3} size="md" name={name} src={photoUrl}></Avatar>
+              <Avatar mx={3} size="md" name={name} src={photoUrl}></Avatar>
               <Heading as="h1" size="lg">
                 {name}
               </Heading>
