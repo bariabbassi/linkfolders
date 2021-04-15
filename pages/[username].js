@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
 import ProfileShell from '@/components/ProfileShell';
-import TreeSkeleton from '@/components/TreeSkeleton';
+import ProfileSkeleton from '@/components/ProfileSkeleton';
 import Tree from '@/components/Tree';
 import fetcher from '@/utils/fetcher';
 
@@ -18,7 +18,7 @@ const Profile = () => {
   if (!data) {
     return (
       <ProfileShell>
-        <TreeSkeleton />
+        <ProfileSkeleton />
       </ProfileShell>
     );
   }
