@@ -4,11 +4,12 @@ import NextLink from 'next/link';
 
 import { useAuth } from '@/lib/auth';
 import AccountShell from '@/components/AccountShell';
-import { createCheckoutSession } from '@/lib/db';
+import { createCheckoutSession, goToBillingPortal } from '@/lib/db';
 
 const Plan = () => {
   const auth = useAuth();
   const [isCheckoutLoading, setCheckoutLoading] = useState(false);
+  const [isBillingLoading, setBillingLoading] = useState(false);
 
   return (
     <AccountShell>
@@ -38,6 +39,17 @@ const Plan = () => {
             Pro plan
           </Button>
         </Stack>
+        <Button
+          variant="solid"
+          colorScheme="yellow"
+          isLoading={isBillingLoading}
+          onClick={() => {
+            setBillingLoading(true);
+            goToBillingPortal();
+          }}
+        >
+          View billing portal
+        </Button>
       </Stack>
     </AccountShell>
   );
