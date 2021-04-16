@@ -21,7 +21,7 @@ const AccountShell = ({ children }) => {
           h="60px"
         >
           <Flex align="center">
-            <NextLink href="/" passHref>
+            <NextLink href="/profile" passHref>
               <Button
                 as="a"
                 variant="ghost"
