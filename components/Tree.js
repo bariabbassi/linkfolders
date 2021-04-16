@@ -1,13 +1,7 @@
-import { useState } from 'react';
-import {
-  Box,
-  List,
-  ListItem,
-  Image,
-  Collapse,
-  Heading
-} from '@chakra-ui/react';
+import { Box, List, ListItem, Collapse, Heading } from '@chakra-ui/react';
 import { ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
+import { useState } from 'react';
+import Image from 'next/image';
 
 import { LinkfoldersIcon } from '@/styles/icons';
 
@@ -56,9 +50,10 @@ const TreeNode = ({ child, index }) => {
           onClick={() => window.open(`${child.url}`)}
         >
           <Image
-            w="32px"
             src={`https://s2.googleusercontent.com/s2/favicons?domain=${child.url}&sz=32`}
             alt={child.name}
+            width="32px"
+            height="32px"
           />
           <Heading as="h2" size="sm" pl={3}>
             {child.name}
