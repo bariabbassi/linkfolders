@@ -1,7 +1,8 @@
 import { Box, Button, Flex, Heading, Stack } from '@chakra-ui/react';
-import NextLink from 'next/link';
-
 import { LinkfoldersIcon } from '@/styles/icons';
+import NextLink from 'next/link';
+import Head from 'next/head';
+
 import { useAuth } from '@/lib/auth';
 
 const LandingShell = ({ children }) => {
@@ -9,6 +10,17 @@ const LandingShell = ({ children }) => {
 
   return (
     <Box backgroundColor="" h="100vh">
+      <Head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (document.cookie && document.cookie.includes('linkfolders-auth')) {
+                window.location.href = "/profile"
+              }
+            `
+          }}
+        />
+      </Head>
       <Flex backgroundColor="white" mb={[8, 16]} w="100%">
         <Flex
           alignItems="center"

@@ -1,4 +1,5 @@
 import { Box, Button, Flex, Avatar, Heading } from '@chakra-ui/react';
+import Head from 'next/head';
 import NextLink from 'next/link';
 
 import { useAuth } from '@/lib/auth';
@@ -9,6 +10,17 @@ const AccountShell = ({ children }) => {
 
   return (
     <Box backgroundColor="white" h="100vh">
+      <Head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (!document.cookie || !document.cookie.includes('linkfolders-auth')) {
+                window.location.href = "/"
+              }
+            `
+          }}
+        />
+      </Head>
       <Flex backgroundColor="white" w="100%">
         <Flex
           align="center"

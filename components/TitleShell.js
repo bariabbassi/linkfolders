@@ -1,6 +1,6 @@
+import { Box, Flex, Heading, Button } from '@chakra-ui/react';
 import Head from 'next/head';
 import NextLink from 'next/link';
-import { Box, Flex, Heading, Button } from '@chakra-ui/react';
 
 import { LinkfoldersIcon } from '@/styles/icons';
 
