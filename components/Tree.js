@@ -26,21 +26,22 @@ const TreeNode = ({ child, index }) => {
     <ListItem key={index}>
       {isLink ? (
         <Box
-          borderWidth="1px"
-          borderRadius="lg"
-          overflow="hidden"
-          my={2}
           d="flex"
           alignItems="center"
           height="57px"
+          my={2}
           px={7}
           py={1}
+          borderWidth="1px"
+          borderRadius="lg"
+          borderColor="currentColor"
           borderRadius="base"
+          overflow="hidden"
           transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
           cursor="pointer"
-          _hover={{ bg: 'gray.100' }}
+          _hover={{ bg: 'rgba(0, 0, 0, 0.1)' }}
           _active={{
-            bg: 'gray.200',
+            bg: 'rgba(0, 0, 0, 0.4)',
             transform: 'scale(0.98)'
           }}
           _focus={{
@@ -62,22 +63,22 @@ const TreeNode = ({ child, index }) => {
       ) : (
         <>
           <Box
-            borderWidth="1px"
-            borderRadius="lg"
-            overflow="hidden"
-            my={2}
             d="flex"
             alignItems="center"
             height="57px"
+            my={2}
             px={3}
             py={1}
-            lineHeight="1.2"
+            borderWidth="1px"
+            borderRadius="lg"
+            borderColor="currentColor"
             borderRadius="base"
+            overflow="hidden"
             transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
             cursor="pointer"
-            _hover={{ bg: 'gray.100' }}
+            _hover={{ bg: 'rgba(0, 0, 0, 0.1)' }}
             _active={{
-              bg: 'gray.200',
+              bg: 'rgba(0, 0, 0, 0.4)',
               transform: 'scale(0.98)'
             }}
             _focus={{

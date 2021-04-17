@@ -23,8 +23,16 @@ const Profile = () => {
     );
   }
 
+  const bg = '#333';
+  const color = '#fff';
+
   return (
-    <ProfileShell name={data?.profile?.name} photoUrl={data?.profile?.photoUrl}>
+    <ProfileShell
+      bg={bg}
+      color={color}
+      name={data?.profile?.name}
+      photoUrl={data?.profile?.photoUrl}
+    >
       <Stack w="100%" maxW="550px">
         <Box>
           <Tree children={data?.profile?.children} />

@@ -5,7 +5,7 @@ import NextLink from 'next/link';
 import { useAuth } from '@/lib/auth';
 import { LinkfoldersIcon } from '@/styles/icons';
 
-const ProfileShell = ({ name, photoUrl, children }) => {
+const ProfileShell = ({ name, photoUrl, children, bg, color }) => {
   const auth = useAuth();
 
   return (
@@ -15,10 +15,11 @@ const ProfileShell = ({ name, photoUrl, children }) => {
       justify="space-between"
       w="100vw"
       minH="100vh"
-      bg=""
+      bg={bg}
+      color={color}
     >
       <Box w="100%">
-        <Flex backgroundColor="white" w="100%">
+        <Flex backgroundColor="" w="100%">
           <Flex
             justify="space-between"
             px={2}

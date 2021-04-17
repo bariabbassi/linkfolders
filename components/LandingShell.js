@@ -50,7 +50,7 @@ const LandingShell = ({ children }) => {
             </NextLink>
             <NextLink href="/signup" passHref>
               <Button as="a" variant="solid" colorScheme="yellow">
-                Sign up for free
+                Sign up
               </Button>
             </NextLink>
           </Stack>
