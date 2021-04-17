@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import { Heading } from '@chakra-ui/react';
 
 import LandingShell from '@/components/LandingShell';
@@ -7,17 +6,6 @@ import LandingUsername from '@/components/LandingUsername';
 const Home = () => {
   return (
     <LandingShell>
-      <Head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              if (document.cookie && document.cookie.includes('linkfolders-auth')) {
-                window.location.href = "/profile"
-              }
-            `
-          }}
-        />
-      </Head>
       <Heading
         mt={8}
         mb={6}

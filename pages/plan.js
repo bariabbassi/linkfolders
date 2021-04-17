@@ -4,7 +4,7 @@ import NextLink from 'next/link';
 
 import { useAuth } from '@/lib/auth';
 import AccountShell from '@/components/AccountShell';
-import { createCheckoutSession } from '@/lib/db';
+import PricingGrid from '@/components/Plan/PricingGrid';
 
 const Plan = () => {
   const auth = useAuth();
@@ -15,30 +15,7 @@ const Plan = () => {
       <Heading as="h1" size="2xl">
         Plan
       </Heading>
-      <Stack direction="row" w="100%">
-        <Stack>
-          <Heading>Free plan</Heading>
-          <NextLink href="/profile" passHref>
-            <Button as="a" variant="outline" colorScheme="yellow">
-              Free plan
-            </Button>
-          </NextLink>
-        </Stack>
-        <Stack>
-          <Heading>Pro plan</Heading>
-          <Button
-            variant="solid"
-            colorScheme="yellow"
-            isLoading={isCheckoutLoading}
-            onClick={() => {
-              setCheckoutLoading(true);
-              createCheckoutSession(auth.user?.uid);
-            }}
-          >
-            Pro plan
-          </Button>
-        </Stack>
-      </Stack>
+      <PricingGrid />
     </AccountShell>
   );
 };

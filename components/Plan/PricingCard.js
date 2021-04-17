@@ -11,8 +11,16 @@ import {
 } from '@chakra-ui/react';
 import * as React from 'react';
 import { CheckIcon } from '@chakra-ui/icons';
+import { useState } from 'react';
+import NextLink from 'next/link';
+
+import { useAuth } from '@/lib/auth';
+import { createCheckoutSession } from '@/lib/db';
 
 const PricingCard = ({ name, price, model, features, isHighlited }) => {
+  const auth = useAuth();
+  const [isCheckoutLoading, setCheckoutLoading] = useState(false);
+
   return (
     <Flex
       direction="column"
@@ -57,9 +65,25 @@ const PricingCard = ({ name, price, model, features, isHighlited }) => {
         </List>
       </Box>
       <Flex w="100%" justify="center">
-        <Button variant="solid" colorScheme="yellow">
-          Sign up
-        </Button>
+        {isHighlited ? (
+          <Button
+            variant="solid"
+            colorScheme="yellow"
+            isLoading={isCheckoutLoading}
+            onClick={() => {
+              setCheckoutLoading(true);
+              createCheckoutSession(auth.user?.uid);
+            }}
+          >
+            Select
+          </Button>
+        ) : (
+          <NextLink href="/profile" passHref>
+            <Button as="a" variant="solid" colorScheme="yellow">
+              Select
+            </Button>
+          </NextLink>
+        )}
       </Flex>
     </Flex>
   );
