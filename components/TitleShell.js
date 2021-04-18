@@ -12,7 +12,7 @@ const TitleShell = ({ children }) => {
           dangerouslySetInnerHTML={{
             __html: `
               if (document.cookie && document.cookie.includes('linkfolders-auth')) {
-                window.location.href = "/profile"
+                window.location.href = "/account/profile"
               }
             `
           }}

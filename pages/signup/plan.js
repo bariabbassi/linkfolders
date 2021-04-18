@@ -1,14 +1,11 @@
-import { Stack, Heading, Button } from '@chakra-ui/react';
-import { useState } from 'react';
-import NextLink from 'next/link';
+import { Heading } from '@chakra-ui/react';
 
 import { useAuth } from '@/lib/auth';
 import AccountShell from '@/components/AccountShell';
-import PricingGrid from '@/components/Plan/PricingGrid';
+import PricingGrid from '@/components/SignupPlan/PricingGrid';
 
 const Plan = () => {
   const auth = useAuth();
-  const [isCheckoutLoading, setCheckoutLoading] = useState(false);
 
   return (
     <AccountShell>

@@ -36,7 +36,7 @@ const ProfileShell = ({ name, photoUrl, children, bg, color }) => {
               </Heading>
             </Flex>
             {auth.user && (
-              <NextLink href="/profile" passHref>
+              <NextLink href="/account/profile" passHref>
                 <Button as="a" leftIcon={<EditIcon />}>
                   <Heading as="h3" size="sm">
                     Edit profile
