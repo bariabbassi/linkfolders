@@ -1,19 +1,17 @@
 import { Stack, Heading, Button } from '@chakra-ui/react';
 import { useState } from 'react';
 
-import { useAuth } from '@/lib/auth';
 import AccountShell from '@/components/AccountShell';
-import PricingGrid from '@/components/Plan/PricingGrid';
+import PricingGrid from '@/components/Premium/PricingGrid';
 import { goToBillingPortal } from '@/lib/db';
 
-const Plan = () => {
-  const auth = useAuth();
+const Premium = () => {
   const [isBillingLoading, setBillingLoading] = useState(false);
 
   return (
     <AccountShell>
       <Heading as="h1" size="2xl">
-        Plan
+        Premium
       </Heading>
       <Stack w="100%">
         <PricingGrid />
@@ -33,4 +31,4 @@ const Plan = () => {
   );
 };
 
-export default Plan;
+export default Premium;

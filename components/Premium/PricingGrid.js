@@ -1,6 +1,6 @@
 import { SimpleGrid } from '@chakra-ui/react';
 
-import PricingCard from '@/components/Plan/PricingCard';
+import PricingCard from '@/components/Premium/PricingCard';
 
 const PricingGrid = () => {
   return (
