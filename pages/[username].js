@@ -23,13 +23,13 @@ const Profile = () => {
     );
   }
 
-  const bg = '#333';
-  const color = '#fff';
+  const bg = '#fff';
+  const color = '#000';
 
   return (
     <ProfileShell
-      bg={bg}
-      color={color}
+      bg={data?.profile?.backgroundColor}
+      color={data?.profile?.textColor}
       name={data?.profile?.name}
       photoUrl={data?.profile?.photoUrl}
     >

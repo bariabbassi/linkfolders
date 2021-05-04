@@ -28,7 +28,6 @@ const AccountShell = ({ children }) => {
           px={2}
           py={4}
           m="0 auto"
-          maxW="1250px"
           w="100%"
           h="60px"
         >
@@ -41,6 +40,21 @@ const AccountShell = ({ children }) => {
                 leftIcon={<LinkfoldersIcon width="8" height="8" mb={2} />}
               >
                 <Heading size="sm">Linkfolders</Heading>
+              </Button>
+            </NextLink>
+            <NextLink href="/account/profile" passHref>
+              <Button as="a" variant="ghost" fontWeight="400">
+                Profile
+              </Button>
+            </NextLink>
+            <NextLink href="/account/appearance" passHref>
+              <Button as="a" variant="ghost" fontWeight="400">
+                Appearance
+              </Button>
+            </NextLink>
+            <NextLink href="/account/premium" passHref>
+              <Button as="a" variant="ghost" fontWeight="400">
+                Premium
               </Button>
             </NextLink>
           </Flex>

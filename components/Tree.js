@@ -51,7 +51,9 @@ const TreeNode = ({ child, index }) => {
           onClick={() => window.open(`${child.url}`)}
         >
           <Image
-            src={`https://s2.googleusercontent.com/s2/favicons?domain=${child.url}&sz=32`}
+            src={`https://s2.googleusercontent.com/s2/favicons?domain=${
+              new URL(child.url).hostname
+            }&sz=32`}
             alt={child.name}
             width="32px"
             height="32px"
