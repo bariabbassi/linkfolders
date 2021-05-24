@@ -1,9 +1,11 @@
 import { Box, Stack, Heading, Text } from '@chakra-ui/react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
-import useSWR from 'swr';
+import useSWR, { mutate } from 'swr';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 import FolderShell from '@/components/Folder/FolderShell';
-import LinksList from '@/components/Folder/LinksList';
+import LinkList from '@/components/Folder/LinkList';
 import FoldersList from '@/components/Folder/FoldersList';
 import fetcher from '@/utils/fetcher';
 
@@ -15,6 +17,34 @@ const FolderPage = () => {
     folderId ? `/api/folders/${folderId}` : null,
     fetcher
   );
+  const onDragEnd = (result) => {
+    const { destination, source, draggableId } = result;
+
+    if (!destination) {
+      return;
+    }
+
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+
+    const newLinks = data?.folder?.links;
+    [newLinks[source.index], newLinks[destination.index]] = [
+      newLinks[destination.index],
+      newLinks[source.index]
+    ];
+
+    mutate(
+      `/api/folders/${folderId}`,
+      async (data) => {
+        data.folder.links = newLinks;
+      },
+      false
+    );
+  };
 
   if (!data) {
     return <FolderShell>Loanding ...</FolderShell>;
@@ -30,14 +60,16 @@ const FolderPage = () => {
           <Text minH="15px" mb={10}>
             {/* {data?.folder?.description} */}
           </Text>
-          <LinksList links={data?.folder?.links} />
-          <br />
-          <FoldersList
-            folders={[
-              { name: 'Projects', folderId: 'gr687' },
-              { name: 'About', folderId: 'jtu4763' }
-            ]}
-          />
+          <DragDropContext onDragEnd={onDragEnd}>
+            <LinkList links={data?.folder?.links} />
+            <br />
+            <FoldersList
+              folders={[
+                { name: 'Projects', folderId: 'gr687' },
+                { name: 'About', folderId: 'jtu4763' }
+              ]}
+            />
+          </DragDropContext>
         </Box>
       </Stack>
     </FolderShell>
