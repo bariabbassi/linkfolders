@@ -5,8 +5,7 @@ import useSWR, { mutate } from 'swr';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 import FolderShell from '@/components/Folder/FolderShell';
-import LinkList from '@/components/Folder/LinkList';
-import FoldersList from '@/components/Folder/FoldersList';
+import ChildrenList from '@/components/Folder/ChildrenList';
 import fetcher from '@/utils/fetcher';
 
 const FolderPage = () => {
@@ -61,14 +60,7 @@ const FolderPage = () => {
             {/* {data?.folder?.description} */}
           </Text>
           <DragDropContext onDragEnd={onDragEnd}>
-            <LinkList links={data?.folder?.links} />
-            <br />
-            <FoldersList
-              folders={[
-                { name: 'Projects', folderId: 'gr687' },
-                { name: 'About', folderId: 'jtu4763' }
-              ]}
-            />
+            <ChildrenList folderId={folderId} />
           </DragDropContext>
         </Box>
       </Stack>

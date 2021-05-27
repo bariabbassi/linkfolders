@@ -8,9 +8,9 @@ const Link = ({ link }) => {
     <Box
       w="100%"
       h="100%"
-      pl={4}
-      pr={2}
-      py={2}
+      // pl={4}
+      // pr={2}
+      // py={2}
       transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
       cursor="pointer"
       _hover={{ bg: 'gray.100' }}
