@@ -1,5 +1,4 @@
-import { Box, Flex, ListItem, Text } from '@chakra-ui/react';
-import Image from 'next/image';
+import { Box } from '@chakra-ui/react';
 import { Draggable } from 'react-beautiful-dnd';
 
 import DragButton from '@/components/Folder/DragButton';
@@ -10,29 +9,24 @@ const Item = ({ item, index }) => {
   return (
     <Draggable draggableId={index.toString()} index={index}>
       {(provided) => (
-        <ListItem
+        <Box
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
+          w="100%"
+          h="100%"
+          my={2}
+          bg="white"
+          borderWidth="1px"
+          borderRadius="lg"
+          overflow="hidden"
         >
-          <Flex align="center">
-            <DragButton />
-            <Box
-              w="100%"
-              my={2}
-              bg="white"
-              borderWidth="1px"
-              borderRadius="lg"
-              overflow="hidden"
-            >
-              {item.type === 'link' ? (
-                <Link link={item} />
-              ) : item.type === 'folder' ? (
-                <Folder folder={item} />
-              ) : null}
-            </Box>
-          </Flex>
-        </ListItem>
+          {item.type === 'link' ? (
+            <Link link={item} />
+          ) : item.type === 'folder' ? (
+            <Folder folder={item} />
+          ) : null}
+        </Box>
       )}
     </Draggable>
   );
