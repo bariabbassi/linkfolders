@@ -1,12 +1,13 @@
-import { Box, Flex, Heading, Text, Input } from '@chakra-ui/react';
+import { Box, Flex, Heading, Text, Input, Menu } from '@chakra-ui/react';
 import Image from 'next/image';
 import { useState } from 'react';
-import { ContextMenu, MenuItem, ContextMenuTrigger } from 'react-contextmenu';
+import { ContextMenu, ContextMenuTrigger } from 'react-contextmenu';
 
 import DeleteButton from '@/components/Folder/DeleteButton';
+import LinkMenuList from '@/components/Folder/LinkMenuList';
 
 const Link = ({ link }) => {
-  const [editMode, setIsEditable] = useState(
+  const [editMode, setEditMode] = useState(
     !link?.name || !link?.url || link?.url === 'https://'
   );
 
@@ -76,19 +77,15 @@ const Link = ({ link }) => {
                   }}
                 />
               </Flex>
-
               <DeleteButton itemId={link.id} folderId={link.parent} />
             </Flex>
           )}
         </Box>
       </ContextMenuTrigger>
       <ContextMenu id="contextmenu">
-        <MenuItem data={{ copy: 'MI50' }}>
-          <span>Copy</span>
-        </MenuItem>
-        <MenuItem>
-          <span>Open with</span>
-        </MenuItem>
+        <Menu isOpen={true}>
+          <LinkMenuList link={link} setEditMode={setEditMode} />
+        </Menu>
       </ContextMenu>
     </>
   );
