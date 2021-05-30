@@ -35,6 +35,7 @@ const Folder = ({ folder }) => {
           </Text>
         ) : (
           <Input
+            variant="unstyled"
             m={1}
             size="sm"
             placeholder="New folder"

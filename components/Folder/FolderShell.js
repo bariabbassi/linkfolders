@@ -20,21 +20,27 @@ const ProfileShell = ({ name, photoUrl, children }) => {
       <Box w="100%">
         <Flex backgroundColor="white" w="100%">
           <Flex justify="space-between" px={2} py={3} w="100%" h="82px">
-            <Flex align="center">
-              <Avatar mx={3} size="md" name={name} src={photoUrl}></Avatar>
-              <Heading as="h1" size="lg">
-                {name}
-              </Heading>
-            </Flex>
-            {auth.user && (
-              <NextLink href="/profile" passHref>
-                <Button as="a" leftIcon={<EditIcon />}>
-                  <Heading as="h3" size="sm">
-                    Edit profile
+            <NextLink href="/" passHref>
+              <Button
+                as="a"
+                variant="ghost"
+                leftIcon={<LinkfoldersIcon width="8" height="8" mb={2} />}
+              >
+                <Heading as="h3" size="sm">
+                  Linkfolders
+                </Heading>
+              </Button>
+            </NextLink>
+            <NextLink href="/profile" passHref>
+              <Button as="a" variant="ghost">
+                <Flex align="center">
+                  <Avatar mx={3} size="sm" name={name} src={photoUrl}></Avatar>
+                  <Heading as="h1" size="md">
+                    {name}
                   </Heading>
-                </Button>
-              </NextLink>
-            )}
+                </Flex>
+              </Button>
+            </NextLink>
           </Flex>
         </Flex>
         <Flex direction="column" align="center">
@@ -42,7 +48,6 @@ const ProfileShell = ({ name, photoUrl, children }) => {
             direction="column"
             align="center"
             justify="flex-start"
-            m="0 auto"
             maxW="1250px"
             w="100vw"
             px={3}
@@ -53,19 +58,6 @@ const ProfileShell = ({ name, photoUrl, children }) => {
           </Flex>
         </Flex>
       </Box>
-      <NextLink href="/" passHref>
-        <Button
-          as="a"
-          variant="ghost"
-          mt={8}
-          mb={2}
-          leftIcon={<LinkfoldersIcon width="8" height="8" mb={2} />}
-        >
-          <Heading as="h3" size="sm">
-            Linkfolders
-          </Heading>
-        </Button>
-      </NextLink>
     </Flex>
   );
 };

@@ -6,6 +6,7 @@ import Item from '@/components/Folder/Item';
 import NewItemButtons from '@/components/Folder/NewItemButtons';
 import fetcher from '@/utils/fetcher';
 import { createItem, updateItem } from '@/lib/db';
+import LinkInput from '@/components/Folder/LinkInput';
 
 const ChildrenList = ({ folderId }) => {
   const { data } = useSWR(
@@ -31,6 +32,7 @@ const ChildrenList = ({ folderId }) => {
           </List>
         )}
       </Droppable>
+      <LinkInput />
       <NewItemButtons folderId={folderId} />
     </>
   );

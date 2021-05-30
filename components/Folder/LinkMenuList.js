@@ -10,13 +10,18 @@ import { handleDeleteItem } from '@/lib/handlers';
 
 const LinkMenuList = ({ link, setEditMode }) => {
   return (
-    <MenuList z-index="2">
+    <MenuList position="absolute" z-index="9999" bg="white">
       <MenuItem icon={<ExternalLinkIcon />}>Open</MenuItem>
       <MenuItem icon={<CopyIcon />}>Copy link</MenuItem>
-      <MenuItem icon={<EditIcon />}>Rename</MenuItem>
+      <MenuItem icon={<EditIcon />} onClick={() => setEditMode(true)}>
+        Rename
+      </MenuItem>
       <MenuItem
         icon={<DeleteIcon />}
-        onClick={() => handleDeleteItem(link.id, link.parent)}
+        onClick={() => {
+          console.log('handle', link?.id, link?.parent);
+          handleDeleteItem(link?.id, link?.parent);
+        }}
       >
         Delete
       </MenuItem>

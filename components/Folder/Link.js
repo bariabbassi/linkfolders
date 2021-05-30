@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { ContextMenu, ContextMenuTrigger } from 'react-contextmenu';
 
 import DeleteButton from '@/components/Folder/DeleteButton';
+import LinkMenu from '@/components/Folder/LinkMenu';
 import LinkMenuList from '@/components/Folder/LinkMenuList';
 
 const Link = ({ link }) => {
@@ -39,47 +40,31 @@ const Link = ({ link }) => {
             if (!editMode) window.open(`${link.url}`);
           }}
         >
-          {!editMode && link?.url !== 'https://' ? (
-            <Flex align="center">
-              <Image
-                src={`https://s2.googleusercontent.com/s2/favicons?domain=${link.url}&sz=32`}
-                alt={link?.name}
-                width="32px"
-                height="32px"
-              />
+          <Flex align="center">
+            <Image
+              src={`https://s2.googleusercontent.com/s2/favicons?domain=${link.url}&sz=32`}
+              alt={link?.name}
+              width="32px"
+              height="32px"
+            />
+            {!editMode ? (
               <Text size="sm" pl={3}>
                 {link?.name}
               </Text>
-            </Flex>
-          ) : (
-            <Flex align="center" justify="space-between" w="100%">
-              <Text size="sm" mr={1} pl={1}>
-                🔗
-              </Text>
-
-              <Flex direction="column">
-                <Input
-                  m={1}
-                  size="sm"
-                  placeholder="New link"
-                  value={link?.name}
-                  onChange={(e) => {
-                    changeName(e.target.value);
-                  }}
-                />
-                <Input
-                  m={1}
-                  size="sm"
-                  placeholder="https://website.com"
-                  value={link?.url}
-                  onChange={(e) => {
-                    changeUrl(e.target.value);
-                  }}
-                />
-              </Flex>
-              <DeleteButton itemId={link.id} folderId={link.parent} />
-            </Flex>
-          )}
+            ) : (
+              <Input
+                variant="unstyled"
+                m={1}
+                size="sm"
+                placeholder="New link"
+                value={link?.name}
+                onChange={(e) => {
+                  changeName(e.target.value);
+                }}
+              />
+            )}
+            <LinkMenu link={link} setEditMode={setEditMode} />
+          </Flex>
         </Box>
       </ContextMenuTrigger>
       <ContextMenu id="contextmenu">
