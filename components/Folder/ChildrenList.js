@@ -1,4 +1,4 @@
-import { Box, List, ListItem, Text } from '@chakra-ui/react';
+import { Box, Flex, List, ListItem, Text } from '@chakra-ui/react';
 import useSWR, { mutate } from 'swr';
 import { Droppable } from 'react-beautiful-dnd';
 
@@ -15,15 +15,10 @@ const ChildrenList = ({ folderId }) => {
   );
 
   return (
-    <>
+    <Box w="100%" maxW="400px">
       <Droppable droppableId={'main'}>
         {(provided) => (
-          <List
-            w="100%"
-            maxW="400px"
-            ref={provided.innerRef}
-            {...provided.droppableProps}
-          >
+          <List ref={provided.innerRef} {...provided.droppableProps}>
             {data?.children?.length > 0 &&
               data?.children?.map((item, index) => (
                 <Item key={index} item={item} index={index} />
@@ -33,8 +28,8 @@ const ChildrenList = ({ folderId }) => {
         )}
       </Droppable>
       <LinkInput />
-      <NewItemButtons folderId={folderId} />
-    </>
+      {/* <NewItemButtons folderId={folderId} /> */}
+    </Box>
   );
 };
 
