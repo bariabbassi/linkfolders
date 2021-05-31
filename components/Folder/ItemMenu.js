@@ -2,8 +2,9 @@ import { Menu, MenuButton, IconButton } from '@chakra-ui/react';
 import { DragHandleIcon } from '@chakra-ui/icons';
 
 import LinkMenuList from '@/components/Folder/LinkMenuList';
+import FolderMenuList from '@/components/Folder/FolderMenuList';
 
-const LinkMenu = ({ link, setEditMode }) => {
+const LinkMenu = ({ item }) => {
   return (
     <Menu>
       <MenuButton
@@ -13,7 +14,11 @@ const LinkMenu = ({ link, setEditMode }) => {
         variant="ghost"
         size="xs"
       />
-      <LinkMenuList link={link} setEditMode={setEditMode} />
+      {item?.type === 'link' ? (
+        <LinkMenuList link={item} />
+      ) : item.type === 'folder' ? (
+        <FolderMenuList folder={item} />
+      ) : null}
     </Menu>
   );
 };

@@ -8,7 +8,7 @@ import {
 
 import { handleDeleteItem } from '@/lib/handlers';
 
-const LinkMenuList = ({ link }) => {
+const FolderMenuList = ({ link }) => {
   return (
     <MenuList>
       <MenuItem icon={<ExternalLinkIcon />}>Open</MenuItem>
@@ -26,4 +26,4 @@ const LinkMenuList = ({ link }) => {
   );
 };
 
-export default LinkMenuList;
+export default FolderMenuList;
