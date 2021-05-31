@@ -44,7 +44,9 @@ const Link = ({ link }) => {
         />
         {!editMode ? (
           <Text size="sm" pl={3}>
-            {link?.name}
+            {link?.name.length < 40
+              ? link?.name
+              : `${link?.name.substring(0, 37)} ...`}
           </Text>
         ) : (
           <Input
