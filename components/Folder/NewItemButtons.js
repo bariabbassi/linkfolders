@@ -12,7 +12,7 @@ const NewItemButtons = ({ folderId }) => {
         size="sm"
         aria-label="Add root link"
         leftIcon={<AddIcon />}
-        onClick={() => handleCreateLink(folderId)}
+        onClick={() => handleCreateLink('https://', folderId)}
       >
         🔗
       </Button>
