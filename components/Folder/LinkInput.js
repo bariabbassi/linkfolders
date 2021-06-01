@@ -23,7 +23,7 @@ const LinkInput = ({ folderId }) => {
   return (
     <Box w="100%" h="100%" pl={4} pr={2} py={2} _hover={{ bg: 'gray.100' }}>
       <Flex align="center" as="form" onSubmit={handleSubmit(onSubmit)}>
-        <AddIcon mr={2} />
+        <AddIcon mr={2} boxSize={4} color="grey" />
         <FormControl isInvalid={errors.url}>
           <Input
             type="url"
@@ -33,7 +33,7 @@ const LinkInput = ({ folderId }) => {
             size="sm"
             placeholder="https:// ..."
             ref={register({
-              required: 'Url is required'
+              required: 'URL is required'
             })}
           />
         </FormControl>

@@ -4,7 +4,7 @@ import { DragHandleIcon } from '@chakra-ui/icons';
 import LinkMenuList from '@/components/Folder/LinkMenuList';
 import FolderMenuList from '@/components/Folder/FolderMenuList';
 
-const LinkMenu = ({ item }) => {
+const ItemMenu = ({ item }) => {
   return (
     <Menu>
       <MenuButton
@@ -13,14 +13,15 @@ const LinkMenu = ({ item }) => {
         icon={<DragHandleIcon />}
         variant="ghost"
         size="xs"
+        color="grey"
       />
       {item?.type === 'link' ? (
         <LinkMenuList link={item} />
-      ) : item.type === 'folder' ? (
+      ) : item?.type === 'folder' ? (
         <FolderMenuList folder={item} />
       ) : null}
     </Menu>
   );
 };
 
-export default LinkMenu;
+export default ItemMenu;

@@ -28,7 +28,7 @@ const ChildrenList = ({ folderId }) => {
         )}
       </Droppable>
       <LinkInput folderId={folderId} />
-      {/* <NewItemButtons folderId={folderId} /> */}
+      <NewItemButtons folderId={folderId} />
     </Box>
   );
 };

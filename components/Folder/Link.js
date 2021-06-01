@@ -18,7 +18,7 @@ const Link = ({ link }) => {
         pr={2}
         py={2}
         transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
-        cursor={'pointer'}
+        cursor="pointer"
         _hover={{ bg: 'gray.100' }}
         _active={{
           bg: 'gray.200',

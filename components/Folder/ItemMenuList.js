@@ -6,9 +6,9 @@ import {
   DeleteIcon
 } from '@chakra-ui/icons';
 
-import { handleDeleteFolder } from '@/lib/handlers';
+import { handleDeleteItem } from '@/lib/handlers';
 
-const FolderMenuList = ({ folder }) => {
+const ItemMenuList = ({ item }) => {
   return (
     <MenuList>
       {/* <MenuItem icon={<ExternalLinkIcon />}>Open</MenuItem> */}
@@ -17,7 +17,11 @@ const FolderMenuList = ({ folder }) => {
       <MenuItem
         icon={<DeleteIcon />}
         onClick={() => {
-          handleDeleteFolder(folder?.id, folder?.parent);
+          if (item?.type === 'folder') {
+            handleDeleteFolder(item?.id, item?.parent);
+          } else {
+            handleDeleteItem(item?.id, item?.parent);
+          }
         }}
       >
         Delete
@@ -26,4 +30,4 @@ const FolderMenuList = ({ folder }) => {
   );
 };
 
-export default FolderMenuList;
+export default ItemMenuList;
