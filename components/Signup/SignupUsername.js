@@ -5,10 +5,9 @@ const SignupUsername = ({ usernameQuery, register, errors }) => {
     <FormControl isInvalid={errors.username}>
       <Input
         type="text"
-        name="username"
         defaultValue={usernameQuery ? usernameQuery : undefined}
         placeholder="Username"
-        ref={register({
+        {...register('username', {
           required: 'Username is required',
           minLength: {
             value: 3,

@@ -4,7 +4,7 @@ import { DragHandleIcon } from '@chakra-ui/icons';
 import LinkMenuList from '@/components/Folder/LinkMenuList';
 import FolderMenuList from '@/components/Folder/FolderMenuList';
 
-const ItemMenu = ({ item }) => {
+const ItemMenu = ({ item, renameMode, setRenameMode }) => {
   return (
     <Menu>
       <MenuButton
@@ -16,9 +16,13 @@ const ItemMenu = ({ item }) => {
         color="grey"
       />
       {item?.type === 'link' ? (
-        <LinkMenuList link={item} />
+        <LinkMenuList link={item} setRenameMode={setRenameMode} />
       ) : item?.type === 'folder' ? (
-        <FolderMenuList folder={item} />
+        <FolderMenuList
+          folder={item}
+          renameMode={renameMode}
+          setRenameMode={setRenameMode}
+        />
       ) : null}
     </Menu>
   );

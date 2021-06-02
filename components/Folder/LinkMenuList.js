@@ -27,7 +27,12 @@ import EditLinkModal from '@/components/Folder/EditLinkModal';
 
 const LinkMenuList = ({ link }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { handleSubmit, register, errors, reset } = useForm();
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { errors }
+  } = useForm();
 
   const onSubmit = (values) => {
     const newItem = { ...link, name: values.name, url: values.url };
@@ -52,10 +57,9 @@ const LinkMenuList = ({ link }) => {
                 <FormLabel>Name</FormLabel>
                 <Input
                   type="text"
-                  name="name"
                   placeholder="Link name"
                   defaultValue={link?.name}
-                  ref={register({
+                  {...register('name', {
                     required: 'Name is required'
                   })}
                 />
@@ -65,10 +69,9 @@ const LinkMenuList = ({ link }) => {
                 <FormLabel>URL</FormLabel>
                 <Input
                   type="url"
-                  name="url"
                   placeholder="https:// ..."
                   defaultValue={link?.url}
-                  ref={register({
+                  {...register('url', {
                     required: 'URL is required'
                   })}
                 />

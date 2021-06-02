@@ -100,7 +100,6 @@ const LandingUsername = () => {
             py={6}
             pl="9.6rem"
             type="username"
-            name="username"
             placeholder="yourusername"
             value={username}
             onChange={(e) => {
@@ -110,7 +109,7 @@ const LandingUsername = () => {
               });
               setUsername(e.target.value);
             }}
-            ref={register({
+            {...register('username', {
               validate: (input) => isValid(input)
             })}
             isInvalid={form.state === 'error'}

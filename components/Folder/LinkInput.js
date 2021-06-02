@@ -11,7 +11,12 @@ import { useForm } from 'react-hook-form';
 import { handleCreateLink, handleCreateFolder } from '@/lib/handlers';
 
 const LinkInput = ({ folderId }) => {
-  const { handleSubmit, register, errors, reset } = useForm({
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { errors }
+  } = useForm({
     mode: 'onTouched'
   });
 
@@ -24,15 +29,14 @@ const LinkInput = ({ folderId }) => {
     <Box w="100%" h="100%" pl={4} pr={2} py={2} _hover={{ bg: 'gray.100' }}>
       <Flex align="center" as="form" onSubmit={handleSubmit(onSubmit)}>
         <AddIcon mr={2} boxSize={4} color="grey" />
-        <FormControl isInvalid={errors.url}>
+        <FormControl isInvalid={errors?.url}>
           <Input
             type="url"
-            name="url"
             variant="unstyled"
             m={1}
             size="sm"
             placeholder="https:// ..."
-            ref={register({
+            {...register('url', {
               required: 'URL is required'
             })}
           />

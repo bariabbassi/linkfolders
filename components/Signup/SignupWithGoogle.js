@@ -7,7 +7,11 @@ import SignupUsername from '@/components/Signup/SignupUsername';
 
 const SignupWithGoogle = ({ usernameQuery }) => {
   const auth = useAuth();
-  const { handleSubmit, register, errors } = useForm({ mode: 'onTouched' });
+  const {
+    handleSubmit,
+    register,
+    formState: { errors }
+  } = useForm({ mode: 'onTouched' });
 
   const onSubmit = (values) => {
     auth.signupWithGoogle(values.username.toLowerCase());

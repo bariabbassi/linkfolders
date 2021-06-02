@@ -8,12 +8,19 @@ import {
 
 import { handleDeleteFolder } from '@/lib/handlers';
 
-const FolderMenuList = ({ folder }) => {
+const FolderMenuList = ({ folder, renameMode, setRenameMode }) => {
   return (
     <MenuList>
       {/* <MenuItem icon={<ExternalLinkIcon />}>Open</MenuItem> */}
       <MenuItem icon={<CopyIcon />}>Copy link</MenuItem>
-      <MenuItem icon={<EditIcon />}>Edit</MenuItem>
+      <MenuItem
+        icon={<EditIcon />}
+        onClick={() => {
+          setRenameMode(!renameMode);
+        }}
+      >
+        Rename
+      </MenuItem>
       <MenuItem
         icon={<DeleteIcon />}
         onClick={() => {

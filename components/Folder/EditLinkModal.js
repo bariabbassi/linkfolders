@@ -17,7 +17,12 @@ import { handleUpdateLink } from '@/lib/handlers';
 
 const EditLinkModal = ({ link, children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { handleSubmit, register, errors, reset } = useForm({
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { errors }
+  } = useForm({
     mode: 'onTouched'
   });
 
