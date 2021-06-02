@@ -16,7 +16,11 @@ const ItemMenu = ({ item, renameMode, setRenameMode }) => {
         color="grey"
       />
       {item?.type === 'link' ? (
-        <LinkMenuList link={item} setRenameMode={setRenameMode} />
+        <LinkMenuList
+          link={item}
+          renameMode={renameMode}
+          setRenameMode={setRenameMode}
+        />
       ) : item?.type === 'folder' ? (
         <FolderMenuList
           folder={item}

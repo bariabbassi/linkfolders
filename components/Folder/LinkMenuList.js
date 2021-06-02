@@ -25,7 +25,7 @@ import { useForm } from 'react-hook-form';
 import { handleUpdateItem, handleDeleteItem } from '@/lib/handlers';
 import EditLinkModal from '@/components/Folder/EditLinkModal';
 
-const LinkMenuList = ({ link }) => {
+const LinkMenuList = ({ link, renameMode, setRenameMode }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {
     handleSubmit,
@@ -42,54 +42,16 @@ const LinkMenuList = ({ link }) => {
 
   return (
     <MenuList>
-      <MenuItem icon={<ExternalLinkIcon />}>Open</MenuItem>
+      {/* <MenuItem icon={<ExternalLinkIcon />}>Open</MenuItem> */}
       <MenuItem icon={<CopyIcon />}>Copy link</MenuItem>
-
-      <MenuItem icon={<EditIcon />} onClick={onOpen}>
-        Edit
-        <Modal isOpen={isOpen} onClose={onClose}>
-          <ModalOverlay />
-          <ModalContent as="form" onSubmit={handleSubmit(onSubmit)}>
-            <ModalHeader>Edit link</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody pb={8}>
-              <FormControl isInvalid={errors.name}>
-                <FormLabel>Name</FormLabel>
-                <Input
-                  type="text"
-                  placeholder="Link name"
-                  defaultValue={link?.name}
-                  {...register('name', {
-                    required: 'Name is required'
-                  })}
-                />
-                <input></input>
-              </FormControl>
-              <FormControl isInvalid={errors.url} mt={6}>
-                <FormLabel>URL</FormLabel>
-                <Input
-                  type="url"
-                  placeholder="https:// ..."
-                  defaultValue={link?.url}
-                  {...register('url', {
-                    required: 'URL is required'
-                  })}
-                />
-              </FormControl>
-            </ModalBody>
-            <Input></Input>
-            <ModalFooter>
-              <Button onClick={onClose} mr={3}>
-                Cancel
-              </Button>
-              <Button type="submit" colorScheme="yellow">
-                Save
-              </Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
+      <MenuItem
+        icon={<EditIcon />}
+        onClick={() => {
+          setRenameMode(!renameMode);
+        }}
+      >
+        Rename
       </MenuItem>
-
       <MenuItem
         icon={<DeleteIcon />}
         onClick={() => {
