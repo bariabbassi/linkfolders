@@ -26,7 +26,7 @@ const Item = ({ item, index }) => {
             w="100%"
             h="55px"
             bg="white"
-            borderWidth="1px"
+            // borderWidth="1px"
             borderRadius="lg"
             overflow="hidden"
             transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
@@ -77,7 +77,7 @@ const Item = ({ item, index }) => {
                 <Text size="sm" pl={3}>
                   {item?.name.length < 40
                     ? item?.name
-                    : `${item?.name.substring(0, 37)} ...`}
+                    : `${item?.name.substring(0, 36)}...`}
                 </Text>
               ) : (
                 <NameInput item={item} setRenameMode={setRenameMode} />
