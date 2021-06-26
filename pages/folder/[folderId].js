@@ -7,6 +7,7 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import FolderShell from '@/components/Folder/FolderShell';
 import ChildrenList from '@/components/Folder/ChildrenList';
 import fetcher from '@/utils/fetcher';
+import { handleUpdateChildrenOrder } from '@/lib/handlers';
 
 const FolderPage = () => {
   const router = useRouter();
@@ -30,19 +31,33 @@ const FolderPage = () => {
       return;
     }
 
-    const newLinks = data?.folder?.links;
-    [newLinks[source.index], newLinks[destination.index]] = [
-      newLinks[destination.index],
-      newLinks[source.index]
-    ];
+    const childrenOrder = Array.from(data?.folder?.children);
+    console.log('before', childrenOrder);
+    childrenOrder.splice(source.index, 1);
+    childrenOrder.splice(destination.index, 0, draggableId);
+    console.log('after', childrenOrder);
 
+    // mutate(
+    //   `/api/folders/${newItem.parent}/children`,
+    //   async (data) => ({
+    //     children: [
+    //       ...data?.children.filter((item) => item.id !== newItem.id),
+    //       newItem
+    //     ]
+    //   }),
+    //   false
+    // );
     mutate(
       `/api/folders/${folderId}`,
-      async (data) => {
-        data.folder.links = newLinks;
-      },
+      async (data) => ({
+        folder: {
+          ...data?.folder,
+          children: [...childrenOrder]
+        }
+      }),
       false
     );
+    // handleUpdateChildrenOrder(folderId, newLinks, childrenOrder);
   };
 
   if (!data) {
@@ -56,9 +71,7 @@ const FolderPage = () => {
           <Heading size="xl" mb={5}>
             {data?.folder?.name}
           </Heading>
-          <Text minH="15px" mb={10}>
-            {/* {data?.folder?.description} */}
-          </Text>
+          <Text minH="15px" mb={10}></Text>
           <DragDropContext onDragEnd={onDragEnd}>
             <ChildrenList
               folderId={folderId}
