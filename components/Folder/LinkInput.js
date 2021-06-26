@@ -21,7 +21,7 @@ const LinkInput = ({ folderId }) => {
   });
 
   const onSubmit = (values) => {
-    handleCreateLink(values.url, folderId);
+    handleCreateLink(values.input, folderId);
     reset();
   };
 
@@ -32,11 +32,12 @@ const LinkInput = ({ folderId }) => {
         <FormControl isInvalid={errors?.url}>
           <Input
             type="url"
+            autoComplete="off"
             variant="unstyled"
             m={1}
             size="sm"
             placeholder="https:// ..."
-            {...register('url', {
+            {...register('input', {
               required: 'URL is required'
             })}
           />
