@@ -32,22 +32,10 @@ const FolderPage = () => {
     }
 
     const childrenOrder = Array.from(data?.folder?.children);
-    console.log('before', childrenOrder);
     childrenOrder.splice(source.index, 1);
     childrenOrder.splice(destination.index, 0, draggableId);
-    console.log('after', childrenOrder);
 
-    mutate(
-      `/api/folders/${folderId}`,
-      async (data) => ({
-        folder: {
-          ...data?.folder,
-          children: [...childrenOrder]
-        }
-      }),
-      false
-    );
-    // handleUpdateChildrenOrder(folderId, newLinks, childrenOrder);
+    handleUpdateChildrenOrder(folderId, childrenOrder);
   };
 
   if (!data) {
