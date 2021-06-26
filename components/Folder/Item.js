@@ -62,14 +62,14 @@ const Item = ({ item, index }) => {
               py={2}
               cursor={renameMode ? 'default' : 'pointer'}
             >
-              {item.type === 'link' ? (
+              {item?.type === 'link' ? (
                 <Image
                   src={`https://s2.googleusercontent.com/s2/favicons?domain=${item.url}&sz=32`}
                   alt={item?.name}
                   width="32px"
                   height="32px"
                 />
-              ) : item.type === 'folder' ? (
+              ) : item?.type === 'folder' ? (
                 <LinkfoldersIcon width="9" height="9" mb={2} />
               ) : null}
 
