@@ -37,16 +37,6 @@ const FolderPage = () => {
     childrenOrder.splice(destination.index, 0, draggableId);
     console.log('after', childrenOrder);
 
-    // mutate(
-    //   `/api/folders/${newItem.parent}/children`,
-    //   async (data) => ({
-    //     children: [
-    //       ...data?.children.filter((item) => item.id !== newItem.id),
-    //       newItem
-    //     ]
-    //   }),
-    //   false
-    // );
     mutate(
       `/api/folders/${folderId}`,
       async (data) => ({

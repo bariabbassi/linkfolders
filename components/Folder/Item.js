@@ -12,7 +12,7 @@ const Item = ({ item, index }) => {
   const router = useRouter();
 
   return (
-    <Draggable draggableId={index.toString()} index={index}>
+    <Draggable draggableId={item?.id} index={index}>
       {(provided) => (
         <Flex
           align="center"
