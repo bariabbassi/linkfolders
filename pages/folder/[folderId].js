@@ -60,7 +60,10 @@ const FolderPage = () => {
             {/* {data?.folder?.description} */}
           </Text>
           <DragDropContext onDragEnd={onDragEnd}>
-            <ChildrenList folderId={folderId} />
+            <ChildrenList
+              folderId={folderId}
+              childrenOrder={data?.folder?.children}
+            />
           </DragDropContext>
         </Box>
       </Stack>

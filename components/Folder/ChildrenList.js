@@ -8,7 +8,7 @@ import fetcher from '@/utils/fetcher';
 import { createItem, updateItem } from '@/lib/db';
 import LinkInput from '@/components/Folder/LinkInput';
 
-const ChildrenList = ({ folderId }) => {
+const ChildrenList = ({ folderId, childrenOrder }) => {
   const { data } = useSWR(
     folderId ? `/api/folders/${folderId}/children` : null,
     fetcher
@@ -19,10 +19,14 @@ const ChildrenList = ({ folderId }) => {
       <Droppable droppableId={'main'}>
         {(provided) => (
           <List ref={provided.innerRef} {...provided.droppableProps}>
-            {data?.children?.length > 0 &&
-              data?.children?.map((item, index) => (
-                <Item key={index} item={item} index={index} />
-              ))}
+            {childrenOrder.length > 0 && data?.children?.length > 0
+              ? childrenOrder.map((childId, index) => {
+                  const item = data?.children.find(
+                    (child) => child.id === childId
+                  );
+                  return <Item key={index} item={item} index={index} />;
+                })
+              : null}
             {provided.placeholder}
           </List>
         )}
