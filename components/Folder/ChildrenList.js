@@ -23,7 +23,8 @@ const ChildrenList = ({ folderId, childrenOrder }) => {
                   const item = data?.children.find(
                     (child) => child.id === childId
                   );
-                  return <Item key={item?.id} item={item} index={index} />;
+                  if (item)
+                    return <Item key={item?.id} item={item} index={index} />;
                 })
               : null}
             {provided.placeholder}
