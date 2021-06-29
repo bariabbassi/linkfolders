@@ -18,8 +18,7 @@ const AllLinksList = () => {
             })
           : null}
       </List>
-      {/* <LinkInput folderId={folderId} />
-      <NewItemButtons folderId={folderId} /> */}
+      {/* <LinkInput folderId={folderId} /> */}
     </Box>
   );
 };
