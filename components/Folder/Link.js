@@ -1,66 +1,73 @@
-import { Box, Flex, Heading, Text, Input, Menu } from '@chakra-ui/react';
+import { Box, Flex, Button, Text, Input } from '@chakra-ui/react';
 import Image from 'next/image';
-import { useState } from 'react';
 
-import LinkMenu from '@/components/Folder/LinkMenu';
+import ItemMenu from '@/components/Folder/ItemMenu';
+import NameInput from '@/components/Folder/NameInput';
 
-const Link = ({ link }) => {
-  const [editMode, setEditMode] = useState(
-    !link?.name || !link?.url || link?.url === 'https://'
-  );
+const Link = ({ item }) => {
+  const [renameMode, setRenameMode] = React.useState(!item?.name);
 
   return (
-    <>
+    <Flex align="center" mb={3}>
       <Box
+        mr={1}
         w="100%"
-        h="100%"
-        pl={4}
-        pr={2}
-        py={2}
+        h="55px"
+        bg="white"
+        // borderWidth="1px"
+        borderRadius="lg"
+        overflow="hidden"
         transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
-        cursor="pointer"
         _hover={{ bg: 'gray.100' }}
-        _active={{
-          bg: 'gray.200',
-          transform: 'scale(0.98)'
-        }}
-        _focus={{
-          boxShadow:
-            '0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)'
-        }}
+        _active={
+          !renameMode && {
+            bg: 'gray.200',
+            transform: 'scale(0.98)'
+          }
+        }
+        _focus={
+          !renameMode && {
+            boxShadow:
+              '0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)'
+          }
+        }
         onClick={() => {
-          if (!editMode) window.open(`${link.url}`);
+          if (!renameMode) window.open(item?.url);
         }}
       >
-        <Flex align="center">
+        <Flex
+          align="center"
+          w="100%"
+          h="100%"
+          pl={4}
+          pr={2}
+          py={2}
+          cursor={renameMode ? 'default' : 'pointer'}
+        >
           <Image
-            src={`https://s2.googleusercontent.com/s2/favicons?domain=${link.url}&sz=32`}
-            alt={link?.name}
+            src={`https://s2.googleusercontent.com/s2/favicons?domain=${item.url}&sz=32`}
+            alt={item?.name}
             width="32px"
             height="32px"
           />
-          {!editMode ? (
+
+          {!renameMode ? (
             <Text size="sm" pl={3}>
-              {link?.name.length < 40
-                ? link?.name
-                : `${link?.name.substring(0, 37)} ...`}
+              {item?.name.length < 40
+                ? item?.name
+                : `${item?.name.substring(0, 36)}...`}
             </Text>
           ) : (
-            <Input
-              variant="unstyled"
-              m={1}
-              size="sm"
-              placeholder="New link"
-              value={link?.name}
-              onChange={(e) => {
-                changeName(e.target.value);
-              }}
-            />
+            <NameInput item={item} setRenameMode={setRenameMode} />
           )}
         </Flex>
       </Box>
-      <LinkMenu link={link} setEditMode={setEditMode} />
-    </>
+      <ItemMenu
+        item={item}
+        renameMode={renameMode}
+        setRenameMode={setRenameMode}
+      />
+    </Flex>
   );
 };
 

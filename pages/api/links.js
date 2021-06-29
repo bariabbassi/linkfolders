@@ -1,17 +1,12 @@
-import { getLinkPreview } from 'link-preview-js';
-
-// import { createLink } from '@/lib/db-admin';
+// import { auth } from '@/lib/firebase-admin';
+import { getUserLinks } from '@/lib/db-admin';
 
 export default async (req, res) => {
   try {
-    const { link } = req.query;
-    const preview = await getLinkPreview(link.url).then((data) =>
-      console.log(data)
-    );
-    // link.name = preview.title;
-    // createLink(link);
+    // const { id } = await auth.verifyIdToken(req.headers.token);
+    const { links } = await getUserLinks();
 
-    res.status(200).json({ link });
+    res.status(200).json({ links });
   } catch (error) {
     res.status(500).json({ error });
   }

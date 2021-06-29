@@ -1,7 +1,6 @@
 import { Box, Stack, Heading, Text } from '@chakra-ui/react';
-import { useState } from 'react';
 import { useRouter } from 'next/router';
-import useSWR, { mutate } from 'swr';
+import useSWR from 'swr';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 import FolderShell from '@/components/Folder/FolderShell';
