@@ -5,6 +5,7 @@ import { DragDropContext } from 'react-beautiful-dnd';
 
 import FolderShell from '@/components/Folder/FolderShell';
 import ChildrenList from '@/components/Folder/ChildrenList';
+import LinkInput from '@/components/Folder/LinkInput';
 import fetcher from '@/utils/fetcher';
 import { handleUpdateChildrenOrder } from '@/lib/handlers';
 
@@ -50,10 +51,13 @@ const FolderPage = () => {
           </Heading>
           <Text minH="15px" mb={10}></Text>
           <DragDropContext onDragEnd={onDragEnd}>
-            <ChildrenList
-              folderId={folderId}
-              childrenOrder={data?.folder?.children}
-            />
+            <Box w="100%" maxW="400px">
+              <ChildrenList
+                folderId={folderId}
+                childrenOrder={data?.folder?.children}
+              />
+              <LinkInput folderId={folderId} />
+            </Box>
           </DragDropContext>
         </Box>
       </Stack>

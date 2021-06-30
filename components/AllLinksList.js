@@ -3,8 +3,6 @@ import useSWR from 'swr';
 import fetcher from '@/utils/fetcher';
 
 import Link from '@/components/Folder/Link';
-// import NewItemButtons from '@/components/Folder/NewItemButtons';
-// import LinkInput from '@/components/Folder/LinkInput';
 
 const AllLinksList = () => {
   const { data } = useSWR('/api/links', fetcher);
@@ -18,7 +16,6 @@ const AllLinksList = () => {
             })
           : null}
       </List>
-      {/* <LinkInput folderId={folderId} /> */}
     </Box>
   );
 };
