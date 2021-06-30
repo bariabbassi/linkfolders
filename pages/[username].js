@@ -4,6 +4,7 @@ import useSWR from 'swr';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 import FolderShell from '@/components/Folder/FolderShell';
+import ProfileHeader from '@/components/ProfileHeader';
 import ChildrenList from '@/components/Folder/ChildrenList';
 import LinkInput from '@/components/Folder/LinkInput';
 import fetcher from '@/utils/fetcher';
@@ -43,11 +44,13 @@ const ProfilePage = () => {
 
   return (
     <FolderShell>
-      <Stack w="100%" maxW="550px">
+      <Stack w="100%" maxW="650px">
         <Box>
-          <Heading size="xl" mb={5}>
-            {data?.profile?.name}
-          </Heading>
+          <ProfileHeader
+            name={data?.profile?.name}
+            photoUrl={data?.profile?.photoUrl}
+            username={username}
+          />
           <Text minH="15px" mb={10}></Text>
           <DragDropContext onDragEnd={onDragEnd}>
             <Box w="100%" maxW="400px">

@@ -45,7 +45,7 @@ const FolderPage = () => {
     <FolderShell>
       <Stack w="100%" maxW="550px">
         <Box>
-          <Heading size="xl" mb={5}>
+          <Heading as="h1" size="xl" mb={5}>
             {data?.folder?.name}
           </Heading>
           <Text minH="15px" mb={10}></Text>
