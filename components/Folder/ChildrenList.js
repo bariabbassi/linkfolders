@@ -3,7 +3,6 @@ import useSWR, { mutate } from 'swr';
 import { Droppable } from 'react-beautiful-dnd';
 
 import Item from '@/components/Folder/Item';
-import NewItemButtons from '@/components/Folder/NewItemButtons';
 import fetcher from '@/utils/fetcher';
 import LinkInput from '@/components/Folder/LinkInput';
 

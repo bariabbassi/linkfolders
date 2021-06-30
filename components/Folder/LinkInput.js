@@ -38,10 +38,18 @@ const LinkInput = ({ folderId }) => {
   };
 
   return (
-    <Flex>
-      <Box w="100%" h="100%" pl={4} pr={2} py={2} _hover={{ bg: 'gray.100' }}>
+    <Box borderWidth="1px" borderRadius="lg">
+      <Box
+        w="100%"
+        bg="white"
+        overflow="hidden"
+        px={4}
+        py={2}
+        _hover={{ bg: 'gray.100' }}
+      >
         <Flex align="center" as="form" onSubmit={handleSubmit(onSubmit)}>
-          {/* <AddIcon mr={2} boxSize={4} color="grey" /> */}
+          <AddIcon mr={1} boxSize={4} color="grey" />
+          🔗
           {/* <IconButton
           variant="ghost"
           mr={2}
@@ -55,8 +63,7 @@ const LinkInput = ({ folderId }) => {
             <Input
               type="url"
               autoComplete="off"
-              variant="unstyled"
-              m={1}
+              ml={2}
               size="sm"
               placeholder="https:// ..."
               {...register('input', {
@@ -72,12 +79,12 @@ const LinkInput = ({ folderId }) => {
         m={1}
         size="sm"
         aria-label="Add root folder"
-        leftIcon={<AddIcon boxSize={4} />}
         onClick={onClick}
       >
+        <AddIcon mr={1} boxSize={4} color="grey" />
         <LinkfoldersIcon width="6" height="6" mb={1} />
       </Button>
-    </Flex>
+    </Box>
   );
 };
 
