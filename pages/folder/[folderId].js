@@ -11,7 +11,6 @@ import { handleUpdateChildrenOrder } from '@/lib/handlers';
 
 const FolderPage = () => {
   const router = useRouter();
-  //   const username = router.query?.username;
   const folderId = router.query?.folderId;
   const { data } = useSWR(
     folderId ? `/api/folders/${folderId}` : null,
