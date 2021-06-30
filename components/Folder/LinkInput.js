@@ -38,52 +38,43 @@ const LinkInput = ({ folderId }) => {
   };
 
   return (
-    <Box borderWidth="1px" borderRadius="lg">
-      <Box
+    <Box>
+      <Flex
+        align="center"
+        justify="space-between"
         w="100%"
-        bg="white"
-        overflow="hidden"
-        px={4}
         py={2}
-        _hover={{ bg: 'gray.100' }}
+        bg="white"
+        borderWidth="1px"
+        borderRadius="3xl"
       >
-        <Flex align="center" as="form" onSubmit={handleSubmit(onSubmit)}>
-          <AddIcon mr={1} boxSize={4} color="grey" />
-          🔗
-          {/* <IconButton
-          variant="ghost"
-          mr={2}
-          color="grey"
-          size="md"
-          aria-label="New folder"
-          icon={<AddIcon />}
-          onClick={onNewFolder}
-        /> */}
+        <Flex align="center" pl={4} as="form" onSubmit={handleSubmit(onSubmit)}>
+          <AddIcon mr={2} boxSize={4} color="grey" />
+
           <FormControl isInvalid={errors?.url}>
             <Input
-              type="url"
+              type="text"
               autoComplete="off"
-              ml={2}
-              size="sm"
-              placeholder="https:// ..."
+              variant="unstyled"
+              size="md"
+              placeholder="Type a URL"
               {...register('input', {
                 required: 'URL is required'
               })}
             />
           </FormControl>
         </Flex>
-      </Box>
-      <Button
-        variant="ghost"
-        color="grey"
-        m={1}
-        size="sm"
-        aria-label="Add root folder"
-        onClick={onClick}
-      >
-        <AddIcon mr={1} boxSize={4} color="grey" />
-        <LinkfoldersIcon width="6" height="6" mb={1} />
-      </Button>
+        <Button
+          variant="ghost"
+          color="grey"
+          mx={1}
+          size="sm"
+          aria-label="Add root folder"
+          onClick={onClick}
+        >
+          <LinkfoldersIcon width="6" height="6" mb={1} />
+        </Button>
+      </Flex>
     </Box>
   );
 };
