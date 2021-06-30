@@ -38,44 +38,47 @@ const LinkInput = ({ folderId }) => {
   };
 
   return (
-    <Box>
+    <Flex
+      align="center"
+      justify="space-between"
+      w="100%"
+      my={4}
+      py={2}
+      bg="white"
+      borderWidth="1px"
+      borderRadius="3xl"
+    >
       <Flex
         align="center"
-        justify="space-between"
         w="100%"
-        py={2}
-        bg="white"
-        borderWidth="1px"
-        borderRadius="3xl"
+        pl={4}
+        as="form"
+        onSubmit={handleSubmit(onSubmit)}
       >
-        <Flex align="center" pl={4} as="form" onSubmit={handleSubmit(onSubmit)}>
-          <AddIcon mr={2} boxSize={4} color="grey" />
+        <AddIcon mr={3} boxSize={4} color="grey" />
 
-          <FormControl isInvalid={errors?.url}>
-            <Input
-              type="text"
-              autoComplete="off"
-              variant="unstyled"
-              size="md"
-              placeholder="Type a URL"
-              {...register('input', {
-                required: 'URL is required'
-              })}
-            />
-          </FormControl>
-        </Flex>
-        <Button
-          variant="ghost"
-          color="grey"
-          mx={1}
-          size="sm"
-          aria-label="Add root folder"
-          onClick={onClick}
-        >
-          <LinkfoldersIcon width="6" height="6" mb={1} />
-        </Button>
+        <FormControl isInvalid={errors?.url}>
+          <Input
+            type="text"
+            autoComplete="off"
+            variant="unstyled"
+            size="md"
+            placeholder="Type a URL"
+            {...register('input', {
+              required: 'URL is required'
+            })}
+          />
+        </FormControl>
       </Flex>
-    </Box>
+      <IconButton
+        variant="ghost"
+        mx={3}
+        size="sm"
+        aria-label="New folder"
+        icon={<LinkfoldersIcon width="6" height="6" mb={1} />}
+        onClick={onClick}
+      />
+    </Flex>
   );
 };
 

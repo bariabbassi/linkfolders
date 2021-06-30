@@ -1,22 +1,22 @@
 import { Box, Stack, Heading, Text } from '@chakra-ui/react';
 
 import FolderShell from '@/components/Folder/FolderShell';
-import AllLinksList from '@/components/AllLinksList';
+import LinksList from '@/components/LinksList';
 
-const AllLinksPage = () => {
+const LinksPage = () => {
   return (
     <FolderShell>
       <Stack w="100%" maxW="550px">
         <Box>
           <Heading size="xl" mb={5}>
-            All links
+            Links
           </Heading>
           <Text minH="15px" mb={10}></Text>
-          <AllLinksList />
+          <LinksList />
         </Box>
       </Stack>
     </FolderShell>
   );
 };
 
-export default AllLinksPage;
+export default LinksPage;

@@ -4,7 +4,7 @@ import fetcher from '@/utils/fetcher';
 
 import Link from '@/components/Folder/Link';
 
-const AllLinksList = () => {
+const LinksList = () => {
   const { data } = useSWR('/api/links', fetcher);
 
   return (
@@ -20,4 +20,4 @@ const AllLinksList = () => {
   );
 };
 
-export default AllLinksList;
+export default LinksList;
