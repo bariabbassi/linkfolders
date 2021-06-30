@@ -7,7 +7,7 @@ import ProfileSkeleton from '@/components/ProfileSkeleton';
 import Tree from '@/components/Tree';
 import fetcher from '@/utils/fetcher';
 
-const Profile = () => {
+const ProfilePage = () => {
   const router = useRouter();
   const username = router.query?.username;
   const { data } = useSWR(
@@ -34,4 +34,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default ProfilePage;
