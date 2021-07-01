@@ -9,14 +9,39 @@ import ChildrenList from '@/components/Folder/ChildrenList';
 import LinkInput from '@/components/Folder/LinkInput';
 import fetcher from '@/utils/fetcher';
 import { handleUpdateChildrenOrder } from '@/lib/handlers';
+import { useAuth } from '@/lib/auth';
 
 const FolderPage = () => {
+  const auth = useAuth();
   const router = useRouter();
   const folderId = router.query?.folderId;
   const { data } = useSWR(
     folderId ? `/api/folders/${folderId}` : null,
     fetcher
   );
+  const { profileData } = useSWR(
+    auth?.user && data?.folder?.userId !== auth?.user?.uid
+      ? `/api/profiles/${data?.folder?.userId}`
+      : null,
+    fetcher
+  );
+  let profile = {};
+  if (auth?.user && data?.folder?.userId !== auth?.user?.uid) {
+    profile = {
+      name: profileData?.profile?.name,
+      username: profileData?.profile?.username,
+      photoUrl: profileData?.profile?.photoUrl
+    };
+    console.log('not same', profile);
+  } else {
+    profile = {
+      name: auth?.user.name,
+      username: auth?.user.username,
+      photoUrl: auth?.user.photoUrl
+    };
+    console.log('same', profile);
+  }
+
   const onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
 
@@ -51,7 +76,7 @@ const FolderPage = () => {
       }
     >
       <Box w="100%">
-        <FolderHeader name={data?.folder?.name} />
+        <FolderHeader name={data?.folder?.name} profile={profile} />
         <Text minH="15px" mb={10}></Text>
         <DragDropContext onDragEnd={onDragEnd}>
           <Box>

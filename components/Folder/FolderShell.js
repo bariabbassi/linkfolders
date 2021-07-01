@@ -17,7 +17,7 @@ const FolderShell = ({ parentPath, children }) => {
 
   return (
     <Flex
-      flexDirection="column"
+      direction="column"
       alignItems="center"
       justify="space-between"
       w="100vw"
