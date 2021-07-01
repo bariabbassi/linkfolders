@@ -1,7 +1,7 @@
 import { Box, Stack, Heading, Text } from '@chakra-ui/react';
 
 import FolderShell from '@/components/Folder/FolderShell';
-import LinksList from '@/components/LinksList';
+import LinksList from '@/components/Profile/LinksList';
 
 const LinksPage = () => {
   return (

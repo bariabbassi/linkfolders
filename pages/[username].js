@@ -4,7 +4,7 @@ import useSWR from 'swr';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 import FolderShell from '@/components/Folder/FolderShell';
-import ProfileHeader from '@/components/ProfileHeader';
+import ProfileHeader from '@/components/Profile/ProfileHeader';
 import ChildrenList from '@/components/Folder/ChildrenList';
 import LinkInput from '@/components/Folder/LinkInput';
 import fetcher from '@/utils/fetcher';
