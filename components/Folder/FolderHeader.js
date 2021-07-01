@@ -23,7 +23,7 @@ const FolderHeader = ({ name, userId }) => {
     fetcher
   );
   let profile = {};
-  if (auth && userId === auth?.user?.uid) profile = auth?.user?.profile;
+  if (auth?.user && userId === auth?.user?.uid) profile = auth?.user?.profile;
   else profile = data?.profile;
 
   return (

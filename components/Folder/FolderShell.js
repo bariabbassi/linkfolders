@@ -4,7 +4,12 @@ import {
   IconButton,
   Flex,
   Avatar,
-  Heading
+  Heading,
+  Tag,
+  TagLabel,
+  LinkBox,
+  LinkOverlay,
+  Spinner
 } from '@chakra-ui/react';
 import { HamburgerIcon, ArrowBackIcon } from '@chakra-ui/icons';
 import NextLink from 'next/link';
@@ -27,14 +32,35 @@ const FolderShell = ({ parentPath, children }) => {
       <Box w="100%">
         <Flex backgroundColor="white" w="100%">
           <Flex px={2} py={3} w="100%">
-            <NextLink href="/" passHref>
+            {auth?.user ? (
+              <NextLink href={`/${auth?.user?.profile?.username}`} passHref>
+                <LinkBox as="article">
+                  <Tag size="lg" borderRadius="full">
+                    <Avatar
+                      size="md"
+                      ml={-1}
+                      mr={2}
+                      my={1}
+                      name={auth?.user?.profile?.name}
+                      src={auth?.user?.profile?.photoUrl}
+                    />
+                    <TagLabel size="lg" fontWeight="400" mr={2}>
+                      <LinkOverlay href="#">
+                        {auth?.user?.profile?.name}
+                      </LinkOverlay>
+                    </TagLabel>
+                  </Tag>
+                </LinkBox>
+              </NextLink>
+            ) : null}
+            {/* <NextLink href="/" passHref>
               <IconButton
                 variant="ghost"
                 aria-label="Hamburger menu"
                 size="md"
                 icon={<HamburgerIcon boxSize={6} />}
               />
-            </NextLink>
+            </NextLink> */}
             <NextLink href={`${parentPath}`} passHref>
               <IconButton
                 variant="ghost"
