@@ -44,25 +44,23 @@ const ProfilePage = () => {
 
   return (
     <FolderShell>
-      <Stack w="100%" maxW="650px">
-        <Box>
-          <ProfileHeader
-            name={data?.profile?.name}
-            photoUrl={data?.profile?.photoUrl}
-            username={username}
-          />
-          <Text minH="15px" mb={10}></Text>
-          <DragDropContext onDragEnd={onDragEnd}>
-            <Box w="100%" maxW="400px">
-              <ChildrenList
-                folderId={data?.profile?.id}
-                childrenOrder={data?.profile?.children}
-              />
-              <LinkInput folderId={data?.profile?.id} />
-            </Box>
-          </DragDropContext>
-        </Box>
-      </Stack>
+      <Box w="100%">
+        <ProfileHeader
+          name={data?.profile?.name}
+          photoUrl={data?.profile?.photoUrl}
+          username={username}
+        />
+        <Text minH="15px" mb={10}></Text>
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Box>
+            <ChildrenList
+              folderId={data?.profile?.id}
+              childrenOrder={data?.profile?.children}
+            />
+            <LinkInput folderId={data?.profile?.id} />
+          </Box>
+        </DragDropContext>
+      </Box>
     </FolderShell>
   );
 };

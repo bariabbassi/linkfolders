@@ -4,6 +4,7 @@ import useSWR from 'swr';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 import FolderShell from '@/components/Folder/FolderShell';
+import FolderHeader from '@/components/Folder/FolderHeader';
 import ChildrenList from '@/components/Folder/ChildrenList';
 import LinkInput from '@/components/Folder/LinkInput';
 import fetcher from '@/utils/fetcher';
@@ -43,23 +44,19 @@ const FolderPage = () => {
 
   return (
     <FolderShell>
-      <Stack w="100%" maxW="550px">
-        <Box>
-          <Heading as="h1" size="xl" mb={5}>
-            {data?.folder?.name}
-          </Heading>
-          <Text minH="15px" mb={10}></Text>
-          <DragDropContext onDragEnd={onDragEnd}>
-            <Box w="100%" maxW="400px">
-              <ChildrenList
-                folderId={folderId}
-                childrenOrder={data?.folder?.children}
-              />
-              <LinkInput folderId={folderId} />
-            </Box>
-          </DragDropContext>
-        </Box>
-      </Stack>
+      <Box w="100%">
+        <FolderHeader name={data?.folder?.name} />
+        <Text minH="15px" mb={10}></Text>
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Box>
+            <ChildrenList
+              folderId={folderId}
+              childrenOrder={data?.folder?.children}
+            />
+            <LinkInput folderId={folderId} />
+          </Box>
+        </DragDropContext>
+      </Box>
     </FolderShell>
   );
 };
