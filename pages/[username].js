@@ -3,14 +3,16 @@ import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import { DragDropContext } from 'react-beautiful-dnd';
 
-import FolderShell from '@/components/Folder/FolderShell';
+import ProfileShell from '@/components/Profile/ProfileShell';
 import ProfileHeader from '@/components/Profile/ProfileHeader';
 import ChildrenList from '@/components/Folder/ChildrenList';
 import LinkInput from '@/components/Folder/LinkInput';
 import fetcher from '@/utils/fetcher';
 import { handleUpdateChildrenOrder } from '@/lib/handlers';
+import { useAuth } from '@/lib/auth';
 
 const ProfilePage = () => {
+  const auth = useAuth();
   const router = useRouter();
   const username = router.query?.username;
   const { data } = useSWR(
@@ -39,11 +41,11 @@ const ProfilePage = () => {
   };
 
   if (!data) {
-    return <FolderShell>Loanding ...</FolderShell>;
+    return <ProfileShell>Loanding ...</ProfileShell>;
   }
 
   return (
-    <FolderShell>
+    <ProfileShell>
       <Box w="100%">
         <ProfileHeader
           name={data?.profile?.name}
@@ -57,11 +59,13 @@ const ProfilePage = () => {
               folderId={data?.profile?.id}
               childrenOrder={data?.profile?.children}
             />
-            <LinkInput folderId={data?.profile?.id} />
+            {auth.user?.uid === data?.profile?.id && (
+              <LinkInput folderId={data?.profile?.id} />
+            )}
           </Box>
         </DragDropContext>
       </Box>
-    </FolderShell>
+    </ProfileShell>
   );
 };
 

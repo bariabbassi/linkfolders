@@ -56,17 +56,19 @@ const ProfileShell = ({ name, photoUrl, children }) => {
           </Flex>
         </Flex>
       </Box>
-      <NextLink href="/" passHref>
-        <Button
-          as="a"
-          variant="ghost"
-          mt={8}
-          mb={2}
-          leftIcon={<LinkfoldersIcon width="8" height="8" mb={2} />}
-        >
-          <Heading size="xs">Linkfolders</Heading>
-        </Button>
-      </NextLink>
+      {!auth.user && (
+        <NextLink href="/" passHref>
+          <Button
+            as="a"
+            variant="ghost"
+            mt={8}
+            mb={2}
+            leftIcon={<LinkfoldersIcon width="8" height="8" mb={2} />}
+          >
+            <Heading size="sm">Linkfolders</Heading>
+          </Button>
+        </NextLink>
+      )}
     </Flex>
   );
 };

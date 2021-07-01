@@ -1,11 +1,11 @@
 import { Box, Stack, Heading, Text } from '@chakra-ui/react';
 
-import FolderShell from '@/components/Folder/FolderShell';
+import ProfileShell from '@/components/Profile/ProfileShell';
 import LinksList from '@/components/Profile/LinksList';
 
 const LinksPage = () => {
   return (
-    <FolderShell>
+    <ProfileShell>
       <Stack w="100%" maxW="550px">
         <Box>
           <Heading size="xl" mb={5}>
@@ -15,7 +15,7 @@ const LinksPage = () => {
           <LinksList />
         </Box>
       </Stack>
-    </FolderShell>
+    </ProfileShell>
   );
 };
 
