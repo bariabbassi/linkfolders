@@ -12,8 +12,8 @@ const ItemMenu = ({ item, renameMode, setRenameMode }) => {
         aria-label="Menu"
         icon={<DragHandleIcon />}
         variant="ghost"
-        size="xs"
-        color="grey"
+        size="sm"
+        color="gray"
       />
       {item?.type === 'link' ? (
         <LinkMenuList

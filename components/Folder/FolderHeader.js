@@ -32,7 +32,6 @@ const FolderHeader = ({ name, userId }) => {
         <Heading as="h1" size="xl" mb={2}>
           {name}
         </Heading>
-        {/* <Heading size="md" fontWeight="400" mb={5} color="grey"></Heading> */}
         {profile?.username ? (
           <NextLink href={`/${profile?.username}`} passHref>
             <LinkBox as="article">

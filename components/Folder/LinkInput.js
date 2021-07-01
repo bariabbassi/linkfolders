@@ -55,8 +55,7 @@ const LinkInput = ({ folderId }) => {
         as="form"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <AddIcon mr={3} boxSize={4} color="grey" />
-
+        <AddIcon mr={3} boxSize={4} color="gray" />
         <FormControl isInvalid={errors?.url}>
           <Input
             type="text"
