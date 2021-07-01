@@ -1,10 +1,18 @@
-import { Box, Button, Flex, Avatar, Heading } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  IconButton,
+  Flex,
+  Avatar,
+  Heading
+} from '@chakra-ui/react';
+import { HamburgerIcon, ArrowBackIcon } from '@chakra-ui/icons';
 import NextLink from 'next/link';
 
 import { useAuth } from '@/lib/auth';
 import { LinkfoldersIcon } from '@/styles/icons';
 
-const FolderShell = ({ children }) => {
+const FolderShell = ({ parent, children }) => {
   const auth = useAuth();
 
   return (
@@ -18,27 +26,22 @@ const FolderShell = ({ children }) => {
     >
       <Box w="100%">
         <Flex backgroundColor="white" w="100%">
-          <Flex justify="space-between" px={2} py={3} w="100%">
-            {/* <NextLink href="/" passHref>
-              <Button
-                as="a"
+          <Flex px={2} py={3} w="100%">
+            <NextLink href={`/folder/${parent}`} passHref>
+              <IconButton
                 variant="ghost"
-                leftIcon={<LinkfoldersIcon width="8" height="8" mb={2} />}
-              >
-                <Heading as="h3" size="sm">
-                  Linkfolders
-                </Heading>
-              </Button>
-            </NextLink> */}
-            <NextLink href="/profile" passHref>
-              <Button as="a" variant="ghost">
-                <Flex align="center">
-                  {/* <Avatar mx={3} size="sm" name={name} src={photoUrl} />
-                  <Heading as="h1" size="md">
-                    {name}
-                  </Heading> */}
-                </Flex>
-              </Button>
+                aria-label="Hamburger menu"
+                size="md"
+                icon={<HamburgerIcon boxSize={6} />}
+              />
+            </NextLink>
+            <NextLink href="/" passHref>
+              <IconButton
+                variant="ghost"
+                aria-label="Parent folder"
+                size="md"
+                icon={<ArrowBackIcon boxSize={6} />}
+              />
             </NextLink>
           </Flex>
         </Flex>
@@ -48,9 +51,9 @@ const FolderShell = ({ children }) => {
             align="center"
             justify="flex-start"
             w="100%"
-            maxW="550px"
+            maxW="770px"
             px={3}
-            pb={5}
+            pb={7}
           >
             {children}
           </Flex>

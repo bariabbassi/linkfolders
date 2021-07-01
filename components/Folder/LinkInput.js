@@ -72,8 +72,8 @@ const LinkInput = ({ folderId }) => {
       </Flex>
       <IconButton
         variant="ghost"
-        mx={3}
-        size="sm"
+        mx={4}
+        size="md"
         aria-label="New folder"
         icon={<LinkfoldersIcon width="6" height="6" mb={1} />}
         onClick={onClick}
