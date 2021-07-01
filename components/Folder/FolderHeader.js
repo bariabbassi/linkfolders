@@ -8,6 +8,7 @@ const FolderHeader = ({ name, userId }) => {
   const auth = useAuth();
   const { data } = useSWR(`/api/profiles/${userId}`, fetcher);
 
+  if (auth) console.log(auth.user.profile);
   // let profile = {};
   // if (auth?.user && data?.folder?.userId !== auth?.user?.uid) {
   //   profile = {
