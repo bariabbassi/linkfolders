@@ -19,7 +19,7 @@ const Plan = () => {
       <Stack direction="row" w="100%">
         <Stack>
           <Heading>Free plan</Heading>
-          <NextLink href="/profile" passHref>
+          <NextLink href={`/${auth.user.username}`} passHref>
             <Button as="a" variant="outline" colorScheme="yellow">
               Free plan
             </Button>
