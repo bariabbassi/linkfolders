@@ -4,7 +4,7 @@ import NextLink from 'next/link';
 import { useAuth } from '@/lib/auth';
 import { LinkfoldersIcon } from '@/styles/icons';
 
-const ProfileShell = ({ name, photoUrl, children }) => {
+const FolderShell = ({ children }) => {
   const auth = useAuth();
 
   return (
@@ -60,4 +60,4 @@ const ProfileShell = ({ name, photoUrl, children }) => {
   );
 };
 
-export default ProfileShell;
+export default FolderShell;
