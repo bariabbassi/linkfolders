@@ -12,7 +12,7 @@ import NextLink from 'next/link';
 import { useAuth } from '@/lib/auth';
 import { LinkfoldersIcon } from '@/styles/icons';
 
-const FolderShell = ({ parent, children }) => {
+const FolderShell = ({ parentPath, children }) => {
   const auth = useAuth();
 
   return (
@@ -27,7 +27,7 @@ const FolderShell = ({ parent, children }) => {
       <Box w="100%">
         <Flex backgroundColor="white" w="100%">
           <Flex px={2} py={3} w="100%">
-            <NextLink href={`/folder/${parent}`} passHref>
+            <NextLink href="/" passHref>
               <IconButton
                 variant="ghost"
                 aria-label="Hamburger menu"
@@ -35,7 +35,7 @@ const FolderShell = ({ parent, children }) => {
                 icon={<HamburgerIcon boxSize={6} />}
               />
             </NextLink>
-            <NextLink href="/" passHref>
+            <NextLink href={`${parentPath}`} passHref>
               <IconButton
                 variant="ghost"
                 aria-label="Parent folder"
@@ -51,7 +51,7 @@ const FolderShell = ({ parent, children }) => {
             align="center"
             justify="flex-start"
             w="100%"
-            maxW="770px"
+            maxW="570px"
             px={3}
             pb={7}
           >

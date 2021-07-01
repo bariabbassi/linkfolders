@@ -48,7 +48,7 @@ const ProfileShell = ({ name, photoUrl, children }) => {
             align="center"
             justify="flex-start"
             w="100%"
-            maxW="550px"
+            maxW="570px"
             px={3}
             pb={5}
           >

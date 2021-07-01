@@ -43,7 +43,13 @@ const FolderPage = () => {
   }
 
   return (
-    <FolderShell>
+    <FolderShell
+      parentPath={
+        data?.folder?.parent !== data?.folder?.userId
+          ? `/folder/${data?.folder?.parent}`
+          : '/facebook'
+      }
+    >
       <Box w="100%">
         <FolderHeader name={data?.folder?.name} />
         <Text minH="15px" mb={10}></Text>
