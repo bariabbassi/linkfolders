@@ -14,7 +14,7 @@ const EditableProfileHeader = (props) => {
 
   return (
     <Flex direction="column" align="center">
-      <Avatar mb={3} size="2xl" name={name} src={photoUrl}>
+      <Avatar bg="gray.200" mb={3} size="2xl" name={name} src={photoUrl}>
         <AvatarBadge border="none" p={4}>
           <IconButton size="sm" color="gray.700" icon={<EditIcon />} />
         </AvatarBadge>

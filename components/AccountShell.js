@@ -44,6 +44,7 @@ const AccountShell = ({ children }) => {
                     isLoading={auth.loading}
                     leftIcon={
                       <Avatar
+                        bg="gray.200"
                         size="sm"
                         name={auth.user.name}
                         src={auth.user.photoUrl}

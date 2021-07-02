@@ -1,10 +1,8 @@
 import {
   Box,
-  Button,
   IconButton,
   Flex,
   Avatar,
-  Heading,
   Tag,
   TagLabel,
   LinkBox,
@@ -31,12 +29,13 @@ const FolderShell = ({ parentPath, children }) => {
     >
       <Box w="100%">
         <Flex backgroundColor="white" w="100%">
-          <Flex px={2} py={3} w="100%">
-            {auth?.user ? (
+          <Flex align="center" px={2} py={3} w="100%">
+            {auth?.user?.profile ? (
               <NextLink href={`/${auth?.user?.profile?.username}`} passHref>
                 <LinkBox as="article">
                   <Tag size="lg" borderRadius="full">
                     <Avatar
+                      bg="gray.200"
                       size="md"
                       ml={-1}
                       mr={2}
@@ -64,8 +63,10 @@ const FolderShell = ({ parentPath, children }) => {
             <NextLink href={`${parentPath}`} passHref>
               <IconButton
                 variant="ghost"
+                borderRadius="full"
                 aria-label="Parent folder"
-                size="md"
+                size="lg"
+                ml={2}
                 icon={<ArrowBackIcon boxSize={6} />}
               />
             </NextLink>
