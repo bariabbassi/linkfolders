@@ -31,7 +31,7 @@ const ProfileShell = ({ children }) => {
     >
       <Box w="100%">
         <Flex backgroundColor="white" w="100%">
-          <Flex align="center" px={2} py={3} w="100%">
+          <Flex align="center" px={2} py={3} w="100%" h="65px">
             {auth?.user?.profile ? (
               <NextLink href={`/${auth?.user?.profile?.username}`} passHref>
                 <LinkBox as="article">

@@ -28,7 +28,7 @@ const FolderShell = ({ parentPath, children }) => {
       bg=""
     >
       <Box w="100%">
-        <Flex backgroundColor="white" w="100%">
+        <Flex backgroundColor="white" w="100%" h="65px">
           <Flex align="center" px={2} py={3} w="100%">
             {auth?.user?.profile ? (
               <NextLink href={`/${auth?.user?.profile?.username}`} passHref>
