@@ -21,7 +21,7 @@ const AccountShell = ({ children }) => {
           h="60px"
         >
           <Flex align="center">
-            <NextLink href={`/${auth.user.username}`} passHref>
+            {/* <NextLink href={`/${auth?.user?.username}`} passHref>
               <Button
                 as="a"
                 variant="ghost"
@@ -30,7 +30,7 @@ const AccountShell = ({ children }) => {
               >
                 <Heading size="sm">Linkfolders</Heading>
               </Button>
-            </NextLink>
+            </NextLink> */}
           </Flex>
           <Flex justifyContent="center" alignItems="center">
             {auth.user && (
