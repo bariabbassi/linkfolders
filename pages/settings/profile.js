@@ -41,13 +41,6 @@ const ProfileEditPage = () => {
   });
 
   const onSubmit = async (values) => {
-    console.log(
-      'values: ',
-      values.photo[0],
-      values.name,
-      values.username.toLowerCase()
-    );
-
     const newProfileHeader = {
       photoUrl: auth?.user?.profile?.photoUrl,
       name: auth?.user?.profile?.name,
@@ -70,13 +63,16 @@ const ProfileEditPage = () => {
     newProfileHeader.name = values.name;
     newProfileHeader.username = values.username.toLowerCase();
 
-    console.log('new profile: ', newProfileHeader);
     if (values.username === auth?.user?.profile?.username) {
       // handleUpdateProfile(auth?.user?.profile?.id, newProfileHeader);
       updateProfile(auth?.user?.profile?.id, newProfileHeader);
     } else {
       // handleUpdateProfileAndUsername(auth?.user?.profile?.id, newProfileHeader);
-      updateProfileAndUsername(auth?.user?.profile?.id, newProfileHeader);
+      updateProfileAndUsername(
+        auth?.user?.profile?.id,
+        newProfileHeader,
+        auth?.user?.profile?.username
+      );
     }
   };
 
