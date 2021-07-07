@@ -12,7 +12,6 @@ import {
   FormLabel,
   FormErrorMessage
 } from '@chakra-ui/react';
-import { EditIcon } from '@chakra-ui/icons';
 import { useForm } from 'react-hook-form';
 
 import { useAuth } from '@/lib/auth';
@@ -20,14 +19,18 @@ import SettingsShell from '@/components/Settings/SettingsShell';
 import SettingsHeader from '@/components/Settings/SettingsHeader';
 import SettingsPhoto from '@/components/Settings/SettingsPhoto';
 import SettingsUsername from '@/components/Settings/SettingsUsername';
-import { handleUpdateProfile } from '@/lib/handlers';
+import {
+  handleUpdateProfile,
+  handleUpdateProfileAndUsername
+} from '@/lib/handlers';
+import { uploadProfilePhoto } from '@/lib/storage';
 
 const ProfileEditPage = () => {
   const auth = useAuth();
   const {
     handleSubmit,
     register,
-    formState: { errors, isValid }
+    formState: { errors }
   } = useForm({
     defaultValues: {
       name: auth?.user?.profile?.name,
@@ -35,20 +38,42 @@ const ProfileEditPage = () => {
     }
   });
 
-  const onSubmit = (values) => {
-    // if (values.photo[0]) if (values.name) if (values.username) updateProfile;
+  const onSubmit = async (values) => {
     console.log(
       'values: ',
       values.photo[0],
       values.name,
       values.username.toLowerCase()
     );
-    handleUpdateProfile(
-      auth?.user?.profile?.id,
-      values.photo[0],
-      values.name,
-      values.username.toLowerCase()
-    );
+
+    const newProfileHeader = {
+      photoUrl: auth?.user?.profile?.photoUrl,
+      name: auth?.user?.profile?.name,
+      username: auth?.user?.profile?.username
+    };
+
+    if (!values.photo[0]) {
+      if (
+        values.name === auth?.user?.profile?.name &&
+        values.username === auth?.user?.profile?.username
+      )
+        return;
+    } else {
+      const photoUrl = await uploadProfilePhoto(
+        auth?.user?.profile?.id,
+        !values.photo[0]
+      );
+      if (photoUrl) newProfileHeader.photoUrl = photoUrl;
+    }
+    newProfileHeader.name = values.name;
+    newProfileHeader.username = values.username.toLowerCase();
+
+    console.log('new profile: ', newProfileHeader);
+    if (values.username === auth?.user?.profile?.username) {
+      handleUpdateProfile(auth?.user?.profile?.id, newProfileHeader);
+    } else {
+      handleUpdateProfileAndUsername(auth?.user?.profile?.id, newProfileHeader);
+    }
   };
 
   return (
