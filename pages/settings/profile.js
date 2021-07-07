@@ -24,6 +24,7 @@ import {
   handleUpdateProfileAndUsername
 } from '@/lib/handlers';
 import { uploadProfilePhoto } from '@/lib/storage';
+import { updateProfile, updateProfileAndUsername } from '@/lib/db';
 
 const ProfileEditPage = () => {
   const auth = useAuth();
@@ -32,6 +33,7 @@ const ProfileEditPage = () => {
     register,
     formState: { errors }
   } = useForm({
+    mode: 'onTouched',
     defaultValues: {
       name: auth?.user?.profile?.name,
       username: auth?.user?.profile?.username
@@ -70,9 +72,11 @@ const ProfileEditPage = () => {
 
     console.log('new profile: ', newProfileHeader);
     if (values.username === auth?.user?.profile?.username) {
-      handleUpdateProfile(auth?.user?.profile?.id, newProfileHeader);
+      // handleUpdateProfile(auth?.user?.profile?.id, newProfileHeader);
+      updateProfile(auth?.user?.profile?.id, newProfileHeader);
     } else {
-      handleUpdateProfileAndUsername(auth?.user?.profile?.id, newProfileHeader);
+      // handleUpdateProfileAndUsername(auth?.user?.profile?.id, newProfileHeader);
+      updateProfileAndUsername(auth?.user?.profile?.id, newProfileHeader);
     }
   };
 

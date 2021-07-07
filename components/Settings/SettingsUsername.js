@@ -34,7 +34,7 @@ const SettingsUsername = ({ register, errors }) => {
           },
           validate: async (username) => {
             if (username === auth?.user?.profile?.username) return true;
-            await fetch(`/api/usernames/${username}/availability`)
+            return await fetch(`/api/usernames/${username}/availability`)
               .then((res) => res.json())
               .then((data) => {
                 if (data.available === true) {
