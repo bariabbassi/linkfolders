@@ -44,6 +44,7 @@ const ProfileEditPage = () => {
       values.username.toLowerCase()
     );
     handleUpdateProfile(
+      auth?.user?.profile?.id,
       values.photo[0],
       values.name,
       values.username.toLowerCase()
