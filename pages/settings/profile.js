@@ -27,14 +27,26 @@ const ProfileEditPage = () => {
   const {
     handleSubmit,
     register,
-    formState: { errors }
-  } = useForm();
+    formState: { errors, isValid }
+  } = useForm({
+    defaultValues: {
+      name: auth?.user?.profile?.name,
+      username: auth?.user?.profile?.username
+    }
+  });
 
   const onSubmit = (values) => {
-    handleUpdateProfile(
-      value.photoUrl,
+    // if (values.photo[0]) if (values.name) if (values.username) updateProfile;
+    console.log(
+      'values: ',
+      values.photo[0],
       values.name,
-      value.username.toLowerCase()
+      values.username.toLowerCase()
+    );
+    handleUpdateProfile(
+      values.photo[0],
+      values.name,
+      values.username.toLowerCase()
     );
   };
 
@@ -45,9 +57,9 @@ const ProfileEditPage = () => {
         <Text minH="15px" mb={10}></Text>
         <Box as="form" onSubmit={handleSubmit(onSubmit)}>
           <Stack spacing={8} mb={12}>
-            <FormControl isInvalid={errors.photoUrl}>
+            <SettingsPhoto register={register} errors={errors} />
+            {/* <FormControl isInvalid={errors.photoUrl}>
               <FormLabel>Photo</FormLabel>
-              <SettingsPhoto register={register} errors={errors} />
               <Avatar
                 bg="gray.200"
                 size="xl"
@@ -61,7 +73,7 @@ const ProfileEditPage = () => {
               {errors.name && (
                 <FormErrorMessage>{errors.photoUrl.message}</FormErrorMessage>
               )}
-            </FormControl>
+            </FormControl> */}
             <FormControl isInvalid={errors.name}>
               <FormLabel>Name</FormLabel>
               <Input

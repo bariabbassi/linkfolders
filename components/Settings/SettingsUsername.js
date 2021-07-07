@@ -15,8 +15,8 @@ const SettingsUsername = ({ register, errors }) => {
       <FormLabel>Username</FormLabel>
       <Input
         type="text"
-        defaultValue={auth?.user?.profile?.username}
         placeholder="Username"
+        defaultValue={auth?.user?.profile?.username}
         {...register('username', {
           required: 'Username is required',
           minLength: {
@@ -32,7 +32,8 @@ const SettingsUsername = ({ register, errors }) => {
             message:
               'Username should contain only letters, numbers, periods, and underscores'
           },
-          validate: async (username) =>
+          validate: async (username) => {
+            if (username === auth?.user?.profile?.username) return true;
             await fetch(`/api/usernames/${username}/availability`)
               .then((res) => res.json())
               .then((data) => {
@@ -40,7 +41,8 @@ const SettingsUsername = ({ register, errors }) => {
                   return true;
                 }
                 return `${username} is already taken`;
-              })
+              });
+          }
         })}
       />
       {errors.username && (
