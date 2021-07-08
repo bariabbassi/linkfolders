@@ -13,6 +13,7 @@ import {
   FormErrorMessage
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/router';
 
 import { useAuth } from '@/lib/auth';
 import SettingsShell from '@/components/Settings/SettingsShell';
@@ -28,6 +29,7 @@ import { updateProfile, updateProfileAndUsername } from '@/lib/db';
 
 const ProfileEditPage = () => {
   const auth = useAuth();
+  const router = useRouter();
   const {
     handleSubmit,
     register,
@@ -52,7 +54,7 @@ const ProfileEditPage = () => {
         values.name === auth?.user?.profile?.name &&
         values.username === auth?.user?.profile?.username
       )
-        return;
+        router.push(`/${auth?.user?.profile?.username}`);
     } else {
       const photoUrl = await uploadProfilePhoto(
         auth?.user?.profile?.id,
@@ -74,6 +76,7 @@ const ProfileEditPage = () => {
         auth?.user?.profile?.username
       );
     }
+    router.push(`/${newProfileHeader.username}`);
   };
 
   return (
@@ -119,7 +122,12 @@ const ProfileEditPage = () => {
           <Button colorScheme="yellow" type="submit">
             Save
           </Button>
-          <Button ml={3}>Cancel</Button>
+          <Button
+            ml={3}
+            onClick={() => router.push(`/${auth?.user?.profile?.username}`)}
+          >
+            Cancel
+          </Button>
         </Box>
       </Box>
     </SettingsShell>
