@@ -58,7 +58,7 @@ const ProfileEditPage = () => {
     } else {
       const photoUrl = await uploadProfilePhoto(
         auth?.user?.profile?.id,
-        !values.photo[0]
+        values.photo[0]
       );
       if (photoUrl) newProfileHeader.photoUrl = photoUrl;
     }
