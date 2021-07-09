@@ -20,10 +20,6 @@ import SettingsShell from '@/components/Settings/SettingsShell';
 import SettingsHeader from '@/components/Settings/SettingsHeader';
 import SettingsPhoto from '@/components/Settings/SettingsPhoto';
 import SettingsUsername from '@/components/Settings/SettingsUsername';
-import {
-  handleUpdateProfile,
-  handleUpdateProfileAndUsername
-} from '@/lib/handlers';
 import { uploadProfilePhoto } from '@/lib/storage';
 import { updateProfile, updateProfileAndUsername } from '@/lib/db';
 
@@ -39,12 +35,7 @@ const ProfileEditPage = () => {
   });
 
   const onSubmit = async (values) => {
-    const newProfileHeader = {
-      photoUrl: auth?.user?.profile?.photoUrl,
-      name: auth?.user?.profile?.name,
-      username: auth?.user?.profile?.username
-    };
-
+    let photoUrl = null;
     if (!values.photo[0]) {
       if (
         (!values.name && !values.username) ||
@@ -53,25 +44,24 @@ const ProfileEditPage = () => {
       )
         router.push(`/${auth?.user?.profile?.username}`);
     } else {
-      const photoUrl = await uploadProfilePhoto(
+      photoUrl = await uploadProfilePhoto(
         auth?.user?.profile?.id,
         values.photo[0]
       );
-      if (photoUrl) newProfileHeader.photoUrl = photoUrl;
-    }
-    if (values.name) {
-      newProfileHeader.name = values.name;
-    }
-    if (values.username) {
-      newProfileHeader.username = values.username.toLowerCase();
     }
 
+    const newProfileHeader = {
+      photoUrl: photoUrl ? photoUrl : auth?.user?.profile?.photoUrl,
+      name: values.name ? values.name : auth?.user?.profile?.name,
+      username: values.username
+        ? values.username.toLowerCase()
+        : auth?.user?.profile?.username
+    };
+
     if (values.username === auth?.user?.profile?.username) {
-      // handleUpdateProfile(auth?.user?.profile?.id, newProfileHeader);
-      updateProfile(auth?.user?.profile?.id, newProfileHeader);
+      await updateProfile(auth?.user?.profile?.id, newProfileHeader);
     } else {
-      // handleUpdateProfileAndUsername(auth?.user?.profile?.id, newProfileHeader);
-      updateProfileAndUsername(
+      await updateProfileAndUsername(
         auth?.user?.profile?.id,
         newProfileHeader,
         auth?.user?.profile?.username
