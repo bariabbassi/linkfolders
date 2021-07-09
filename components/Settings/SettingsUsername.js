@@ -18,7 +18,6 @@ const SettingsUsername = ({ register, errors }) => {
         placeholder="Username"
         defaultValue={auth?.user?.profile?.username}
         {...register('username', {
-          required: 'Username is required',
           minLength: {
             value: 3,
             message: 'Username should be at least 3 characters long'
@@ -33,6 +32,7 @@ const SettingsUsername = ({ register, errors }) => {
               'Username should contain only letters, numbers, periods, and underscores'
           },
           validate: async (username) => {
+            if (!username) return true;
             if (username === auth?.user?.profile?.username) return true;
             return await fetch(`/api/usernames/${username}/availability`)
               .then((res) => res.json())

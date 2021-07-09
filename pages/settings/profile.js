@@ -35,11 +35,7 @@ const ProfileEditPage = () => {
     register,
     formState: { errors }
   } = useForm({
-    mode: 'onTouched',
-    defaultValues: {
-      name: auth?.user?.profile?.name,
-      username: auth?.user?.profile?.username
-    }
+    mode: 'onTouched'
   });
 
   const onSubmit = async (values) => {
@@ -51,8 +47,9 @@ const ProfileEditPage = () => {
 
     if (!values.photo[0]) {
       if (
-        values.name === auth?.user?.profile?.name &&
-        values.username === auth?.user?.profile?.username
+        (!values.name && !values.username) ||
+        (values.name === auth?.user?.profile?.name &&
+          values.username === auth?.user?.profile?.username)
       )
         router.push(`/${auth?.user?.profile?.username}`);
     } else {
@@ -62,8 +59,12 @@ const ProfileEditPage = () => {
       );
       if (photoUrl) newProfileHeader.photoUrl = photoUrl;
     }
-    newProfileHeader.name = values.name;
-    newProfileHeader.username = values.username.toLowerCase();
+    if (values.name) {
+      newProfileHeader.name = values.name;
+    }
+    if (values.username) {
+      newProfileHeader.username = values.username.toLowerCase();
+    }
 
     if (values.username === auth?.user?.profile?.username) {
       // handleUpdateProfile(auth?.user?.profile?.id, newProfileHeader);
@@ -87,31 +88,13 @@ const ProfileEditPage = () => {
         <Box as="form" onSubmit={handleSubmit(onSubmit)}>
           <Stack spacing={8} mb={12}>
             <SettingsPhoto register={register} errors={errors} />
-            {/* <FormControl isInvalid={errors.photoUrl}>
-              <FormLabel>Photo</FormLabel>
-              <Avatar
-                bg="gray.200"
-                size="xl"
-                name={auth?.user?.profile?.name}
-                src={auth?.user?.profile?.photoUrl}
-              >
-                <AvatarBadge border="none" p={4}>
-                  <IconButton size="sm" color="gray.700" icon={<EditIcon />} />
-                </AvatarBadge>
-              </Avatar>
-              {errors.name && (
-                <FormErrorMessage>{errors.photoUrl.message}</FormErrorMessage>
-              )}
-            </FormControl> */}
             <FormControl isInvalid={errors.name}>
               <FormLabel>Name</FormLabel>
               <Input
                 type="text"
                 placeholder="Name"
                 defaultValue={auth?.user?.profile?.name}
-                {...register('name', {
-                  required: 'Name is required'
-                })}
+                {...register('name')}
               />
               {errors.name && (
                 <FormErrorMessage>{errors.name.message}</FormErrorMessage>
