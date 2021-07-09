@@ -58,6 +58,7 @@ const ProfileEditPage = () => {
         : auth?.user?.profile?.username
     };
 
+    auth.updateProfileHeader(newProfileHeader);
     if (values.username === auth?.user?.profile?.username) {
       await updateProfile(auth?.user?.profile?.id, newProfileHeader);
     } else {
