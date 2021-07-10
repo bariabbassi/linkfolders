@@ -4,7 +4,6 @@ import useSWR from 'swr';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 import FolderShell from '@/components/Folder/FolderShell';
-import FolderHeader from '@/components/Folder/FolderHeader';
 import ChildrenList from '@/components/Folder/ChildrenList';
 import LinkInput from '@/components/Folder/LinkInput';
 import fetcher from '@/utils/fetcher';
@@ -47,25 +46,24 @@ const FolderPage = () => {
 
   return (
     <FolderShell
+      folderName={data?.folder?.name}
+      userId={data?.folder?.userId}
       parentPath={
         data?.folder?.parent !== data?.folder?.userId
           ? `/folder/${data?.folder?.parent}`
           : '/facebook'
       }
     >
-      <Box w="100%">
-        <FolderHeader name={data?.folder?.name} userId={data?.folder?.userId} />
-        <Text minH="15px" mb={10}></Text>
-        <DragDropContext onDragEnd={onDragEnd}>
-          <Box>
-            <ChildrenList
-              folderId={folderId}
-              childrenOrder={data?.folder?.children}
-            />
-            <LinkInput folderId={folderId} />
-          </Box>
-        </DragDropContext>
-      </Box>
+      <Text minH="15px" mb={10}></Text>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Box w="100%">
+          <ChildrenList
+            folderId={folderId}
+            childrenOrder={data?.folder?.children}
+          />
+          <LinkInput folderId={folderId} />
+        </Box>
+      </DragDropContext>
     </FolderShell>
   );
 };

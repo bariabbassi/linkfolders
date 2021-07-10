@@ -10,13 +10,26 @@ import {
   Spinner
 } from '@chakra-ui/react';
 import { HamburgerIcon, ArrowBackIcon } from '@chakra-ui/icons';
+import useSWR from 'swr';
 import NextLink from 'next/link';
 
+import fetcher from '@/utils/fetcher';
 import { useAuth } from '@/lib/auth';
 import { LinkfoldersIcon } from '@/styles/icons';
+import FolderHeader from '@/components/Folder/FolderHeader';
 
-const FolderShell = ({ parentPath, children }) => {
+const FolderShell = ({ folderName, userId, parentPath, children }) => {
   const auth = useAuth();
+  const { data } = useSWR(
+    userId && (!auth?.user?.profile || userId !== auth?.user?.uid)
+      ? `/api/profiles/${userId}`
+      : null,
+    fetcher
+  );
+  let profile = {};
+  if (auth?.user?.profile && userId === auth?.user?.uid)
+    profile = auth?.user?.profile;
+  else profile = data?.profile;
 
   return (
     <Flex
@@ -82,6 +95,12 @@ const FolderShell = ({ parentPath, children }) => {
             px={3}
             pb={7}
           >
+            <FolderHeader
+              folderName={folderName}
+              profilePhotoUrl={profile?.photoUrl}
+              profileName={profile?.name}
+              profileUsername={profile?.username}
+            />
             {children}
           </Flex>
         </Flex>
