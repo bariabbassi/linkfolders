@@ -15,7 +15,7 @@ import NextLink from 'next/link';
 import { useAuth } from '@/lib/auth';
 
 const FolderHeader = ({
-  folderName,
+  name,
   profilePhotoUrl,
   profileName,
   profileUsername
@@ -26,7 +26,7 @@ const FolderHeader = ({
     <Flex w="100%" as="header">
       <Stack spacing={1} mx={3} my={4}>
         <Heading as="h1" size="xl" mb={2}>
-          {folderName}
+          {name}
         </Heading>
         {profileUsername ? (
           <NextLink href={`/${profileUsername}`} passHref>

@@ -18,7 +18,7 @@ import { useAuth } from '@/lib/auth';
 import { LinkfoldersIcon } from '@/styles/icons';
 import FolderHeader from '@/components/Folder/FolderHeader';
 
-const FolderShell = ({ folderName, userId, parentPath, children }) => {
+const FolderShell = ({ name, userId, parent, children }) => {
   const auth = useAuth();
   const { data } = useSWR(
     userId && (!auth?.user?.profile || userId !== auth?.user?.uid)
@@ -73,7 +73,14 @@ const FolderShell = ({ folderName, userId, parentPath, children }) => {
                 icon={<HamburgerIcon boxSize={6} />}
               />
             </NextLink> */}
-            <NextLink href={`${parentPath}`} passHref>
+            <NextLink
+              href={
+                parent !== userId
+                  ? `/folder/${parent}`
+                  : `/${profile?.username}`
+              }
+              passHref
+            >
               <IconButton
                 variant="ghost"
                 borderRadius="full"
@@ -96,7 +103,7 @@ const FolderShell = ({ folderName, userId, parentPath, children }) => {
             pb={7}
           >
             <FolderHeader
-              folderName={folderName}
+              name={name}
               profilePhotoUrl={profile?.photoUrl}
               profileName={profile?.name}
               profileUsername={profile?.username}

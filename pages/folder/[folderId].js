@@ -46,13 +46,9 @@ const FolderPage = () => {
 
   return (
     <FolderShell
-      folderName={data?.folder?.name}
+      name={data?.folder?.name}
       userId={data?.folder?.userId}
-      parentPath={
-        data?.folder?.parent !== data?.folder?.userId
-          ? `/folder/${data?.folder?.parent}`
-          : '/facebook'
-      }
+      parent={data?.folder?.parent}
     >
       <Text minH="15px" mb={10}></Text>
       <DragDropContext onDragEnd={onDragEnd}>
