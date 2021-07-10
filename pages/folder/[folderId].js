@@ -56,14 +56,12 @@ const FolderPage = () => {
     >
       <Text minH="15px" mb={10}></Text>
       <DragDropContext onDragEnd={onDragEnd}>
-        <Box w="100%">
-          <ChildrenList
-            folderId={folderId}
-            childrenOrder={data?.folder?.children}
-          />
-          <LinkInput folderId={folderId} />
-        </Box>
+        <ChildrenList
+          folderId={folderId}
+          childrenOrder={data?.folder?.children}
+        />
       </DragDropContext>
+      <LinkInput folderId={folderId} />
     </FolderShell>
   );
 };

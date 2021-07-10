@@ -14,7 +14,7 @@ const ChildrenList = ({ folderId, childrenOrder }) => {
   return (
     <Droppable droppableId={'main'}>
       {(provided) => (
-        <List ref={provided.innerRef} {...provided.droppableProps}>
+        <List w="100%" ref={provided.innerRef} {...provided.droppableProps}>
           {childrenOrder?.length > 0 && data?.children?.length > 0
             ? childrenOrder.map((childId, index) => {
                 const item = data?.children.find(
