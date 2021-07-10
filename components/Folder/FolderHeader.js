@@ -31,7 +31,13 @@ const FolderHeader = ({
         {profileUsername ? (
           <NextLink href={`/${profileUsername}`} passHref>
             <LinkBox as="article">
-              <Tag size="lg" borderRadius="full">
+              <Tag
+                size="lg"
+                borderRadius="2xl"
+                boxShadow="sm"
+                borderWidth="1px"
+                bg="white"
+              >
                 <Avatar
                   bg="gray.200"
                   size="xs"

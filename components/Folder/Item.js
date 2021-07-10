@@ -16,18 +16,20 @@ const Item = ({ item, index }) => {
       {(provided) => (
         <Flex
           align="center"
-          mb={3}
+          mb={4}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
           <Box
             mr={1}
+            h="60px"
+            pl={4}
             w="100%"
-            h="55px"
             bg="white"
-            // borderWidth="1px"
-            borderRadius="lg"
+            boxShadow="sm"
+            borderWidth="1px"
+            borderRadius="2xl"
             overflow="hidden"
             transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
             _hover={{ bg: 'gray.100' }}
@@ -74,7 +76,7 @@ const Item = ({ item, index }) => {
               ) : null}
 
               {!renameMode ? (
-                <Text size="sm" pl={3}>
+                <Text size="sm" fontWeight="400" pl={4}>
                   {item?.name.length < 40
                     ? item?.name
                     : `${item?.name.substring(0, 36)}...`}
