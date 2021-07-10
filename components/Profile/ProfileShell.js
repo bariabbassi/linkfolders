@@ -8,8 +8,7 @@ import {
   Tag,
   TagLabel,
   LinkBox,
-  LinkOverlay,
-  Spinner
+  LinkOverlay
 } from '@chakra-ui/react';
 import { HamburgerIcon, ArrowBackIcon } from '@chakra-ui/icons';
 import NextLink from 'next/link';
