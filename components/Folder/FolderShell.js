@@ -1,13 +1,14 @@
 import {
   Box,
+  Button,
+  Heading,
   IconButton,
   Flex,
   Avatar,
   Tag,
   TagLabel,
   LinkBox,
-  LinkOverlay,
-  Spinner
+  LinkOverlay
 } from '@chakra-ui/react';
 import { HamburgerIcon, ArrowBackIcon } from '@chakra-ui/icons';
 import useSWR from 'swr';
@@ -112,6 +113,19 @@ const FolderShell = ({ name, userId, parent, children }) => {
           </Flex>
         </Flex>
       </Box>
+      {!auth.user && (
+        <NextLink href="/" passHref>
+          <Button
+            as="a"
+            variant="ghost"
+            mt={8}
+            mb={2}
+            leftIcon={<LinkfoldersIcon width="8" height="8" mb={2} />}
+          >
+            <Heading size="sm">Linkfolders</Heading>
+          </Button>
+        </NextLink>
+      )}
     </Flex>
   );
 };

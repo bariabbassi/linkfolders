@@ -3,7 +3,7 @@ import NextLink from 'next/link';
 
 import { useAuth } from '@/lib/auth';
 
-const ProfileHeader = ({ name, photoUrl, username }) => {
+const ProfileHeader = ({ name, photoUrl, username, editable }) => {
   const auth = useAuth();
 
   return (
@@ -14,17 +14,19 @@ const ProfileHeader = ({ name, photoUrl, username }) => {
           <Heading as="h1" size="xl">
             {name}
           </Heading>
-          <NextLink href="/settings/profile" passHref>
-            <Button
-              variant="outline"
-              borderRadius="full"
-              size="md"
-              fontWeight="400"
-              ml={3}
-            >
-              Edit profile
-            </Button>
-          </NextLink>
+          {editable && (
+            <NextLink href="/settings/profile" passHref>
+              <Button
+                variant="outline"
+                borderRadius="full"
+                size="md"
+                fontWeight="400"
+                ml={3}
+              >
+                Edit profile
+              </Button>
+            </NextLink>
+          )}
         </Flex>
 
         <Heading size="md" fontWeight="400" mb={5} color="gray">

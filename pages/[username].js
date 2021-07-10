@@ -51,6 +51,7 @@ const ProfilePage = () => {
           name={data?.profile?.name}
           photoUrl={data?.profile?.photoUrl}
           username={username}
+          editable={auth.user?.uid === data?.profile?.id}
         />
         <Text minH="15px" mb={10}></Text>
         <DragDropContext onDragEnd={onDragEnd}>

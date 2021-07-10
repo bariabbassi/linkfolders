@@ -57,7 +57,9 @@ const FolderPage = () => {
           childrenOrder={data?.folder?.children}
         />
       </DragDropContext>
-      <LinkInput folderId={folderId} />
+      {auth?.user?.uid === data?.folder?.userId && (
+        <LinkInput folderId={folderId} />
+      )}
     </FolderShell>
   );
 };
