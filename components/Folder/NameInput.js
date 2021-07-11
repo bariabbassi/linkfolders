@@ -26,6 +26,9 @@ const NameInput = ({ item, setRenameMode }) => {
         <Input
           // variant="unstyled"
           type="text"
+          boxShadow="outline"
+          pl={3}
+          ml={1}
           placeholder={
             item?.type === 'link'
               ? 'Link name'

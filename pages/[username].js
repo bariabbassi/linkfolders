@@ -56,12 +56,21 @@ const ProfilePage = () => {
         <Text minH="15px" mb={10}></Text>
         <DragDropContext onDragEnd={onDragEnd}>
           <Box>
-            <ChildrenList
-              folderId={data?.profile?.id}
-              childrenOrder={data?.profile?.children}
-            />
-            {auth.user?.uid === data?.profile?.id && (
-              <LinkInput folderId={data?.profile?.id} />
+            {auth.user?.uid === data?.profile?.id ? (
+              <>
+                <ChildrenList
+                  folderId={data?.profile?.id}
+                  childrenOrder={data?.profile?.children}
+                  editable={true}
+                />
+                <LinkInput folderId={data?.profile?.id} />
+              </>
+            ) : (
+              <ChildrenList
+                folderId={data?.profile?.id}
+                childrenOrder={data?.profile?.children}
+                editable={false}
+              />
             )}
           </Box>
         </DragDropContext>

@@ -4,11 +4,10 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import { Droppable } from 'react-beautiful-dnd';
 
 import Item from '@/components/Folder/Item';
-import EditableItem from '@/components/Folder/EditableItem';
 import fetcher from '@/utils/fetcher';
 import { handleUpdateChildrenOrder } from '@/lib/handlers';
 
-const ChildrenList = ({ folderId, childrenOrder, editable }) => {
+const EditableChildrenList = ({ folderId, childrenOrder }) => {
   const { data } = useSWR(
     folderId ? `/api/folders/${folderId}/children` : null,
     fetcher
@@ -35,19 +34,6 @@ const ChildrenList = ({ folderId, childrenOrder, editable }) => {
     handleUpdateChildrenOrder(folderId, newChildrenOrder);
   };
 
-  if (!editable) {
-    return (
-      <Box w="100%">
-        {childrenOrder?.length > 0 && data?.children?.length > 0
-          ? childrenOrder.map((childId) => {
-              const item = data?.children.find((child) => child.id === childId);
-              if (item) return <Item key={item?.id} item={item} />;
-            })
-          : null}
-      </Box>
-    );
-  }
-
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId={'main'}>
@@ -59,9 +45,7 @@ const ChildrenList = ({ folderId, childrenOrder, editable }) => {
                     (child) => child.id === childId
                   );
                   if (item)
-                    return (
-                      <EditableItem key={item?.id} item={item} index={index} />
-                    );
+                    return <Item key={item?.id} item={item} index={index} />;
                 })
               : null}
             {provided.placeholder}
@@ -72,4 +56,4 @@ const ChildrenList = ({ folderId, childrenOrder, editable }) => {
   );
 };
 
-export default ChildrenList;
+export default EditableChildrenList;
