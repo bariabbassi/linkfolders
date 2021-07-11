@@ -12,7 +12,7 @@ const FolderMenuList = ({ folder, renameMode, setRenameMode }) => {
   return (
     <MenuList>
       {/* <MenuItem icon={<ExternalLinkIcon />}>Open</MenuItem> */}
-      <MenuItem icon={<CopyIcon />}>Copy link</MenuItem>
+      {/* <MenuItem icon={<CopyIcon />}>Copy link</MenuItem> */}
       <MenuItem
         icon={<EditIcon />}
         onClick={() => {

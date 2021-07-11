@@ -49,7 +49,7 @@ const FolderHeader = ({
           </Button>
         </NextLink>
       ) : (
-        <Tag size="lg" borderRadius="full" w="140px">
+        <Tag size="lg" borderRadius="full" bg="white" w="140px">
           {/* <Avatar bg="gray.200" size="xs" ml={-1} /> */}
           <Spinner ml={-1} mr={3} />
           <TagLabel size="sm" fontWeight="400">

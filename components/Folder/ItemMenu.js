@@ -14,6 +14,7 @@ const ItemMenu = ({ item, renameMode, setRenameMode }) => {
         variant="ghost"
         size="sm"
         color="gray"
+        _hover={{ bg: 'gray.200' }}
       />
       {item?.type === 'link' ? (
         <LinkMenuList
