@@ -57,6 +57,7 @@ const FolderShell = ({ name, userId, parent, children }) => {
               passHref
             >
               <IconButton
+                as="a"
                 variant="ghost"
                 borderRadius="full"
                 aria-label="Parent folder"
