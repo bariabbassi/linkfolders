@@ -4,11 +4,7 @@ import {
   Heading,
   IconButton,
   Flex,
-  Avatar,
-  Tag,
-  TagLabel,
-  LinkBox,
-  LinkOverlay
+  Avatar
 } from '@chakra-ui/react';
 import { HamburgerIcon, ArrowBackIcon } from '@chakra-ui/icons';
 import useSWR from 'swr';
@@ -35,37 +31,15 @@ const FolderShell = ({ name, userId, parent, children }) => {
   return (
     <Flex
       direction="column"
-      alignItems="center"
+      align="center"
       justify="space-between"
       w="100vw"
       minH="100vh"
       bg=""
     >
       <Box w="100%">
-        <Flex backgroundColor="white" w="100%" h="65px">
-          <Flex align="center" px={2} py={3} w="100%">
-            {auth?.user?.profile ? (
-              <NextLink href={`/${auth?.user?.profile?.username}`} passHref>
-                <LinkBox as="article">
-                  <Tag size="lg" borderRadius="full">
-                    <Avatar
-                      bg="gray.200"
-                      size="md"
-                      ml={-1}
-                      mr={2}
-                      my={1}
-                      name={auth?.user?.profile?.name}
-                      src={auth?.user?.profile?.photoUrl}
-                    />
-                    <TagLabel size="lg" fontWeight="400" mr={2}>
-                      <LinkOverlay href="#">
-                        {auth?.user?.profile?.name}
-                      </LinkOverlay>
-                    </TagLabel>
-                  </Tag>
-                </LinkBox>
-              </NextLink>
-            ) : null}
+        <Flex bg="" align="center" w="100%" h="4.6rem">
+          <Flex align="center" w="100%">
             {/* <NextLink href="/" passHref>
               <IconButton
                 variant="ghost"
@@ -86,12 +60,32 @@ const FolderShell = ({ name, userId, parent, children }) => {
                 variant="ghost"
                 borderRadius="full"
                 aria-label="Parent folder"
-                size="lg"
-                ml={2}
+                p={4}
+                ml={1}
+                size="xl"
                 icon={<ArrowBackIcon boxSize={6} />}
               />
             </NextLink>
           </Flex>
+          {auth?.user?.profile && (
+            <NextLink href={`/${auth?.user?.profile?.username}`} passHref>
+              <Button
+                as="a"
+                variant="ghost"
+                p={2}
+                mr={1}
+                size="xl"
+                borderRadius="full"
+              >
+                <Avatar
+                  bg="gray.200"
+                  size="md"
+                  name={auth?.user?.profile?.name}
+                  src={auth?.user?.profile?.photoUrl}
+                />
+              </Button>
+            </NextLink>
+          )}
         </Flex>
         <Flex direction="column" align="center">
           <Flex
