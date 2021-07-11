@@ -17,22 +17,22 @@ const Item = ({ item, index }) => {
         <Flex
           align="center"
           mb={4}
+          bg="white"
+          boxShadow="sm"
+          borderWidth="1px"
+          borderRadius="2xl"
+          overflow="hidden"
+          _hover={{ bg: 'gray.100' }}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
           <Box
             mr={1}
-            h="60px"
+            h="3.75rem"
             pl={4}
             w="100%"
-            bg="white"
-            boxShadow="sm"
-            borderWidth="1px"
-            borderRadius="2xl"
-            overflow="hidden"
             transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
-            _hover={{ bg: 'gray.100' }}
             _active={
               !renameMode && {
                 bg: 'gray.200',
@@ -86,11 +86,14 @@ const Item = ({ item, index }) => {
               )}
             </Flex>
           </Box>
-          <ItemMenu
-            item={item}
-            renameMode={renameMode}
-            setRenameMode={setRenameMode}
-          />
+
+          <Box pl={6} pr={1}>
+            <ItemMenu
+              item={item}
+              renameMode={renameMode}
+              setRenameMode={setRenameMode}
+            />
+          </Box>
         </Flex>
       )}
     </Draggable>
