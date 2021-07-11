@@ -1,4 +1,4 @@
-import { Flex, Stack, Avatar, Heading, Button } from '@chakra-ui/react';
+import { Flex, Avatar, Heading, Button } from '@chakra-ui/react';
 import NextLink from 'next/link';
 
 import { useAuth } from '@/lib/auth';
@@ -12,7 +12,6 @@ const ProfileHeader = ({ name, photoUrl, username, editable }) => {
       <Heading as="h1" size="xl">
         {name}
       </Heading>
-
       <Heading size="md" fontWeight="400" mb={5} color="gray">
         @{username}
       </Heading>

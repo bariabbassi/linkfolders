@@ -1,4 +1,4 @@
-import { Text } from '@chakra-ui/react';
+import { Text, Spinner } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
@@ -18,7 +18,11 @@ const FolderPage = () => {
   );
 
   if (!data) {
-    return <FolderShell>Loanding ...</FolderShell>;
+    return (
+      <FolderShell>
+        <Spinner />
+      </FolderShell>
+    );
   }
 
   return (
