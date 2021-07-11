@@ -19,6 +19,7 @@ const ProfileHeader = ({ name, photoUrl, username, editable }) => {
       {editable && (
         <NextLink href="/settings/profile" passHref>
           <Button
+            as="a"
             variant="outline"
             borderRadius="full"
             size="md"
