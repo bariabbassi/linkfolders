@@ -1,4 +1,4 @@
-import { Box, Text, Spinner } from '@chakra-ui/react';
+import { Box, Flex, Text, Spinner, Heading } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
@@ -13,7 +13,7 @@ const ProfilePage = () => {
   const auth = useAuth();
   const router = useRouter();
   const username = router.query?.username;
-  const { data } = useSWR(
+  const { data, error } = useSWR(
     username &&
       (!auth?.user?.profile || username !== auth?.user?.profile?.username)
       ? `/api/profiles/username/${username}`
@@ -24,6 +24,16 @@ const ProfilePage = () => {
   if (auth?.user?.profile && username === auth?.user?.profile?.username)
     profile = auth?.user?.profile;
   else profile = data?.profile;
+
+  if (data?.error !== undefined) {
+    return (
+      <ProfileShell>
+        <Box mt={14}>
+          <Heading size="lg">😢 Sorry, this page doesn't existe.</Heading>
+        </Box>
+      </ProfileShell>
+    );
+  }
 
   if (!profile) {
     return (
