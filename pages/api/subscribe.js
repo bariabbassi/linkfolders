@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-unfetch';
+import { logger, formatObjectKeys } from '@/utils/logger';
 
 export default async (req, res) => {
   const { email } = req.body;
@@ -37,6 +38,20 @@ export default async (req, res) => {
 
     return res.status(201).json({ error: '' });
   } catch (error) {
-    return res.status(500).json({ error: error.message || error.toString() });
+    logger.error(
+      {
+        request: {
+          headers: formatObjectKeys(req.headers),
+          url: req.url,
+          method: req.method
+        },
+        response: {
+          statusCode: res.statusCode
+        }
+      },
+      error.message
+    );
+
+    res.status(500).json({ error });
   }
 };
