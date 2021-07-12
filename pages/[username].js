@@ -13,7 +13,7 @@ const ProfilePage = () => {
   const auth = useAuth();
   const router = useRouter();
   const username = router.query?.username;
-  const { data, error } = useSWR(
+  const { data } = useSWR(
     username &&
       (!auth?.user?.profile || username !== auth?.user?.profile?.username)
       ? `/api/profiles/username/${username}`

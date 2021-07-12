@@ -1,8 +1,6 @@
 import {
-  Box,
   Flex,
   Input,
-  Button,
   IconButton,
   FormErrorMessage,
   FormControl
@@ -12,11 +10,7 @@ import { useForm } from 'react-hook-form';
 
 import { LinkfoldersIcon } from '@/styles/icons';
 import { useAuth } from '@/lib/auth';
-import {
-  handleCreateLink,
-  handleCreateFolder,
-  handleAddFolderToProfile
-} from '@/lib/handlers';
+import { handleCreateLink, handleCreateFolder } from '@/lib/handlers';
 
 const LinkInput = ({ folderId }) => {
   const auth = useAuth();
@@ -31,21 +25,13 @@ const LinkInput = ({ folderId }) => {
 
   const onSubmit = (values) => {
     if (!auth?.user) return;
-    if (auth?.user?.uid === folderId) {
-      handleAddFolderToProfile(auth.user.uid);
-    } else {
-      handleCreateLink(auth.user.uid, folderId, values.input);
-    }
+    handleCreateLink(auth.user.uid, folderId, values.input);
     reset();
   };
 
   const onClick = () => {
     if (!auth?.user) return;
-    if (auth?.user?.uid === folderId) {
-      handleAddFolderToProfile(auth.user.uid);
-    } else {
-      handleCreateFolder(auth.user.uid, folderId);
-    }
+    handleCreateFolder(auth.user.uid, folderId);
     reset();
   };
 
