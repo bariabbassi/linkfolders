@@ -1,18 +1,5 @@
-import {
-  Flex,
-  Stack,
-  Button,
-  Avatar,
-  Heading,
-  Tag,
-  TagLabel,
-  LinkBox,
-  LinkOverlay,
-  Spinner
-} from '@chakra-ui/react';
+import { Flex, Button, Avatar, Heading } from '@chakra-ui/react';
 import NextLink from 'next/link';
-
-import { useAuth } from '@/lib/auth';
 
 const FolderHeader = ({
   name,
@@ -20,14 +7,12 @@ const FolderHeader = ({
   profileName,
   profileUsername
 }) => {
-  const auth = useAuth();
-
   return (
     <Flex direction="column" align="center" w="100%" as="header">
       <Heading as="h1" size="xl" mb={2}>
         {name}
       </Heading>
-      {profileUsername ? (
+      {profileUsername && (
         <NextLink href={`/${profileUsername}`} passHref>
           <Button
             as="a"
@@ -48,14 +33,6 @@ const FolderHeader = ({
             {profileName}
           </Button>
         </NextLink>
-      ) : (
-        <Tag size="lg" borderRadius="full" bg="white" w="140px">
-          {/* <Avatar bg="gray.200" size="xs" ml={-1} /> */}
-          <Spinner ml={-1} mr={3} />
-          <TagLabel size="sm" fontWeight="400">
-            Loading...
-          </TagLabel>
-        </Tag>
       )}
     </Flex>
   );
