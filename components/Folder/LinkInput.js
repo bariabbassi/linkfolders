@@ -46,7 +46,7 @@ const LinkInput = ({ folderId }) => {
       py={2}
       bg="white"
       borderWidth="1px"
-      borderRadius="3xl"
+      borderRadius="full"
     >
       <Flex
         align="center"
