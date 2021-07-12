@@ -4,7 +4,7 @@ import { Box, Flex, Heading, Button } from '@chakra-ui/react';
 
 import { LinkfoldersIcon } from '@/styles/icons';
 
-const TitleShell = ({ children }) => {
+const SignupShell = ({ children }) => {
   return (
     <Box backgroundColor="" h="100vh">
       <Head>
@@ -60,4 +60,4 @@ const TitleShell = ({ children }) => {
   );
 };
 
-export default TitleShell;
+export default SignupShell;

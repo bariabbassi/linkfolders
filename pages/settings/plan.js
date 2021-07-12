@@ -3,7 +3,7 @@ import { useState } from 'react';
 import NextLink from 'next/link';
 
 import { useAuth } from '@/lib/auth';
-import AccountShell from '@/components/AccountShell';
+import SettingsShell from '@/components/Settings/SettingsShell';
 import { createCheckoutSession, goToBillingPortal } from '@/lib/db';
 
 const Plan = () => {
@@ -12,7 +12,7 @@ const Plan = () => {
   const [isBillingLoading, setBillingLoading] = useState(false);
 
   return (
-    <AccountShell>
+    <SettingsShell>
       <Heading as="h1" size="2xl">
         Plan
       </Heading>
@@ -51,7 +51,7 @@ const Plan = () => {
           View billing portal
         </Button>
       </Stack>
-    </AccountShell>
+    </SettingsShell>
   );
 };
 

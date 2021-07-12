@@ -13,7 +13,7 @@ import {
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 
-import TitleShell from '@/components/TitleShell';
+import SignupShell from '@/components/Signup/SignupShell';
 import { useAuth } from '@/lib/auth';
 
 const Login = () => {
@@ -29,7 +29,7 @@ const Login = () => {
   };
 
   return (
-    <TitleShell>
+    <SignupShell>
       <Heading as="h1" size="2xl">
         Log in
       </Heading>
@@ -85,7 +85,7 @@ const Login = () => {
           </NextLink>
         </Text>
       </Flex>
-    </TitleShell>
+    </SignupShell>
   );
 };
 

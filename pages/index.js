@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import { Heading } from '@chakra-ui/react';
 
-import LandingShell from '@/components/LandingShell';
-import LandingUsername from '@/components/LandingUsername';
+import LandingShell from '@/components/Landing/LandingShell';
+import LandingUsername from '@/components/Landing/LandingUsername';
 
 const Home = () => {
   return (
