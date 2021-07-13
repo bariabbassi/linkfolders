@@ -8,7 +8,7 @@ import EditableItem from '@/components/Folder/EditableItem';
 import fetcher from '@/utils/fetcher';
 import { handleUpdateChildrenOrder } from '@/lib/handlers';
 
-const ChildrenList = ({ folderId, childrenOrder, editable }) => {
+const ChildrenList = ({ folderId, childrenOrder, editable, username }) => {
   const { data } = useSWR(
     folderId ? `/api/folders/${folderId}/children` : null,
     fetcher
@@ -30,7 +30,7 @@ const ChildrenList = ({ folderId, childrenOrder, editable }) => {
   return (
     <DragDropContext
       onDragEnd={(result) => {
-        handleUpdateChildrenOrder(result, folderId, childrenOrder);
+        handleUpdateChildrenOrder(result, folderId, childrenOrder, username);
       }}
     >
       <Droppable droppableId={'main'}>

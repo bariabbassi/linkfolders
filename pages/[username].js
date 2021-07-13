@@ -56,6 +56,7 @@ const ProfilePage = () => {
               folderId={data?.profile?.id}
               childrenOrder={data?.profile?.children}
               editable={true}
+              username={data?.profile?.username}
             />
             <LinkInput folderId={data?.profile?.id} />
           </>

@@ -9,7 +9,6 @@ import {
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import { Draggable } from 'react-beautiful-dnd';
 
 import ItemMenu from '@/components/Folder/ItemMenu';
@@ -18,7 +17,6 @@ import { LinkfoldersIcon } from '@/styles/icons';
 
 const EditableItem = ({ item, index }) => {
   const [renameMode, setRenameMode] = React.useState(!item?.name);
-  const router = useRouter();
 
   return (
     <Draggable draggableId={item?.id} index={index}>
