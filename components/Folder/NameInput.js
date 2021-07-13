@@ -15,8 +15,8 @@ const NameInput = ({ item, setRenameMode }) => {
       setRenameMode(false);
       return;
     }
-    const newItem = { ...item, name: values.itemName };
-    handleUpdateItem(newItem);
+    const { id, ...newItem } = { ...item, name: values.itemName };
+    handleUpdateItem(id, newItem);
     setRenameMode(false);
   };
 
