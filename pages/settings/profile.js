@@ -1,12 +1,8 @@
 import {
   Box,
   Stack,
-  Heading,
   Button,
-  IconButton,
   Text,
-  Avatar,
-  AvatarBadge,
   Input,
   FormControl,
   FormLabel,

@@ -25,13 +25,22 @@ const LinkInput = ({ folderId }) => {
 
   const onSubmit = (values) => {
     if (!auth?.user) return;
-    handleCreateLink(auth.user.uid, folderId, values.input);
+    handleCreateLink(
+      auth?.user?.uid,
+      folderId,
+      values.input,
+      auth?.user?.profile?.username
+    );
     reset();
   };
 
   const onClick = () => {
     if (!auth?.user) return;
-    handleCreateFolder(auth.user.uid, folderId);
+    handleCreateFolder(
+      auth?.user?.uid,
+      folderId,
+      auth?.user?.profile?.username
+    );
     reset();
   };
 

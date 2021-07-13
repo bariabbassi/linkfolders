@@ -14,10 +14,7 @@ const ProfilePage = () => {
   const router = useRouter();
   const username = router.query?.username;
   const { data } = useSWR(
-    username &&
-      (!auth?.user?.profile || username !== auth?.user?.profile?.username)
-      ? `/api/profiles/username/${username}`
-      : null,
+    username ? `/api/profiles/username/${username}` : null,
     fetcher
   );
   let profile = {};
@@ -56,16 +53,16 @@ const ProfilePage = () => {
         {auth?.user?.uid === profile?.id ? (
           <>
             <ChildrenList
-              folderId={profile?.id}
-              childrenOrder={profile?.children}
+              folderId={data?.profile?.id}
+              childrenOrder={data?.profile?.children}
               editable={true}
             />
-            <LinkInput folderId={profile?.id} />
+            <LinkInput folderId={data?.profile?.id} />
           </>
         ) : (
           <ChildrenList
-            folderId={profile?.id}
-            childrenOrder={profile?.children}
+            folderId={data?.profile?.id}
+            childrenOrder={data?.profile?.children}
             editable={false}
           />
         )}
