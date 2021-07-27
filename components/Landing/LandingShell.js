@@ -1,11 +1,23 @@
 import { Box, Button, Flex, Heading, Stack } from '@chakra-ui/react';
 import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 
 import { LinkfoldersIcon } from '@/styles/icons';
 import { useAuth } from '@/lib/auth';
+import AccountLoading from '../Account/AccountLoading';
 
 const LandingShell = ({ children }) => {
   const auth = useAuth();
+  const router = useRouter();
+
+  if (auth?.loading) {
+    return <AccountLoading />;
+  }
+
+  if (auth?.user?.profile) {
+    router.push(`/${auth?.user?.profile?.username}`);
+    return <AccountLoading />;
+  }
 
   return (
     <Box backgroundColor="" h="100vh">

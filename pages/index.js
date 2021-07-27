@@ -1,5 +1,5 @@
-import Head from 'next/head';
 import { Heading } from '@chakra-ui/react';
+// import Head from 'next/head';
 
 import LandingShell from '@/components/Landing/LandingShell';
 import LandingUsername from '@/components/Landing/LandingUsername';
