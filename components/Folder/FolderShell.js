@@ -14,6 +14,7 @@ import fetcher from '@/utils/fetcher';
 import { useAuth } from '@/lib/auth';
 import { LinkfoldersIcon } from '@/styles/icons';
 import FolderHeader from '@/components/Folder/FolderHeader';
+import AccountMenu from '@/components/Account/AccountMenu';
 
 const FolderShell = ({ name, userId, parent, children }) => {
   const auth = useAuth();
@@ -68,25 +69,7 @@ const FolderShell = ({ name, userId, parent, children }) => {
               />
             </NextLink>
           </Flex>
-          {auth?.user?.profile && (
-            <NextLink href={`/${auth?.user?.profile?.username}`} passHref>
-              <Button
-                as="a"
-                variant="ghost"
-                p={2}
-                mr={1}
-                size="xl"
-                borderRadius="full"
-              >
-                <Avatar
-                  bg="gray.200"
-                  size="md"
-                  name={auth?.user?.profile?.name}
-                  src={auth?.user?.profile?.photoUrl}
-                />
-              </Button>
-            </NextLink>
-          )}
+          <AccountMenu />
         </Flex>
         <Flex direction="column" align="center">
           <Flex

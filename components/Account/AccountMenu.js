@@ -4,16 +4,20 @@ import {
   MenuList,
   MenuItem,
   MenuDivider,
-  Button,
-  IconButton
+  IconButton,
+  Avatar,
+  Icon
 } from '@chakra-ui/react';
-import { ChevronDownIcon, SettingsIcon } from '@chakra-ui/icons';
+import { SettingsIcon } from '@chakra-ui/icons';
+import { User, Settings, LogOut } from 'react-feather';
 import NextLink from 'next/link';
 
 import { useAuth } from '@/lib/auth';
 
 const AccountMenu = () => {
   const auth = useAuth();
+
+  if (!auth?.user?.profile) return null;
   return (
     <Menu>
       <MenuButton
@@ -21,16 +25,28 @@ const AccountMenu = () => {
         variant="ghost"
         borderRadius="full"
         aria-label="Account menu"
-        p={4}
         size="xl"
-        icon={<ChevronDownIcon boxSize={6} />}
+        p={1}
+        mr={2}
+        icon={
+          <Avatar
+            size="md"
+            bg="gray.200"
+            name={auth?.user?.profile?.name}
+            src={auth?.user?.profile?.photoUrl}
+          />
+        }
       />
       <MenuList>
+        <NextLink href={`/${auth?.user?.profile?.username}`} passHref>
+          <MenuItem icon={<User size={19} />}>Profile</MenuItem>
+        </NextLink>
         <NextLink href="/settings/profile" passHref>
-          <MenuItem icon={<SettingsIcon />}>Settings</MenuItem>
+          <MenuItem icon={<Settings size={19} />}>Settings</MenuItem>
         </NextLink>
         <MenuDivider />
         <MenuItem
+          icon={<LogOut size={19} />}
           onClick={() => {
             auth.logout();
           }}

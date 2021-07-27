@@ -26,28 +26,8 @@ const ProfileShell = ({ children }) => {
       bg=""
     >
       <Box w="100%">
-        <Flex bg="" align="center" w="100%" h="4.6rem" px={2}>
+        <Flex bg="" align="center" w="100%" h="4.6rem">
           <Flex align="center" w="100%"></Flex>
-          {auth?.user?.profile && (
-            <NextLink href={`/${auth?.user?.profile?.username}`} passHref>
-              <IconButton
-                as="a"
-                variant="ghost"
-                borderRadius="full"
-                aria-label="Profile"
-                p={1}
-                size="xl"
-                icon={
-                  <Avatar
-                    size="md"
-                    bg="gray.200"
-                    name={auth?.user?.profile?.name}
-                    src={auth?.user?.profile?.photoUrl}
-                  />
-                }
-              />
-            </NextLink>
-          )}
           <AccountMenu />
         </Flex>
         <Flex direction="column" align="center">
