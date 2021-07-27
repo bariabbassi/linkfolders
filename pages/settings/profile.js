@@ -78,7 +78,6 @@ const ProfileEditPage = () => {
             <FormControl isInvalid={errors.name}>
               <FormLabel>Name</FormLabel>
               <Input
-                type="text"
                 placeholder="Name"
                 defaultValue={auth?.user?.profile?.name}
                 {...register('name')}

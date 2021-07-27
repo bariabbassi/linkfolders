@@ -14,7 +14,6 @@ const SettingsUsername = ({ register, errors }) => {
     <FormControl isInvalid={errors.username}>
       <FormLabel>Username</FormLabel>
       <Input
-        type="text"
         placeholder="Username"
         defaultValue={auth?.user?.profile?.username}
         {...register('username', {

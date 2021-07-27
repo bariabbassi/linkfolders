@@ -24,8 +24,7 @@ const NameInput = ({ item, setRenameMode }) => {
     <Box as="form" onSubmit={handleSubmit(onSubmit)}>
       <FormControl isInvalid={errors.itemName}>
         <Input
-          // variant="unstyled"
-          type="text"
+          autoComplete="off"
           boxShadow="outline"
           pl={3}
           ml={1}

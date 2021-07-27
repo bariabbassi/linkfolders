@@ -65,7 +65,6 @@ const LinkInput = ({ folderId }) => {
         <AddIcon mr={3} boxSize={4} color="gray" />
         <FormControl isInvalid={errors?.url}>
           <Input
-            type="text"
             autoComplete="off"
             variant="unstyled"
             size="md"

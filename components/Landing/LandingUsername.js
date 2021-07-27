@@ -99,7 +99,6 @@ const LandingUsername = () => {
           <Input
             py={6}
             pl="9.6rem"
-            type="username"
             placeholder="yourusername"
             value={username}
             onChange={(e) => {
