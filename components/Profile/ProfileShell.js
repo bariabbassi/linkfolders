@@ -44,7 +44,7 @@ const ProfileShell = ({ children }) => {
           </Flex>
         </Flex>
       </Box>
-      {!auth.user && (
+      {!auth.user && !auth.loading && (
         <NextLink href="/" passHref>
           <Button
             as="a"
