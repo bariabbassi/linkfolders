@@ -9,7 +9,7 @@ const ItemMenu = ({ item, renameMode, setRenameMode }) => {
     <Menu>
       <MenuButton
         as={IconButton}
-        aria-label="Menu"
+        aria-label="Item menu"
         icon={<DragHandleIcon />}
         variant="ghost"
         size="sm"

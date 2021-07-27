@@ -1,4 +1,4 @@
-import { MenuList, MenuItem } from '@chakra-ui/react';
+import { MenuList, MenuItem, MenuDivider } from '@chakra-ui/react';
 import {
   ExternalLinkIcon,
   CopyIcon,
@@ -21,6 +21,7 @@ const FolderMenuList = ({ folder, renameMode, setRenameMode }) => {
       >
         Rename
       </MenuItem>
+      <MenuDivider />
       <MenuItem
         icon={<DeleteIcon />}
         onClick={() => {

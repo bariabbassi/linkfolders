@@ -11,6 +11,7 @@ import NextLink from 'next/link';
 
 import { useAuth } from '@/lib/auth';
 import { LinkfoldersIcon } from '@/styles/icons';
+import AccountMenu from '@/components/Account/AccountMenu';
 
 const ProfileShell = ({ children }) => {
   const auth = useAuth();
@@ -25,27 +26,29 @@ const ProfileShell = ({ children }) => {
       bg=""
     >
       <Box w="100%">
-        <Flex bg="" align="center" w="100%" h="4.6rem">
+        <Flex bg="" align="center" w="100%" h="4.6rem" px={2}>
           <Flex align="center" w="100%"></Flex>
           {auth?.user?.profile && (
             <NextLink href={`/${auth?.user?.profile?.username}`} passHref>
-              <Button
+              <IconButton
                 as="a"
                 variant="ghost"
-                p={2}
-                mr={1}
-                size="xl"
                 borderRadius="full"
-              >
-                <Avatar
-                  bg="gray.200"
-                  size="md"
-                  name={auth?.user?.profile?.name}
-                  src={auth?.user?.profile?.photoUrl}
-                />
-              </Button>
+                aria-label="Profile"
+                p={1}
+                size="xl"
+                icon={
+                  <Avatar
+                    size="md"
+                    bg="gray.200"
+                    name={auth?.user?.profile?.name}
+                    src={auth?.user?.profile?.photoUrl}
+                  />
+                }
+              />
             </NextLink>
           )}
+          <AccountMenu />
         </Flex>
         <Flex direction="column" align="center">
           <Flex

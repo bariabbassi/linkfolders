@@ -1,4 +1,4 @@
-import { MenuList, MenuItem } from '@chakra-ui/react';
+import { MenuList, MenuItem, MenuDivider } from '@chakra-ui/react';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 
 import { handleDeleteLink } from '@/lib/handlers';
@@ -16,6 +16,7 @@ const LinkMenuList = ({ link, renameMode, setRenameMode }) => {
       >
         Rename
       </MenuItem>
+      <MenuDivider />
       <MenuItem
         icon={<DeleteIcon />}
         onClick={() => {
