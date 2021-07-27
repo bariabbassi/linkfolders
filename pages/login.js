@@ -1,4 +1,3 @@
-import NextLink from 'next/link';
 import {
   Stack,
   Flex,
@@ -9,8 +8,12 @@ import {
   Input,
   Divider,
   Text,
-  Link
+  Link,
+  Box,
+  Spinner
 } from '@chakra-ui/react';
+import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 
 import SignupShell from '@/components/Signup/SignupShell';
@@ -18,6 +21,7 @@ import { useAuth } from '@/lib/auth';
 
 const Login = () => {
   const auth = useAuth();
+  const router = useRouter();
   const {
     handleSubmit,
     register,
@@ -27,6 +31,27 @@ const Login = () => {
   const onSubmit = (values) => {
     auth.loginWithEmail(values.email, values.password);
   };
+
+  if (auth?.loading) {
+    return (
+      <SignupShell>
+        <Box mt={14}>
+          <Spinner />
+        </Box>
+      </SignupShell>
+    );
+  }
+
+  if (auth?.user?.profile) {
+    router.push(`/${auth?.user?.profile?.username}`);
+    return (
+      <SignupShell>
+        <Box mt={14}>
+          <Spinner />
+        </Box>
+      </SignupShell>
+    );
+  }
 
   return (
     <SignupShell>

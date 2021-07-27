@@ -4,9 +4,11 @@ import {
   Button,
   Text,
   Input,
+  Heading,
   FormControl,
   FormLabel,
-  FormErrorMessage
+  FormErrorMessage,
+  Spinner
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
@@ -67,37 +69,56 @@ const ProfileEditPage = () => {
     router.push(`/${newProfileHeader.username}`);
   };
 
+  if (auth?.loading) {
+    return (
+      <SettingsShell>
+        <Box mt={14}>
+          <Spinner />
+        </Box>
+      </SettingsShell>
+    );
+  }
+
+  if (!auth?.user) {
+    router.push('/');
+    return (
+      <SettingsShell>
+        <Box mt={14}>
+          <Spinner />
+        </Box>
+      </SettingsShell>
+    );
+  }
+
   return (
     <SettingsShell>
-      <Box w="100%">
-        <SettingsHeader name={'Edit profile'} />
-        <Text minH="15px" mb={10}></Text>
-        <Box as="form" onSubmit={handleSubmit(onSubmit)}>
-          <Stack spacing={8} mb={12}>
-            <SettingsPhoto register={register} errors={errors} />
-            <FormControl isInvalid={errors.name}>
-              <FormLabel>Name</FormLabel>
-              <Input
-                placeholder="Name"
-                defaultValue={auth?.user?.profile?.name}
-                {...register('name')}
-              />
-              {errors.name && (
-                <FormErrorMessage>{errors.name.message}</FormErrorMessage>
-              )}
-            </FormControl>
-            <SettingsUsername register={register} errors={errors} />
-          </Stack>
-          <Button colorScheme="yellow" type="submit">
-            Save
-          </Button>
-          <Button
-            ml={3}
-            onClick={() => router.push(`/${auth?.user?.profile?.username}`)}
-          >
-            Cancel
-          </Button>
-        </Box>
+      <SettingsHeader name={'Edit profile'} />
+      <Text minH="15px" mb={10}></Text>
+      <Box as="form" onSubmit={handleSubmit(onSubmit)}>
+        <Stack spacing={8} mb={12}>
+          <SettingsPhoto register={register} errors={errors} />
+          <FormControl isInvalid={errors.name}>
+            <FormLabel>Name</FormLabel>
+            <Input
+              placeholder="Name"
+              defaultValue={auth?.user?.profile?.name}
+              {...register('name')}
+            />
+            {errors.name && (
+              <FormErrorMessage>{errors.name.message}</FormErrorMessage>
+            )}
+          </FormControl>
+          <SettingsUsername register={register} errors={errors} />
+        </Stack>
+        <Button colorScheme="yellow" type="submit">
+          Save
+        </Button>
+        <Button
+          ml={3}
+          onClick={() => router.push(`/${auth?.user?.profile?.username}`)}
+        >
+          Cancel
+        </Button>
       </Box>
     </SettingsShell>
   );

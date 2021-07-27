@@ -1,4 +1,4 @@
-import { Box, Flex, Text, Spinner, Heading } from '@chakra-ui/react';
+import { Box, Text, Spinner, Heading } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
@@ -35,7 +35,9 @@ const ProfilePage = () => {
   if (!profile) {
     return (
       <ProfileShell>
-        <Spinner />
+        <Box mt={14}>
+          <Spinner />
+        </Box>
       </ProfileShell>
     );
   }

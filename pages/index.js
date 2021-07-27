@@ -7,17 +7,17 @@ import LandingUsername from '@/components/Landing/LandingUsername';
 const Home = () => {
   return (
     <LandingShell>
-      <Head>
+      {/* <Head>
         <script
           dangerouslySetInnerHTML={{
             __html: `
               if (document.cookie && document.cookie.includes('linkfolders-auth')) {
-                window.location.href = "/profile"
+                window.location.href = "/"
               }
             `
           }}
         />
-      </Head>
+      </Head> */}
       <Heading
         mt={8}
         mb={6}

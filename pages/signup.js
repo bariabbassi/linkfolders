@@ -9,6 +9,27 @@ import SignupWithGoogle from '@/components/Signup/SignupWithGoogle';
 const Signup = () => {
   const router = useRouter();
 
+  if (auth?.loading) {
+    return (
+      <SignupShell>
+        <Box mt={14}>
+          <Spinner />
+        </Box>
+      </SignupShell>
+    );
+  }
+
+  if (auth?.user?.profile) {
+    router.push(`/${auth?.user?.profile?.username}`);
+    return (
+      <SignupShell>
+        <Box mt={14}>
+          <Spinner />
+        </Box>
+      </SignupShell>
+    );
+  }
+
   return (
     <SignupShell>
       <Heading as="h1" size="2xl">

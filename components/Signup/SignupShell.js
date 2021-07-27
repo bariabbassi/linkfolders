@@ -7,17 +7,17 @@ import { LinkfoldersIcon } from '@/styles/icons';
 const SignupShell = ({ children }) => {
   return (
     <Box backgroundColor="" h="100vh">
-      <Head>
+      {/* <Head>
         <script
           dangerouslySetInnerHTML={{
             __html: `
               if (document.cookie && document.cookie.includes('linkfolders-auth')) {
-                window.location.href = "/profile"
+                window.location.href = "/"
               }
             `
           }}
         />
-      </Head>
+      </Head> */}
       <Flex backgroundColor="white" mb={[8, 16]} w="%100">
         <Flex
           align="center"
