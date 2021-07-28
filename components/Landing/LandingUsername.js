@@ -24,29 +24,29 @@ const LandingUsername = () => {
   const [username, setUsername] = useState();
   const regEx = /^([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)$/;
   const [form, setForm] = useState(false);
-  const fetcher = (url) =>
-    fetch(url)
-      .then((res) => {
-        setForm({ state: 'loading', message: '⏳ Loading...' });
-        return res.json();
-      })
-      .then((data) => {
-        if (data.available === true) {
-          setForm({
-            state: 'success',
-            message: `🎉 Hooray! @${username} is available`
-          });
-        } else {
-          setForm({
-            state: 'error',
-            message: `😥 Sorry! @${username} is already taken`
-          });
-        }
-      });
-  const { data } = useSWR(
-    form.state === 'valid' ? `/api/usernames/${username}/availability` : null,
-    fetcher
-  );
+  // const fetcher = (url) =>
+  //   fetch(url)
+  //     .then((res) => {
+  //       setForm({ state: 'loading', message: '⏳ Loading...' });
+  //       return res.json();
+  //     })
+  //     .then((data) => {
+  //       if (data.available === true) {
+  //         setForm({
+  //           state: 'success',
+  //           message: `🎉 Hooray! @${username} is available`
+  //         });
+  //       } else {
+  //         setForm({
+  //           state: 'error',
+  //           message: `😥 Sorry! @${username} is already taken`
+  //         });
+  //       }
+  //     });
+  // const { data } = useSWR(
+  //   form.state === 'valid' ? `/api/usernames/${username}/availability` : null,
+  //   fetcher
+  // );
 
   const isValid = (username) => {
     if (username === undefined || username.length === 0) {
@@ -87,11 +87,10 @@ const LandingUsername = () => {
       w="100%"
       as="form"
       onSubmit={handleSubmit((values) => {
-        if (values.username === undefined || values.username === '') {
-          Router.push('/signup');
-        } else {
-          Router.push({ pathname: '/signup', query: { username: username } });
-        }
+        Router.push({
+          pathname: '/signup',
+          query: { username: values.username }
+        });
       })}
     >
       <Stack>
@@ -136,12 +135,7 @@ const LandingUsername = () => {
           ) : null}
         </Box>
       </Stack>
-      <NextLink
-        href={{
-          pathname: '/signup',
-          query: { username: username }
-        }}
-      >
+      <NextLink href={'/signup'}>
         <Button
           type="submit"
           as="a"
