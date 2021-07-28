@@ -24,6 +24,7 @@ const FolderHeader = ({
             fontWeight="400"
           >
             <Avatar
+              color="gray.600"
               bg="gray.200"
               size="sm"
               mr={2}

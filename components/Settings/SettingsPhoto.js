@@ -29,6 +29,7 @@ const SettingsPhoto = ({ register, errors }) => {
     <FormControl isInvalid={errors.photo}>
       <FormLabel>Photo</FormLabel>
       <Avatar
+        color="gray.600"
         bg="gray.200"
         size="xl"
         name={auth?.user?.profile?.name}

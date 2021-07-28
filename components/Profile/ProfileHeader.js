@@ -8,7 +8,14 @@ const ProfileHeader = ({ name, photoUrl, username, editable }) => {
 
   return (
     <Flex direction="column" align="center" w="100%" as="header">
-      <Avatar bg="gray.200" m={3} size="xl" name={name} src={photoUrl} />
+      <Avatar
+        color="gray.600"
+        bg="gray.200"
+        m={3}
+        size="xl"
+        name={name}
+        src={photoUrl}
+      />
       <Heading as="h1" size="xl">
         {name}
       </Heading>

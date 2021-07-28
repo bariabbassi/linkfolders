@@ -30,8 +30,9 @@ const AccountMenu = () => {
         mr={2}
         icon={
           <Avatar
-            size="md"
+            color="gray.600"
             bg="gray.200"
+            size="md"
             name={auth?.user?.profile?.name}
             src={auth?.user?.profile?.photoUrl}
           />
