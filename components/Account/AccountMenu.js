@@ -17,7 +17,7 @@ import { useAuth } from '@/lib/auth';
 const AccountMenu = () => {
   const auth = useAuth();
 
-  if (!auth?.user?.profile) return null;
+  if (!auth?.user) return null;
   return (
     <Menu>
       <MenuButton
