@@ -56,13 +56,13 @@ const LandingShell = ({ children }) => {
           </Stack>
           <Stack direction="row" spacing={4}>
             <NextLink href="/login" passHref>
-              <Button as="a" variant="outline" colorScheme="yellow">
+              <Button as="a" variant="ghost">
                 Log in
               </Button>
             </NextLink>
             <NextLink href="/signup" passHref>
               <Button as="a" variant="solid" colorScheme="yellow">
-                Sign up for free
+                Sign up
               </Button>
             </NextLink>
           </Stack>
