@@ -70,7 +70,6 @@ const LandingUsername = () => {
         }
       >
         <Button
-          type="submit"
           as="a"
           m={1}
           size="lg"

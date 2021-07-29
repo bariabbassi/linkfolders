@@ -114,6 +114,7 @@ const ProfileEditPage = () => {
           Save
         </Button>
         <Button
+          variant="ghost"
           ml={3}
           onClick={() => router.push(`/${auth?.user?.profile?.username}`)}
         >
