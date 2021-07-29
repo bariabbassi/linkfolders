@@ -26,7 +26,7 @@ const ProfilePage = () => {
     return (
       <ProfileShell>
         <Box mt={14}>
-          <Heading size="lg">😢 Sorry, this page doesn't existe.</Heading>
+          <Heading size="lg">Sorry! This page doesn't existe.</Heading>
         </Box>
       </ProfileShell>
     );
