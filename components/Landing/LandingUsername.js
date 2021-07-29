@@ -71,11 +71,11 @@ const LandingUsername = () => {
       >
         <Button
           as="a"
+          colorScheme="yellow"
+          cursor="pointer"
           m={1}
           size="lg"
-          w={['100%', '100%', '150px']}
-          variant="solid"
-          colorScheme="yellow"
+          w={['100%', '100%', '140px']}
           rightIcon={<ArrowForwardIcon />}
         >
           Sign up
