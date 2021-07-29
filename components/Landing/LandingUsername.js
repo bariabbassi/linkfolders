@@ -37,16 +37,16 @@ const LandingUsername = () => {
       >
         <Input
           py={6}
-          pl="9.6rem"
+          pl="9.4rem"
           placeholder="yourusername"
           value={username}
           onChange={(e) => {
             setUsername(e.target.value);
           }}
         />
-        <InputLeftElement w="9.5rem">
+        <InputLeftElement w="9.7rem">
           <Flex
-            pl={6}
+            pl={4}
             pt="0.37rem"
             direction="column"
             align="center"
