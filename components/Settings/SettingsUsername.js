@@ -1,11 +1,21 @@
-import { FormControl, FormErrorMessage, Input } from '@chakra-ui/react';
+import {
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  Input
+} from '@chakra-ui/react';
 
-const SignupUsername = ({ usernameQuery, register, errors }) => {
+import { useAuth } from '@/lib/auth';
+
+const SettingsUsername = ({ register, errors }) => {
+  const auth = useAuth();
+
   return (
     <FormControl isInvalid={errors.username}>
+      <FormLabel>Username</FormLabel>
       <Input
-        defaultValue={usernameQuery ? usernameQuery : undefined}
         placeholder="Username"
+        defaultValue={auth?.user?.profile?.username}
         {...register('username', {
           required: 'Username is required',
           minLength: {
@@ -21,15 +31,17 @@ const SignupUsername = ({ usernameQuery, register, errors }) => {
             message:
               'Username should contain only letters, numbers, underscores, and hyphens'
           },
-          validate: async (username) =>
-            await fetch(`/api/usernames/${username}/availability`)
+          validate: async (username) => {
+            if (username === auth?.user?.profile?.username) return true;
+            return await fetch(`/api/usernames/${username}/availability`)
               .then((res) => res.json())
               .then((data) => {
                 if (data.available === true) {
                   return true;
                 }
                 return `${username} is already taken`;
-              })
+              });
+          }
         })}
       />
       {errors.username && (
@@ -39,4 +51,4 @@ const SignupUsername = ({ usernameQuery, register, errors }) => {
   );
 };
 
-export default SignupUsername;
+export default SettingsUsername;

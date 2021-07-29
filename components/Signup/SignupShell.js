@@ -1,23 +1,38 @@
-import Head from 'next/head';
-import NextLink from 'next/link';
 import { Box, Flex, Heading, Button } from '@chakra-ui/react';
+import NextLink from 'next/link';
+import { useRouter } from 'next/router';
+// import Head from 'next/head';
 
+import { useAuth } from '@/lib/auth';
 import { LinkfoldersIcon } from '@/styles/icons';
+import AccountLoading from '@/components/Account/AccountLoading';
 
-const TitleShell = ({ children }) => {
+const SignupShell = ({ children }) => {
+  const auth = useAuth();
+  const router = useRouter();
+
+  if (auth?.loading) {
+    return <AccountLoading />;
+  }
+
+  if (auth?.user?.profile) {
+    router.push(`/${auth?.user?.profile?.username}`);
+    return <AccountLoading />;
+  }
+
   return (
     <Box backgroundColor="" h="100vh">
-      <Head>
+      {/* <Head>
         <script
           dangerouslySetInnerHTML={{
             __html: `
               if (document.cookie && document.cookie.includes('linkfolders-auth')) {
-                window.location.href = "/profile"
+                window.location.href = "/"
               }
             `
           }}
         />
-      </Head>
+      </Head> */}
       <Flex backgroundColor="white" mb={[8, 16]} w="%100">
         <Flex
           align="center"
@@ -60,4 +75,4 @@ const TitleShell = ({ children }) => {
   );
 };
 
-export default TitleShell;
+export default SignupShell;

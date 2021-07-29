@@ -1,12 +1,12 @@
-import { getUsernameAvailability } from '@/lib/db-admin';
+import { getFolderChildren } from '@/lib/db-admin';
 import { logger, formatObjectKeys } from '@/utils/logger';
 
 export default async (req, res) => {
   try {
-    const { username } = req.query;
-    const available = await getUsernameAvailability(username);
+    const { folderId } = req.query;
+    const { children } = await getFolderChildren(folderId);
 
-    return res.status(200).json({ available });
+    res.status(200).json({ children });
   } catch (error) {
     logger.error(
       {

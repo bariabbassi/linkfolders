@@ -1,4 +1,3 @@
-import NextLink from 'next/link';
 import {
   Stack,
   Flex,
@@ -9,23 +8,30 @@ import {
   Input,
   Divider,
   Text,
-  Link
+  Link,
+  Box,
+  Spinner
 } from '@chakra-ui/react';
+import NextLink from 'next/link';
 import { useForm } from 'react-hook-form';
 
-import TitleShell from '@/components/TitleShell';
 import { useAuth } from '@/lib/auth';
+import SignupShell from '@/components/Signup/SignupShell';
 
 const Login = () => {
   const auth = useAuth();
-  const { handleSubmit, register, errors } = useForm();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors }
+  } = useForm();
 
   const onSubmit = (values) => {
     auth.loginWithEmail(values.email, values.password);
   };
 
   return (
-    <TitleShell>
+    <SignupShell>
       <Heading as="h1" size="2xl">
         Log in
       </Heading>
@@ -34,9 +40,8 @@ const Login = () => {
           <FormControl isInvalid={errors.email}>
             <Input
               type="email"
-              name="email"
               placeholder="Email"
-              ref={register({
+              {...register('email', {
                 required: 'Email is required',
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
@@ -51,9 +56,8 @@ const Login = () => {
           <FormControl isInvalid={errors.password}>
             <Input
               type="password"
-              name="password"
               placeholder="Password"
-              ref={register({
+              {...register('password', {
                 required: 'Password is required',
                 minLength: {
                   value: 5,
@@ -83,7 +87,7 @@ const Login = () => {
           </NextLink>
         </Text>
       </Flex>
-    </TitleShell>
+    </SignupShell>
   );
 };
 

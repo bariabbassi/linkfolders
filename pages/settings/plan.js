@@ -1,25 +1,24 @@
 import { Stack, Heading, Button } from '@chakra-ui/react';
-import { useState } from 'react';
-import NextLink from 'next/link';
+// import NextLink from 'next/link';
 
-import { useAuth } from '@/lib/auth';
-import AccountShell from '@/components/AccountShell';
-import { createCheckoutSession, goToBillingPortal } from '@/lib/db';
+// import { useAuth } from '@/lib/auth';
+import SettingsShell from '@/components/Settings/SettingsShell';
+// import { createCheckoutSession, goToBillingPortal } from '@/lib/db';
 
 const Plan = () => {
-  const auth = useAuth();
-  const [isCheckoutLoading, setCheckoutLoading] = useState(false);
-  const [isBillingLoading, setBillingLoading] = useState(false);
+  // const auth = useAuth();
+  // const [isCheckoutLoading, setCheckoutLoading] = React.useState(false);
+  // const [isBillingLoading, setBillingLoading] = React.useState(false);
 
   return (
-    <AccountShell>
+    <SettingsShell>
       <Heading as="h1" size="2xl">
         Plan
       </Heading>
-      <Stack direction="row" w="100%">
+      {/* <Stack direction="row" w="100%">
         <Stack>
           <Heading>Free plan</Heading>
-          <NextLink href="/profile" passHref>
+          <NextLink href={`/${auth.user?.profile?.username}`} passHref>
             <Button as="a" variant="outline" colorScheme="yellow">
               Free plan
             </Button>
@@ -50,8 +49,8 @@ const Plan = () => {
         >
           View billing portal
         </Button>
-      </Stack>
-    </AccountShell>
+      </Stack> */}
+    </SettingsShell>
   );
 };
 

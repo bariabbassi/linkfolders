@@ -2,7 +2,7 @@ import { Flex, Heading, Divider, Text, Link } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 
-import TitleShell from '@/components/TitleShell';
+import SignupShell from '@/components/Signup/SignupShell';
 import SignupWithEmail from '@/components/Signup/SignupWithEmail';
 import SignupWithGoogle from '@/components/Signup/SignupWithGoogle';
 
@@ -10,7 +10,7 @@ const Signup = () => {
   const router = useRouter();
 
   return (
-    <TitleShell>
+    <SignupShell>
       <Heading as="h1" size="2xl">
         Sign up
       </Heading>
@@ -25,7 +25,7 @@ const Signup = () => {
           </NextLink>
         </Text>
       </Flex>
-    </TitleShell>
+    </SignupShell>
   );
 };
 

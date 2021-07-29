@@ -12,7 +12,11 @@ import SignupUsername from '@/components/Signup/SignupUsername';
 
 const SignupWithEmail = ({ usernameQuery }) => {
   const auth = useAuth();
-  const { handleSubmit, register, errors } = useForm({ mode: 'onTouched' });
+  const {
+    handleSubmit,
+    register,
+    formState: { errors }
+  } = useForm({ mode: 'onTouched' });
 
   const onSubmit = (values) => {
     auth.signupWithEmail(
@@ -32,9 +36,8 @@ const SignupWithEmail = ({ usernameQuery }) => {
       <FormControl isInvalid={errors.email}>
         <Input
           type="email"
-          name="email"
           placeholder="Email"
-          ref={register({
+          {...register('email', {
             required: 'Email is required',
             pattern: {
               value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
@@ -49,9 +52,8 @@ const SignupWithEmail = ({ usernameQuery }) => {
       <FormControl isInvalid={errors.password}>
         <Input
           type="password"
-          name="password"
           placeholder="Password"
-          ref={register({
+          {...register('password', {
             required: 'Password is required',
             minLength: {
               value: 6,
