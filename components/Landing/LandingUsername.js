@@ -1,40 +1,35 @@
 import {
   Button,
   Text,
-  Box,
   Flex,
-  Stack,
   Input,
   InputGroup,
   InputLeftElement
 } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
-import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 
 import { LinkfoldersIcon } from '@/styles/icons';
-import router from 'next/router';
 
 const LandingUsername = () => {
   const router = useRouter();
-  const [username, setUsername] = React.useState();
+  const [username, setUsername] = React.useState('');
 
   return (
-    <Flex wrap="wrap">
-      <InputGroup
-        w={['100%', '100%', '340px']}
-        size="lg"
-        m={1}
-        as="form"
-        onSubmit={() =>
-          username
-            ? router.push({
-                pathname: '/signup',
-                query: { username }
-              })
-            : router.push('/signup')
-        }
-      >
+    <Flex
+      wrap="wrap"
+      as="form"
+      onSubmit={(e) => {
+        e.preventDefault();
+        username
+          ? router.push({
+              pathname: '/signup',
+              query: { username }
+            })
+          : router.push('/signup');
+      }}
+    >
+      <InputGroup w={['100%', '100%', '340px']} size="lg" m={1}>
         <Input
           py={6}
           pl="9.4rem"
@@ -59,28 +54,16 @@ const LandingUsername = () => {
           </Flex>
         </InputLeftElement>
       </InputGroup>
-      <NextLink
-        href={
-          username
-            ? {
-                pathname: '/signup',
-                query: { username }
-              }
-            : '/signup'
-        }
+      <Button
+        type="submit"
+        colorScheme="yellow"
+        m={1}
+        size="lg"
+        w={['100%', '100%', '140px']}
+        rightIcon={<ArrowForwardIcon />}
       >
-        <Button
-          as="a"
-          colorScheme="yellow"
-          cursor="pointer"
-          m={1}
-          size="lg"
-          w={['100%', '100%', '140px']}
-          rightIcon={<ArrowForwardIcon />}
-        >
-          Sign up
-        </Button>
-      </NextLink>
+        Sign up
+      </Button>
     </Flex>
   );
 };
