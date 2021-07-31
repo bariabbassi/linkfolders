@@ -1,5 +1,5 @@
-const title = 'Linkfolders – Bookmark, Store, Organize, and Share links';
-const description = 'All your links in one place';
+const title = 'Linkfolders – Put multiple links in your Instagram bio';
+const description = 'Put multiple links in your Instagram bio';
 
 const SEO = {
   title,

@@ -29,7 +29,7 @@ const Home = () => {
         All your links in one place.
       </Heading>
       <Heading mb={14} as="h2" size="md" fontWeight="200">
-        Organize your links in folders and share them with the world.
+        Put multiple links in your bio link on Instagram, TikTok, and YouTube.
       </Heading>
       <LandingUsername />
     </LandingShell>
