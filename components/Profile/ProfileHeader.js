@@ -29,6 +29,7 @@ const ProfileHeader = ({ name, photoUrl, username, editable }) => {
             variant="outline"
             borderRadius="full"
             size="md"
+            mt={5}
             fontWeight="400"
           >
             Edit profile
