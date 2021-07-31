@@ -2,6 +2,7 @@ import { Box, Text, Spinner, Heading } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
+import Page from '@/components/Page';
 import ProfileShell from '@/components/Profile/ProfileShell';
 import ProfileHeader from '@/components/Profile/ProfileHeader';
 import ChildrenList from '@/components/Folder/ChildrenList';
@@ -43,34 +44,36 @@ const ProfilePage = () => {
   }
 
   return (
-    <ProfileShell>
-      <Box w="100%">
-        <ProfileHeader
-          name={profile?.name}
-          photoUrl={profile?.photoUrl}
-          username={username}
-          editable={auth.user?.uid === profile?.id}
-        />
-        <Text minH="15px" mb={10}></Text>
-        {auth?.user?.uid === profile?.id ? (
-          <>
+    <Page name={profile?.name} path={`/${username}`}>
+      <ProfileShell>
+        <Box w="100%">
+          <ProfileHeader
+            name={profile?.name}
+            photoUrl={profile?.photoUrl}
+            username={username}
+            editable={auth.user?.uid === profile?.id}
+          />
+          <Text minH="15px" mb={10}></Text>
+          {auth?.user?.uid === profile?.id ? (
+            <>
+              <ChildrenList
+                folderId={data?.profile?.id}
+                childrenOrder={data?.profile?.children}
+                editable={true}
+                username={data?.profile?.username}
+              />
+              <LinkInput folderId={data?.profile?.id} />
+            </>
+          ) : (
             <ChildrenList
               folderId={data?.profile?.id}
               childrenOrder={data?.profile?.children}
-              editable={true}
-              username={data?.profile?.username}
+              editable={false}
             />
-            <LinkInput folderId={data?.profile?.id} />
-          </>
-        ) : (
-          <ChildrenList
-            folderId={data?.profile?.id}
-            childrenOrder={data?.profile?.children}
-            editable={false}
-          />
-        )}
-      </Box>
-    </ProfileShell>
+          )}
+        </Box>
+      </ProfileShell>
+    </Page>
   );
 };
 

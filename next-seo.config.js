@@ -1,10 +1,12 @@
-const title = 'Linkfolders – Bookmark, Store, Organize, and Share links';
-const description = 'All your links in one place';
+const title =
+  'Linkfolders – Put multiple links in your Instagram bio and TikTok bio...';
+const description =
+  'Put multiple links in your Instagram bio and TikTok bio and drive traffic from your link in bio to your online course, Shopify store, affiliate links, podcast, or YouTube videos.';
 
 const SEO = {
   title,
   description,
-  canonical: 'https://linkfolders.com',
+  canonical: 'https://linkfolders.com/',
   openGraph: {
     type: 'website',
     locale: 'en_IE',

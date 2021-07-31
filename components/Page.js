@@ -1,7 +1,7 @@
 import { NextSeo } from 'next-seo';
 
 const Page = ({ name, path, children }) => {
-  const title = `Linkfolders – ${name}`;
+  const title = `${name} – Linkfolders`;
   const url = `https://linkfolders.com${path}`;
 
   return (

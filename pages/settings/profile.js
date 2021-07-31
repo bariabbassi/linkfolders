@@ -14,6 +14,7 @@ import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 
 import { useAuth } from '@/lib/auth';
+import Page from '@/components/Page';
 import SettingsShell from '@/components/Settings/SettingsShell';
 import SettingsHeader from '@/components/Settings/SettingsHeader';
 import SettingsPhoto from '@/components/Settings/SettingsPhoto';
@@ -21,7 +22,7 @@ import SettingsUsername from '@/components/Settings/SettingsUsername';
 import { uploadProfilePhoto } from '@/lib/storage';
 import { updateProfile, updateProfileAndUsername } from '@/lib/db';
 
-const ProfileEditPage = () => {
+const EditProfile = () => {
   const auth = useAuth();
   const router = useRouter();
   const {
@@ -124,4 +125,10 @@ const ProfileEditPage = () => {
   );
 };
 
-export default ProfileEditPage;
+const EditProfilePage = () => (
+  <Page name="Edit profile" path="/settings/profile">
+    <EditProfile />
+  </Page>
+);
+
+export default EditProfilePage;

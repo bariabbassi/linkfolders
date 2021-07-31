@@ -8,14 +8,13 @@ import {
   Input,
   Divider,
   Text,
-  Link,
-  Box,
-  Spinner
+  Link
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { useForm } from 'react-hook-form';
 
 import { useAuth } from '@/lib/auth';
+import Page from '@/components/Page';
 import SignupShell from '@/components/Signup/SignupShell';
 
 const Login = () => {
@@ -91,4 +90,10 @@ const Login = () => {
   );
 };
 
-export default Login;
+const LoginPage = () => (
+  <Page name="Login" path="/login">
+    <Login />
+  </Page>
+);
+
+export default LoginPage;

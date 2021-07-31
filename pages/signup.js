@@ -2,6 +2,7 @@ import { Flex, Heading, Divider, Text, Link } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 
+import Page from '@/components/Page';
 import SignupShell from '@/components/Signup/SignupShell';
 import SignupWithEmail from '@/components/Signup/SignupWithEmail';
 import SignupWithGoogle from '@/components/Signup/SignupWithGoogle';
@@ -29,4 +30,10 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+const SignupPage = () => (
+  <Page name="Signup" path="/signup">
+    <Signup />
+  </Page>
+);
+
+export default SignupPage;
