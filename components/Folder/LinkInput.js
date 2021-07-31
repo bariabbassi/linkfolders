@@ -8,9 +8,10 @@ import {
 import { AddIcon } from '@chakra-ui/icons';
 import { useForm } from 'react-hook-form';
 
-import { LinkfoldersIcon } from '@/styles/icons';
+// import { LinkfoldersIcon } from '@/styles/icons';
 import { useAuth } from '@/lib/auth';
 import { handleCreateLink, handleCreateFolder } from '@/lib/handlers';
+import UpgradeFolderModal from '@/components/Upgrade/UpgradeFolderModal';
 
 const LinkInput = ({ folderId }) => {
   const auth = useAuth();
@@ -34,15 +35,15 @@ const LinkInput = ({ folderId }) => {
     reset();
   };
 
-  const onClick = () => {
-    if (!auth?.user) return;
-    handleCreateFolder(
-      auth?.user?.uid,
-      folderId,
-      auth?.user?.profile?.username
-    );
-    reset();
-  };
+  // const onClick = () => {
+  //   if (!auth?.user) return;
+  //   handleCreateFolder(
+  //     auth?.user?.uid,
+  //     folderId,
+  //     auth?.user?.profile?.username
+  //   );
+  //   reset();
+  // };
 
   return (
     <Flex
@@ -75,14 +76,15 @@ const LinkInput = ({ folderId }) => {
           />
         </FormControl>
       </Flex>
-      <IconButton
+      <UpgradeFolderModal />
+      {/* <IconButton
         variant="ghost"
         mx={4}
         size="md"
         aria-label="New folder"
         icon={<LinkfoldersIcon width="6" height="6" mb={1} />}
         onClick={onClick}
-      />
+      /> */}
     </Flex>
   );
 };
