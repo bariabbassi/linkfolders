@@ -11,7 +11,7 @@ const ProfileHeader = ({ name, photoUrl, username, editable }) => {
       <Avatar
         color="gray.600"
         bg="gray.200"
-        m={3}
+        mb={3}
         size="xl"
         name={name}
         src={photoUrl}
@@ -19,7 +19,7 @@ const ProfileHeader = ({ name, photoUrl, username, editable }) => {
       <Heading as="h1" size="xl">
         {name}
       </Heading>
-      <Heading size="md" fontWeight="400" mb={5} color="gray">
+      <Heading size="md" fontWeight="400" color="gray">
         @{username}
       </Heading>
       {editable && (
