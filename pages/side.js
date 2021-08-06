@@ -1,4 +1,4 @@
-import { Text, Spinner, Stack } from '@chakra-ui/react';
+import { Text, Spinner } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
@@ -8,14 +8,13 @@ import ChildrenList from '@/components/Folder/ChildrenList';
 import LinkInput from '@/components/Folder/LinkInput';
 import fetcher from '@/utils/fetcher';
 import { useAuth } from '@/lib/auth';
-import FolderHeader from '@/components/Folder/FolderHeader';
 
 const FolderPage = () => {
   const auth = useAuth();
   const router = useRouter();
   const folderId = router.query?.folderId;
   const { data } = useSWR(
-    folderId ? `/api/folders/${folderId}` : null,
+    folderId ? '/api/folders/3b6e86b0-3396-4f5d-ab9c-f5cfdfd3514d' : null,
     fetcher
   );
 
@@ -28,19 +27,16 @@ const FolderPage = () => {
   }
 
   return (
-    <Page name={data?.folder?.name} path={`/folder/${folderId}`}>
+    <Page
+      name={data?.folder?.name}
+      path={'/folder/3b6e86b0-3396-4f5d-ab9c-f5cfdfd3514d'}
+    >
       <SideFolderShell
         name={data?.folder?.name}
         userId={data?.folder?.userId}
         parent={data?.folder?.parent}
       >
-        <FolderHeader
-          name={data?.folder?.name}
-          userId={data?.folder?.userId}
-          parent={data?.folder?.parent}
-        />
         <Text minH="15px" mb={10}></Text>
-
         {auth?.user?.uid === data?.folder?.userId ? (
           <>
             <ChildrenList

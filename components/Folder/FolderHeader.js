@@ -1,4 +1,4 @@
-import { Flex, Button, Avatar, Heading } from '@chakra-ui/react';
+import { Box, Flex, Button, Avatar, Heading } from '@chakra-ui/react';
 import NextLink from 'next/link';
 
 const FolderHeader = ({
@@ -8,11 +8,11 @@ const FolderHeader = ({
   profileUsername
 }) => {
   return (
-    <Flex direction="column" align="center" w="100%" as="header">
+    <Box w="100%" as="header">
       <Heading as="h1" size="xl" mb={2}>
         {name}
       </Heading>
-      {profileUsername && (
+      {/* {profileUsername && (
         <NextLink href={`/${profileUsername}`} passHref>
           <Button
             as="a"
@@ -34,8 +34,8 @@ const FolderHeader = ({
             {profileName}
           </Button>
         </NextLink>
-      )}
-    </Flex>
+      )} */}
+    </Box>
   );
 };
 
