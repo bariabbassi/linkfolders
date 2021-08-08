@@ -33,8 +33,8 @@ const Shell = ({ children }) => {
         </DrawerContent>
       </Drawer>
       <Navbar onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 96 }} p={4}>
-        <VStack w="100%" maxW="700px">
+      <Box ml={{ base: 0, md: '36rem' }} mb={6} px={{ base: 3, md: 3 }}>
+        <VStack w="100%" maxW="700px" mt={3}>
           {children}
         </VStack>
       </Box>

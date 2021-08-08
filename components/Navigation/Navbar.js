@@ -5,7 +5,7 @@ const Navbar = ({ onOpen, ...rest }) => {
   return (
     <Flex
       ml={{ base: 0, md: 96 }}
-      px={{ base: 4, md: 4 }}
+      px={{ base: 1, md: 1 }}
       h="20"
       align="center"
       justify={{ base: 'space-between', md: 'flex-start' }}
@@ -13,7 +13,7 @@ const Navbar = ({ onOpen, ...rest }) => {
     >
       <IconButton
         onClick={onOpen}
-        variant="ghost"
+        variant="link"
         size="lg"
         aria-label="open menu"
         icon={<ArrowBackIcon boxSize={6} />}
