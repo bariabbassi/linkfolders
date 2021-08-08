@@ -13,12 +13,13 @@ import useSWR from 'swr';
 import fetcher from '@/utils/fetcher';
 import { useAuth } from '@/lib/auth';
 import ChildrenList from '@/components/Folder/ChildrenList';
-import LinkInput from '@/components/Folder/LinkInput';
+import AddRootFolderButton from '@/components/Add/AddRootFolderButton';
 
 const Sidebar = ({ onClose, ...rest }) => {
   const auth = useAuth();
+  const folderId = `root-${auth.user?.uid}`;
   const { data } = useSWR(
-    auth.user ? `/api/roots/root-${auth.user?.uid}` : null,
+    folderId ? `/api/folders/${folderId}` : null,
     fetcher
   );
 
@@ -55,11 +56,11 @@ const Sidebar = ({ onClose, ...rest }) => {
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       <ChildrenList
-        folderId={`root-${auth.user?.uid}`}
-        childrenOrder={data?.root?.children}
+        folderId={folderId}
+        childrenOrder={data?.folder?.children}
         editable={true}
       />
-      <LinkInput folderId={`root-${auth.user?.uid}`} />
+      <AddRootFolderButton />
     </Box>
   );
 };
