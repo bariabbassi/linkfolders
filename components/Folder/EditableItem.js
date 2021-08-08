@@ -36,6 +36,7 @@ const EditableItem = ({ item, index }) => {
               boxShadow="base"
               borderRadius="2xl"
               overflow="hidden"
+              bg="white"
               _hover={{ bg: 'gray.100', boxShadow: 'md' }}
               _active={{
                 bg: 'gray.200',

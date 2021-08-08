@@ -1,4 +1,4 @@
-import { Text, Spinner, Stack } from '@chakra-ui/react';
+import { Text, Spinner } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 

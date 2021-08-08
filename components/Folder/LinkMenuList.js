@@ -5,7 +5,7 @@ import { handleDeleteLink } from '@/lib/handlers';
 
 const LinkMenuList = ({ link, renameMode, setRenameMode }) => {
   return (
-    <MenuList>
+    <MenuList bg="white">
       {/* <MenuItem icon={<ExternalLinkIcon />}>Open</MenuItem> */}
       {/* <MenuItem icon={<CopyIcon />}>Copy link</MenuItem> */}
       <MenuItem

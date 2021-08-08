@@ -1,17 +1,9 @@
-import {
-  Flex,
-  Input,
-  IconButton,
-  FormErrorMessage,
-  FormControl
-} from '@chakra-ui/react';
+import { Flex, Input, FormControl } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 import { useForm } from 'react-hook-form';
 
-// import { LinkfoldersIcon } from '@/styles/icons';
 import { useAuth } from '@/lib/auth';
 import { handleCreateLink, handleCreateFolder } from '@/lib/handlers';
-import UpgradeFolderModal from '@/components/Upgrade/UpgradeFolderModal';
 
 const LinkInput = ({ folderId }) => {
   const auth = useAuth();
@@ -26,32 +18,40 @@ const LinkInput = ({ folderId }) => {
 
   const onSubmit = (values) => {
     if (!auth?.user) return;
-    handleCreateLink(
-      auth?.user?.uid,
-      folderId,
-      values.input,
-      auth?.user?.profile?.username
-    );
+    if (
+      values.input.substring(0, 8) === 'https://' ||
+      values.input.substring(0, 7) === 'http://'
+    ) {
+      handleCreateLink(
+        auth?.user?.uid,
+        folderId,
+        values.input,
+        auth?.user?.profile?.username
+      );
+    } else if (values.input.includes('.') && !values.input.includes(' ')) {
+      handleCreateLink(
+        auth?.user?.uid,
+        folderId,
+        `https://${values.input}`,
+        auth?.user?.profile?.username
+      );
+    } else {
+      handleCreateFolder(
+        values.input,
+        auth?.user?.uid,
+        folderId,
+        auth?.user?.profile?.username
+      );
+    }
     reset();
   };
-
-  // const onClick = () => {
-  //   if (!auth?.user) return;
-  //   handleCreateFolder(
-  //     auth?.user?.uid,
-  //     folderId,
-  //     auth?.user?.profile?.username
-  //   );
-  //   reset();
-  // };
 
   return (
     <Flex
       align="center"
       justify="space-between"
       w="100%"
-      my={4}
-      py={2}
+      my={2}
       bg="white"
       borderWidth="1px"
       borderRadius="full"
@@ -68,23 +68,15 @@ const LinkInput = ({ folderId }) => {
           <Input
             autoComplete="off"
             variant="unstyled"
+            py={3}
             size="md"
-            placeholder="Type a URL"
+            placeholder="Type a URL or a folder name"
             {...register('input', {
               required: 'URL is required'
             })}
           />
         </FormControl>
       </Flex>
-      <UpgradeFolderModal />
-      {/* <IconButton
-        variant="ghost"
-        mx={4}
-        size="md"
-        aria-label="New folder"
-        icon={<LinkfoldersIcon width="6" height="6" mb={1} />}
-        onClick={onClick}
-      /> */}
     </Flex>
   );
 };
