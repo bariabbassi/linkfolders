@@ -28,6 +28,7 @@ const Sidebar = ({ onClose, ...rest }) => {
       transition="3s ease"
       w={{ base: 'full', md: 96 }}
       h="full"
+      px={3}
       pos="fixed"
       {...rest}
     >
@@ -37,7 +38,6 @@ const Sidebar = ({ onClose, ...rest }) => {
             as="a"
             variant="ghost"
             p={1}
-            pr={4}
             size="xl"
             borderRadius="full"
             fontWeight="400"

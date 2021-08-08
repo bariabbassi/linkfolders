@@ -20,7 +20,6 @@ const AddRootFolderButton = ({ folderId }) => {
   return (
     <IconButton
       bg="white"
-      mx={4}
       size="md"
       aria-label="Add folder"
       icon={<AddIcon />}
