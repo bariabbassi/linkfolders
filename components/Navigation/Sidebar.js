@@ -32,20 +32,22 @@ const Sidebar = ({ onClose, ...rest }) => {
       pos="fixed"
       {...rest}
     >
-      <Flex h="20" align="center" justify="space-between">
+      <Flex align="center" justify="space-between" h="20" mb={7}>
         <NextLink href={`/${auth.user?.profile?.username}`} passHref>
           <Button
             as="a"
             variant="ghost"
-            p={1}
             size="xl"
-            borderRadius="full"
+            borderRadius="2xl"
             fontWeight="400"
           >
             <Avatar
               color="gray.600"
               bg="gray.200"
-              size="md"
+              size="lg"
+              h="3.75rem"
+              w="3.75rem"
+              borderRadius="2xl"
               mr={2}
               name={auth.user?.profile?.name}
               src={auth.user?.profile?.photoUrl}

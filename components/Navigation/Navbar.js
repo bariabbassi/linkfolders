@@ -1,7 +1,8 @@
 import { IconButton, Flex } from '@chakra-ui/react';
 import { HamburgerIcon, ArrowBackIcon } from '@chakra-ui/icons';
+import NextLink from 'next/link';
 
-const Navbar = ({ onOpen, ...rest }) => {
+const Navbar = ({ onOpen, parent, username, ...rest }) => {
   return (
     <Flex
       ml={{ base: 0, md: 96 }}
@@ -11,19 +12,21 @@ const Navbar = ({ onOpen, ...rest }) => {
       justify={{ base: 'space-between', md: 'flex-start' }}
       {...rest}
     >
-      <IconButton
-        onClick={onOpen}
-        variant="link"
-        size="lg"
-        aria-label="open menu"
-        icon={<ArrowBackIcon boxSize={6} />}
-      />
+      <NextLink href={username ? `/${username}` : `/folder/${parent}`} passHref>
+        <IconButton
+          as="a"
+          variant="ghost"
+          size="lg"
+          aria-label="Parent folder"
+          icon={<ArrowBackIcon boxSize={6} />}
+        />
+      </NextLink>
       <IconButton
         display={{ base: 'flex', md: 'none' }}
-        onClick={onOpen}
         variant="ghost"
         aria-label="open menu"
         icon={<HamburgerIcon />}
+        onClick={onOpen}
       />
     </Flex>
   );
