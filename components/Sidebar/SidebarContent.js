@@ -18,7 +18,7 @@ import { useAuth } from '@/lib/auth';
 import ChildrenList from '@/components/Folder/ChildrenList';
 import AddRootFolderButton from '@/components/Add/AddRootFolderButton';
 
-const Sidebar = ({ onClose, ...rest }) => {
+const SidebarContent = ({ onClose, ...rest }) => {
   const auth = useAuth();
   const folderId = `root-${auth.user?.uid}`;
   const { data } = useSWR(
@@ -72,7 +72,7 @@ const Sidebar = ({ onClose, ...rest }) => {
           display={{ base: 'flex', md: 'none' }}
           variant="ghost"
           size="md"
-          aria-label="Close sidebar"
+          aria-label="Close SidebarContent"
           icon={<CloseIcon boxSize={4} color="gray" />}
           onClick={onClose}
         />
@@ -87,4 +87,4 @@ const Sidebar = ({ onClose, ...rest }) => {
   );
 };
 
-export default Sidebar;
+export default SidebarContent;

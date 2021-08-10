@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
 import Page from '@/components/Page';
-import Shell from '@/components/Navigation/Shell';
+import Shell from '@/components/Sidebar/SidebarShell';
 import ProfileHeader from '@/components/Profile/ProfileHeader';
 import ChildrenList from '@/components/Folder/ChildrenList';
 import LinkInput from '@/components/Folder/LinkInput';

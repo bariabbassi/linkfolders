@@ -6,10 +6,10 @@ import {
   useDisclosure
 } from '@chakra-ui/react';
 
-import Sidebar from '@/components/Navigation/Sidebar';
-import Navbar from '@/components/Navigation/Navbar';
+import Sidebar from '@/components/Sidebar/SidebarContent';
+import Navbar from '@/components/Sidebar/Navbar';
 
-const Shell = ({ children }) => {
+const SidebarShell = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -41,4 +41,4 @@ const Shell = ({ children }) => {
   );
 };
 
-export default Shell;
+export default SidebarShell;
