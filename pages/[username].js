@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
 import Page from '@/components/Page';
-import Shell from '@/components/Sidebar/SidebarShell';
+import SidebarShell from '@/components/Sidebar/SidebarShell';
 import ProfileHeader from '@/components/Profile/ProfileHeader';
 import ChildrenList from '@/components/Folder/ChildrenList';
 import LinkInput from '@/components/Folder/LinkInput';
@@ -25,27 +25,27 @@ const ProfilePage = () => {
 
   if (data?.error !== undefined) {
     return (
-      <Shell>
+      <SidebarShell>
         <Box mt={14}>
           <Heading size="lg">Sorry! This page doesn't existe.</Heading>
         </Box>
-      </Shell>
+      </SidebarShell>
     );
   }
 
   if (!profile) {
     return (
-      <Shell>
+      <SidebarShell>
         <Box mt={14}>
           <Spinner />
         </Box>
-      </Shell>
+      </SidebarShell>
     );
   }
 
   return (
     <Page name={profile?.name} path={`/${username}`}>
-      <Shell>
+      <SidebarShell>
         <Box w="100%">
           <ProfileHeader
             name={profile?.name}
@@ -72,7 +72,7 @@ const ProfilePage = () => {
             />
           )}
         </Box>
-      </Shell>
+      </SidebarShell>
     </Page>
   );
 };

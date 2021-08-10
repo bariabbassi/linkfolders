@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
 import Page from '@/components/Page';
-import Shell from '@/components/Sidebar/SidebarShell';
+import SidebarShell from '@/components/Sidebar/SidebarShell';
 import ChildrenList from '@/components/Folder/ChildrenList';
 import LinkInput from '@/components/Folder/LinkInput';
 import fetcher from '@/utils/fetcher';
@@ -21,15 +21,15 @@ const FolderPage = () => {
 
   if (!data) {
     return (
-      <Shell>
+      <SidebarShell>
         <Spinner />
-      </Shell>
+      </SidebarShell>
     );
   }
 
   return (
     <Page name={data?.folder?.name} path={`/folder/${folderId}`}>
-      <Shell
+      <SidebarShell
         name={data?.folder?.name}
         userId={data?.folder?.userId}
         parent={data?.folder?.parent}
@@ -57,7 +57,7 @@ const FolderPage = () => {
             editable={false}
           />
         )}
-      </Shell>
+      </SidebarShell>
     </Page>
   );
 };
