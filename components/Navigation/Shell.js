@@ -17,7 +17,6 @@ const Shell = ({ children }) => {
       <Sidebar
         onClose={() => onClose}
         display={{ base: 'none', md: 'block' }}
-        bg="gray.100"
       />
       <Drawer
         autoFocus={false}
@@ -34,7 +33,7 @@ const Shell = ({ children }) => {
       </Drawer>
       <Navbar onOpen={onOpen} />
       <Box ml={{ base: 0, md: '36rem' }} mb={6} px={{ base: 3, md: 3 }}>
-        <VStack w="100%" maxW="700px" mt={3}>
+        <VStack w="100%" maxW="33rem" mt={3}>
           {children}
         </VStack>
       </Box>

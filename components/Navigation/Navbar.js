@@ -6,8 +6,8 @@ const Navbar = ({ onOpen, parent, username, ...rest }) => {
   return (
     <Flex
       ml={{ base: 0, md: 96 }}
-      px={{ base: 1, md: 1 }}
-      h="20"
+      px={{ base: 1, md: 2 }}
+      h={{ base: 12, md: 14 }}
       align="center"
       justify={{ base: 'space-between', md: 'flex-start' }}
       {...rest}
@@ -16,16 +16,17 @@ const Navbar = ({ onOpen, parent, username, ...rest }) => {
         <IconButton
           as="a"
           variant="ghost"
-          size="lg"
+          size="md"
           aria-label="Parent folder"
-          icon={<ArrowBackIcon boxSize={6} />}
+          icon={<ArrowBackIcon boxSize={6} color="gray" />}
         />
       </NextLink>
       <IconButton
         display={{ base: 'flex', md: 'none' }}
         variant="ghost"
-        aria-label="open menu"
-        icon={<HamburgerIcon />}
+        size="md"
+        aria-label="open sidebar"
+        icon={<HamburgerIcon boxSize={6} color="gray" />}
         onClick={onOpen}
       />
     </Flex>

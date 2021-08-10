@@ -19,10 +19,11 @@ const AddRootFolderButton = ({ folderId }) => {
 
   return (
     <IconButton
-      bg="white"
+      variant="ghost"
       size="md"
       aria-label="Add folder"
-      icon={<AddIcon />}
+      _hover={{ bg: 'gray.200' }}
+      icon={<AddIcon boxSize={4} color="gray" />}
       onClick={onClick}
     />
   );

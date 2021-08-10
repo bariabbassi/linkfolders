@@ -1,4 +1,4 @@
-import { Flex, Avatar, Heading, Button } from '@chakra-ui/react';
+import { Box, Flex, HStack, Avatar, Heading, Button } from '@chakra-ui/react';
 import NextLink from 'next/link';
 
 import { useAuth } from '@/lib/auth';
@@ -7,36 +7,27 @@ const ProfileHeader = ({ name, photoUrl, username, editable }) => {
   const auth = useAuth();
 
   return (
-    <Flex direction="column" align="center" w="100%" as="header">
+    <HStack as="header" w="100%">
       <Avatar
         color="gray.600"
         bg="gray.200"
-        mb={3}
         size="xl"
+        h="5rem"
+        w="5rem"
+        borderRadius="3xl"
+        mr={1}
         name={name}
         src={photoUrl}
       />
-      <Heading as="h1" size="xl">
-        {name}
-      </Heading>
-      <Heading size="md" fontWeight="400" color="gray">
-        @{username}
-      </Heading>
-      {editable && (
-        <NextLink href="/settings/profile" passHref>
-          <Button
-            as="a"
-            variant="outline"
-            borderRadius="full"
-            size="md"
-            mt={5}
-            fontWeight="400"
-          >
-            Edit profile
-          </Button>
-        </NextLink>
-      )}
-    </Flex>
+      <Box>
+        <Heading as="h1" size="xl">
+          {name}
+        </Heading>
+        <Heading size="md" fontWeight="400" color="gray">
+          @{username}
+        </Heading>
+      </Box>
+    </HStack>
   );
 };
 
