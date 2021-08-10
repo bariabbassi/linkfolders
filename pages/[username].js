@@ -2,13 +2,13 @@ import { Box, Text, Spinner, Heading } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
+import fetcher from '@/utils/fetcher';
+import { useAuth } from '@/lib/auth';
 import Page from '@/components/Page';
 import SidebarShell from '@/components/Sidebar/SidebarShell';
 import ProfileHeader from '@/components/Profile/ProfileHeader';
 import ChildrenList from '@/components/Folder/ChildrenList';
-import LinkInput from '@/components/Folder/LinkInput';
-import fetcher from '@/utils/fetcher';
-import { useAuth } from '@/lib/auth';
+import ProfileInput from '@/components/Profile/ProfileInput';
 
 const ProfilePage = () => {
   const auth = useAuth();
@@ -62,7 +62,7 @@ const ProfilePage = () => {
                 editable={true}
                 username={data?.profile?.username}
               />
-              <LinkInput folderId={data?.profile?.id} />
+              <ProfileInput folderId={data?.profile?.id} />
             </>
           ) : (
             <ChildrenList

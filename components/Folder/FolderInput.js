@@ -51,7 +51,7 @@ const LinkInput = ({ folderId }) => {
       as="form"
       align="center"
       w="100%"
-      pl={4}
+      pl={3}
       mb={4}
       onSubmit={handleSubmit(onSubmit)}
     >
