@@ -5,7 +5,7 @@ import useSWR from 'swr';
 import Page from '@/components/Page';
 import SidebarShell from '@/components/Sidebar/SidebarShell';
 import ChildrenList from '@/components/Folder/ChildrenList';
-import LinkInput from '@/components/Folder/LinkInput';
+import ItemInput from '@/components/Folder/ItemInput';
 import fetcher from '@/utils/fetcher';
 import { useAuth } from '@/lib/auth';
 import FolderHeader from '@/components/Folder/FolderHeader';
@@ -48,7 +48,7 @@ const FolderPage = () => {
               childrenOrder={data?.folder?.children}
               editable={true}
             />
-            <LinkInput folderId={folderId} />
+            <ItemInput folderId={folderId} />
           </>
         ) : (
           <ChildrenList

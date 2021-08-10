@@ -3,7 +3,7 @@ import { AddIcon } from '@chakra-ui/icons';
 import { useForm } from 'react-hook-form';
 
 import { useAuth } from '@/lib/auth';
-import { handleCreateLink } from '@/lib/handlers';
+import { handleCreateLink, handleCreateFolder } from '@/lib/handlers';
 
 const LinkInput = ({ folderId }) => {
   const auth = useAuth();
@@ -35,6 +35,13 @@ const LinkInput = ({ folderId }) => {
         `https://${values.input}`,
         auth?.user?.profile?.username
       );
+    } else {
+      handleCreateFolder(
+        values.input,
+        auth?.user?.uid,
+        folderId,
+        auth?.user?.profile?.username
+      );
     }
     reset();
   };
@@ -55,9 +62,9 @@ const LinkInput = ({ folderId }) => {
           variant="unstyled"
           size="md"
           py={2}
-          placeholder="Type a URL"
+          placeholder="Type a URL or a folder name"
           {...register('input', {
-            required: 'URL is required'
+            required: 'URL or folder name is required'
           })}
         />
       </FormControl>
