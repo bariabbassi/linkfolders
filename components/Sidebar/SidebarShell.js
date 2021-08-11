@@ -9,7 +9,7 @@ import {
 import Sidebar from '@/components/Sidebar/SidebarContent';
 import Navbar from '@/components/Sidebar/Navbar';
 
-const SidebarShell = ({ children }) => {
+const SidebarShell = ({ parent, children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -31,8 +31,8 @@ const SidebarShell = ({ children }) => {
           <Sidebar onClose={onClose} />
         </DrawerContent>
       </Drawer>
-      <Navbar onOpen={onOpen} />
-      <Box ml={{ base: 0, md: '36rem' }} mb={6} px={{ base: 3, md: 3 }}>
+      <Navbar parent={parent} onOpen={onOpen} />
+      <Box ml={{ base: 0, md: '36rem' }} mb={6} px={3}>
         <VStack w="100%" maxW="33rem" mt={3}>
           {children}
         </VStack>

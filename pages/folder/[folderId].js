@@ -29,11 +29,7 @@ const FolderPage = () => {
 
   return (
     <Page name={data?.folder?.name} path={`/folder/${folderId}`}>
-      <SidebarShell
-        name={data?.folder?.name}
-        userId={data?.folder?.userId}
-        parent={data?.folder?.parent}
-      >
+      <SidebarShell parent={data?.folder?.parent}>
         <FolderHeader
           name={data?.folder?.name}
           userId={data?.folder?.userId}
