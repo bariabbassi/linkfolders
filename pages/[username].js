@@ -6,6 +6,7 @@ import fetcher from '@/utils/fetcher';
 import { useAuth } from '@/lib/auth';
 import Page from '@/components/Page';
 import SidebarShell from '@/components/Sidebar/SidebarShell';
+import ProfileShell from '@/components/Profile/ProfileShell';
 import ProfileHeader from '@/components/Profile/ProfileHeader';
 import ChildrenList from '@/components/Folder/ChildrenList';
 import ProfileInput from '@/components/Profile/ProfileInput';

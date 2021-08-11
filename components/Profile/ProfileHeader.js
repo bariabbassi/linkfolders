@@ -1,11 +1,8 @@
-import { Box, Flex, HStack, Avatar, Heading, Button } from '@chakra-ui/react';
+import { Box, HStack, Avatar, Heading, IconButton } from '@chakra-ui/react';
+import { Edit } from 'react-feather';
 import NextLink from 'next/link';
 
-import { useAuth } from '@/lib/auth';
-
 const ProfileHeader = ({ name, photoUrl, username, editable }) => {
-  const auth = useAuth();
-
   return (
     <HStack as="header" w="100%">
       <Avatar
@@ -20,9 +17,22 @@ const ProfileHeader = ({ name, photoUrl, username, editable }) => {
         src={photoUrl}
       />
       <Box>
-        <Heading as="h1" size="xl">
-          {name}
-        </Heading>
+        <HStack>
+          <Heading as="h1" size="xl">
+            {name}
+          </Heading>
+          {editable && (
+            <NextLink href="/settings/profile" passHref>
+              <IconButton
+                as="a"
+                aria-label="Edit profile"
+                variant="ghost"
+                size="md"
+                icon={<Edit size={19} color="gray" />}
+              />
+            </NextLink>
+          )}
+        </HStack>
         <Heading size="md" fontWeight="400" color="gray">
           @{username}
         </Heading>

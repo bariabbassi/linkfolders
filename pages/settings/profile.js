@@ -4,7 +4,6 @@ import {
   Button,
   Text,
   Input,
-  Heading,
   FormControl,
   FormLabel,
   FormErrorMessage,
@@ -15,8 +14,8 @@ import { useRouter } from 'next/router';
 
 import { useAuth } from '@/lib/auth';
 import Page from '@/components/Page';
-import SettingsShell from '@/components/Settings/SettingsShell';
-import SettingsHeader from '@/components/Settings/SettingsHeader';
+import SidebarShell from '@/components/Sidebar/SidebarShell';
+import FolderHeader from '@/components/Folder/FolderHeader';
 import SettingsPhoto from '@/components/Settings/SettingsPhoto';
 import SettingsUsername from '@/components/Settings/SettingsUsername';
 import { uploadProfilePhoto } from '@/lib/storage';
@@ -71,30 +70,30 @@ const EditProfile = () => {
 
   if (auth?.loading) {
     return (
-      <SettingsShell>
+      <SidebarShell>
         <Box mt={14}>
           <Spinner />
         </Box>
-      </SettingsShell>
+      </SidebarShell>
     );
   }
 
   if (!auth?.user) {
     router.push('/');
     return (
-      <SettingsShell>
+      <SidebarShell>
         <Box mt={14}>
           <Spinner />
         </Box>
-      </SettingsShell>
+      </SidebarShell>
     );
   }
 
   return (
-    <SettingsShell>
-      <SettingsHeader name={'Edit profile'} />
+    <SidebarShell>
+      <FolderHeader name={'Edit profile'} />
       <Text minH="15px" mb={10}></Text>
-      <Box as="form" onSubmit={handleSubmit(onSubmit)}>
+      <Box as="form" w="100%" onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={8} mb={12}>
           <SettingsPhoto register={register} errors={errors} />
           <FormControl isInvalid={errors.name}>
@@ -121,7 +120,7 @@ const EditProfile = () => {
           Cancel
         </Button>
       </Box>
-    </SettingsShell>
+    </SidebarShell>
   );
 };
 
