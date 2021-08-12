@@ -26,10 +26,6 @@ const ProfileShell = ({ children }) => {
       bg=""
     >
       <Box w="100%">
-        <Flex bg="" align="center" w="100%" h="4.6rem">
-          <Flex align="center" w="100%"></Flex>
-          <AccountMenu />
-        </Flex>
         <Flex direction="column" align="center">
           <Flex
             direction="column"

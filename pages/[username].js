@@ -26,21 +26,56 @@ const ProfilePage = () => {
 
   if (data?.error !== undefined) {
     return (
-      <SidebarShell>
+      <ProfileShell>
         <Box mt={14}>
           <Heading size="lg">Sorry! This page doesn't existe.</Heading>
         </Box>
-      </SidebarShell>
+      </ProfileShell>
     );
   }
 
   if (!profile) {
     return (
-      <SidebarShell>
+      <ProfileShell>
         <Box mt={14}>
           <Spinner />
         </Box>
-      </SidebarShell>
+      </ProfileShell>
+    );
+  }
+
+  if (!auth.user && !auth.loading) {
+    return (
+      <Page name={profile?.name} path={`/${username}`}>
+        <ProfileShell>
+          <Box w="100%">
+            <ProfileHeader
+              name={profile?.name}
+              photoUrl={profile?.photoUrl}
+              username={username}
+              editable={auth.user?.uid === profile?.id}
+            />
+            <Text minH="15px" mb={10}></Text>
+            {auth?.user?.uid === profile?.id ? (
+              <>
+                <ChildrenList
+                  folderId={data?.profile?.id}
+                  childrenOrder={data?.profile?.children}
+                  editable={true}
+                  username={data?.profile?.username}
+                />
+                <ProfileInput folderId={data?.profile?.id} />
+              </>
+            ) : (
+              <ChildrenList
+                folderId={data?.profile?.id}
+                childrenOrder={data?.profile?.children}
+                editable={false}
+              />
+            )}
+          </Box>
+        </ProfileShell>
+      </Page>
     );
   }
 

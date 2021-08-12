@@ -1,9 +1,10 @@
-import { Text, Spinner } from '@chakra-ui/react';
+import { Box, Text, Heading, Spinner } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
 import Page from '@/components/Page';
 import SidebarShell from '@/components/Sidebar/SidebarShell';
+import ProfileShell from '@/components/Profile/ProfileShell';
 import ChildrenList from '@/components/Folder/ChildrenList';
 import FolderInput from '@/components/Folder/FolderInput';
 import fetcher from '@/utils/fetcher';
@@ -21,9 +22,41 @@ const FolderPage = () => {
 
   if (!data) {
     return (
-      <SidebarShell>
-        <Spinner />
-      </SidebarShell>
+      <ProfileShell>
+        <Box mt={14}>
+          <Spinner />
+        </Box>
+      </ProfileShell>
+    );
+  }
+
+  if (data?.error !== undefined) {
+    if (!auth.user && !auth.loading) {
+      return (
+        <ProfileShell>
+          <Box mt={14}>
+            <Heading size="lg">Sorry! This page doesn't existe.</Heading>
+          </Box>
+        </ProfileShell>
+      );
+    } else {
+      return (
+        <SidebarShell>
+          <Box mt={14}>
+            <Heading size="lg">Sorry! This page doesn't existe.</Heading>
+          </Box>
+        </SidebarShell>
+      );
+    }
+  }
+
+  if (!auth.user && !auth.loading) {
+    return (
+      <ProfileShell>
+        <Box mt={14}>
+          <Heading size="lg">Sorry! This page is private.</Heading>
+        </Box>
+      </ProfileShell>
     );
   }
 
