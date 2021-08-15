@@ -26,54 +26,17 @@ const ProfilePage = () => {
 
   if (data?.error !== undefined) {
     return (
-      <Flex align="center" justify="center" h="100vh" w="100vw">
-        <Heading size="lg" pb={10}>
-          Sorry! This page doesn't existe.
-        </Heading>
-      </Flex>
+      <SidebarShell>
+        <Heading size="lg">Sorry! This page doesn't existe.</Heading>
+      </SidebarShell>
     );
   }
 
   if (!profile) {
     return (
-      <Box mt={14}>
-        <Spinner />
-      </Box>
-    );
-  }
-
-  if (!auth.user && !auth.loading) {
-    return (
-      <Page name={profile?.name} path={`/${username}`}>
-        <ProfileShell>
-          <Box w="100%">
-            <ProfileHeader
-              name={profile?.name}
-              photoUrl={profile?.photoUrl}
-              username={username}
-              editable={auth.user?.uid === profile?.id}
-            />
-            <Text minH="15px" mb={10}></Text>
-            {auth?.user?.uid === profile?.id ? (
-              <>
-                <ChildrenList
-                  folderId={data?.profile?.id}
-                  childrenOrder={data?.profile?.children}
-                  editable={true}
-                  username={data?.profile?.username}
-                />
-                <ProfileInput folderId={data?.profile?.id} />
-              </>
-            ) : (
-              <ChildrenList
-                folderId={data?.profile?.id}
-                childrenOrder={data?.profile?.children}
-                editable={false}
-              />
-            )}
-          </Box>
-        </ProfileShell>
-      </Page>
+      <Flex direction="column" align="center" minH="100vh">
+        <Spinner mt={32} />
+      </Flex>
     );
   }
 

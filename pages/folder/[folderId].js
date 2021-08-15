@@ -22,41 +22,25 @@ const FolderPage = () => {
 
   if (!data) {
     return (
-      <ProfileShell>
-        <Box mt={14}>
-          <Spinner />
-        </Box>
-      </ProfileShell>
+      <SidebarShell>
+        <Spinner />
+      </SidebarShell>
     );
   }
 
   if (data?.error !== undefined) {
-    if (!auth.user && !auth.loading) {
-      return (
-        <ProfileShell>
-          <Box mt={14}>
-            <Heading size="lg">Sorry! This page doesn't existe.</Heading>
-          </Box>
-        </ProfileShell>
-      );
-    } else {
-      return (
-        <SidebarShell>
-          <Box mt={14}>
-            <Heading size="lg">Sorry! This page doesn't existe.</Heading>
-          </Box>
-        </SidebarShell>
-      );
-    }
+    return (
+      <SidebarShell>
+        <Heading size="lg">Sorry! This page doesn't existe.</Heading>
+      </SidebarShell>
+    );
   }
 
   if (!auth.user && !auth.loading) {
     return (
-      <ProfileShell>
-        <Box mt={14}>
-          <Heading size="lg">Sorry! This page is private.</Heading>
-        </Box>
-      </ProfileShell>
+      <SidebarShell>
+        <Heading size="lg">Sorry! This page is private.</Heading>
+      </SidebarShell>
     );
   }
 

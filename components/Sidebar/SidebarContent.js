@@ -17,6 +17,10 @@ const SidebarContent = ({ onClose, ...rest }) => {
     fetcher
   );
 
+  if (!data) {
+    <></>;
+  }
+
   return (
     <Box
       transition="3s ease"
