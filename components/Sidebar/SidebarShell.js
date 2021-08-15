@@ -29,7 +29,7 @@ const SidebarShell = ({ parent, children }) => {
         mb={6}
         px={3}
       >
-        <VStack w="100%" maxW="33rem" mt={24}>
+        <VStack w="100%" maxW="33rem" mt={14}>
           {children}
         </VStack>
         <NextLink href="/" passHref>
