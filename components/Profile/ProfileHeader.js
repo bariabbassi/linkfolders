@@ -12,7 +12,7 @@ const ProfileHeader = ({ name, photoUrl, username, editable }) => {
         h="5rem"
         w="5rem"
         borderRadius="3xl"
-        mr={1}
+        mr={2}
         name={name}
         src={photoUrl}
       />

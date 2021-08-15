@@ -1,5 +1,6 @@
 import {
   Box,
+  Flex,
   HStack,
   IconButton,
   Avatar,
@@ -44,14 +45,14 @@ const AccountMenu = () => {
             name={auth.user?.profile?.name}
             src={auth.user?.profile?.photoUrl}
           />
-          <Box>
+          <Flex direction="column" align="flex-start" justify="center">
             <Heading as="h1" size="md">
               {auth.user?.profile?.name}
             </Heading>
             <Heading size="xs" fontWeight="300" color="gray">
               @{auth.user?.profile?.username}
             </Heading>
-          </Box>
+          </Flex>
         </HStack>
       </MenuButton>
       <MenuList>
