@@ -11,7 +11,6 @@ import NextLink from 'next/link';
 
 import { useAuth } from '@/lib/auth';
 import { LinkfoldersIcon } from '@/styles/icons';
-import AccountMenu from '@/components/Account/AccountMenu';
 
 const ProfileShell = ({ children }) => {
   const auth = useAuth();

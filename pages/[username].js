@@ -1,4 +1,4 @@
-import { Box, Text, Spinner, Heading } from '@chakra-ui/react';
+import { Box, Flex, Text, Spinner, Heading } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
@@ -26,21 +26,19 @@ const ProfilePage = () => {
 
   if (data?.error !== undefined) {
     return (
-      <ProfileShell>
-        <Box mt={14}>
-          <Heading size="lg">Sorry! This page doesn't existe.</Heading>
-        </Box>
-      </ProfileShell>
+      <Flex align="center" justify="center" h="100vh" w="100vw">
+        <Heading size="lg" pb={10}>
+          Sorry! This page doesn't existe.
+        </Heading>
+      </Flex>
     );
   }
 
   if (!profile) {
     return (
-      <ProfileShell>
-        <Box mt={14}>
-          <Spinner />
-        </Box>
-      </ProfileShell>
+      <Box mt={14}>
+        <Spinner />
+      </Box>
     );
   }
 
