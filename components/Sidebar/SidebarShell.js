@@ -26,6 +26,8 @@ const SidebarShell = ({ parent, children }) => {
         align="center"
         justify="space-between"
         minH="100vh"
+        mb={6}
+        px={3}
       >
         <VStack w="100%" maxW="33rem" mt={24}>
           {children}
