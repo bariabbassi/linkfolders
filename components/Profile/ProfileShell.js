@@ -11,7 +11,6 @@ import NextLink from 'next/link';
 
 import { useAuth } from '@/lib/auth';
 import { LinkfoldersIcon } from '@/styles/icons';
-import AccountMenu from '@/components/Account/AccountMenu';
 
 const ProfileShell = ({ children }) => {
   const auth = useAuth();
@@ -26,10 +25,6 @@ const ProfileShell = ({ children }) => {
       bg=""
     >
       <Box w="100%">
-        <Flex bg="" align="center" w="100%" h="4.6rem">
-          <Flex align="center" w="100%"></Flex>
-          <AccountMenu />
-        </Flex>
         <Flex direction="column" align="center">
           <Flex
             direction="column"

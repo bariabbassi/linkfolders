@@ -1,14 +1,15 @@
-import { Box, Text, Spinner, Heading } from '@chakra-ui/react';
+import { Box, Flex, Text, Spinner, Heading } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
+import fetcher from '@/utils/fetcher';
+import { useAuth } from '@/lib/auth';
 import Page from '@/components/Page';
+import SidebarShell from '@/components/Sidebar/SidebarShell';
 import ProfileShell from '@/components/Profile/ProfileShell';
 import ProfileHeader from '@/components/Profile/ProfileHeader';
 import ChildrenList from '@/components/Folder/ChildrenList';
-import LinkInput from '@/components/Folder/LinkInput';
-import fetcher from '@/utils/fetcher';
-import { useAuth } from '@/lib/auth';
+import ProfileInput from '@/components/Profile/ProfileInput';
 
 const ProfilePage = () => {
   const auth = useAuth();
@@ -25,27 +26,23 @@ const ProfilePage = () => {
 
   if (data?.error !== undefined) {
     return (
-      <ProfileShell>
-        <Box mt={14}>
-          <Heading size="lg">Sorry! This page doesn't existe.</Heading>
-        </Box>
-      </ProfileShell>
+      <SidebarShell>
+        <Heading size="lg">Sorry! This page doesn't existe.</Heading>
+      </SidebarShell>
     );
   }
 
   if (!profile) {
     return (
-      <ProfileShell>
-        <Box mt={14}>
-          <Spinner />
-        </Box>
-      </ProfileShell>
+      <Flex direction="column" align="center" minH="100vh">
+        <Spinner mt={32} />
+      </Flex>
     );
   }
 
   return (
     <Page name={profile?.name} path={`/${username}`}>
-      <ProfileShell>
+      <SidebarShell>
         <Box w="100%">
           <ProfileHeader
             name={profile?.name}
@@ -62,7 +59,7 @@ const ProfilePage = () => {
                 editable={true}
                 username={data?.profile?.username}
               />
-              <LinkInput folderId={data?.profile?.id} />
+              <ProfileInput folderId={data?.profile?.id} />
             </>
           ) : (
             <ChildrenList
@@ -72,7 +69,7 @@ const ProfilePage = () => {
             />
           )}
         </Box>
-      </ProfileShell>
+      </SidebarShell>
     </Page>
   );
 };

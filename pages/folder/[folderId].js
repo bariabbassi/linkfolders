@@ -1,13 +1,15 @@
-import { Text, Spinner } from '@chakra-ui/react';
+import { Box, Text, Heading, Spinner } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
 import Page from '@/components/Page';
-import FolderShell from '@/components/Folder/FolderShell';
+import SidebarShell from '@/components/Sidebar/SidebarShell';
+import ProfileShell from '@/components/Profile/ProfileShell';
 import ChildrenList from '@/components/Folder/ChildrenList';
-import LinkInput from '@/components/Folder/LinkInput';
+import FolderInput from '@/components/Folder/FolderInput';
 import fetcher from '@/utils/fetcher';
 import { useAuth } from '@/lib/auth';
+import FolderHeader from '@/components/Folder/FolderHeader';
 
 const FolderPage = () => {
   const auth = useAuth();
@@ -20,20 +22,38 @@ const FolderPage = () => {
 
   if (!data) {
     return (
-      <FolderShell>
+      <SidebarShell>
         <Spinner />
-      </FolderShell>
+      </SidebarShell>
+    );
+  }
+
+  if (data?.error !== undefined) {
+    return (
+      <SidebarShell>
+        <Heading size="lg">Sorry! This page doesn't existe.</Heading>
+      </SidebarShell>
+    );
+  }
+
+  if (!auth.user && !auth.loading) {
+    return (
+      <SidebarShell>
+        <Heading size="lg">Sorry! This page is private.</Heading>
+      </SidebarShell>
     );
   }
 
   return (
     <Page name={data?.folder?.name} path={`/folder/${folderId}`}>
-      <FolderShell
-        name={data?.folder?.name}
-        userId={data?.folder?.userId}
-        parent={data?.folder?.parent}
-      >
+      <SidebarShell parent={data?.folder?.parent}>
+        <FolderHeader
+          name={data?.folder?.name}
+          userId={data?.folder?.userId}
+          parent={data?.folder?.parent}
+        />
         <Text minH="15px" mb={10}></Text>
+
         {auth?.user?.uid === data?.folder?.userId ? (
           <>
             <ChildrenList
@@ -41,7 +61,7 @@ const FolderPage = () => {
               childrenOrder={data?.folder?.children}
               editable={true}
             />
-            <LinkInput folderId={folderId} />
+            <FolderInput folderId={folderId} />
           </>
         ) : (
           <ChildrenList
@@ -50,7 +70,7 @@ const FolderPage = () => {
             editable={false}
           />
         )}
-      </FolderShell>
+      </SidebarShell>
     </Page>
   );
 };

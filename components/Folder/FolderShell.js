@@ -69,7 +69,7 @@ const FolderShell = ({ name, userId, parent, children }) => {
               />
             </NextLink>
           </Flex>
-          <AccountMenu />
+          {/* <AccountMenu /> */}
         </Flex>
         <Flex direction="column" align="center">
           <Flex
