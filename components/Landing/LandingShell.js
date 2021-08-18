@@ -21,15 +21,21 @@ const LandingShell = ({ children }) => {
 
   return (
     <Box backgroundColor="" h="100vh">
-      <Flex w="100%" backgroundColor="white" mb={[8, 16]}>
+      <Flex
+        direction="column"
+        align="center"
+        w="100%"
+        backgroundColor="white"
+        mb={[8, 16]}
+      >
         <Flex
           align="center"
           justify="space-between"
-          p={3}
-          maxW="1250px"
-          m="0 auto"
-          w="100%"
           h="60px"
+          w="100%"
+          maxW="1250px"
+          p={2}
+          m="0 auto"
         >
           <Stack direction="row" spacing={3}>
             <NextLink href="/" passHref>
@@ -67,17 +73,8 @@ const LandingShell = ({ children }) => {
           </Stack>
         </Flex>
       </Flex>
-      <Flex mb={5} direction="column" align="center">
-        <Flex
-          direction="column"
-          align="center"
-          justify="flex-start"
-          p={3}
-          maxW="990px"
-          margin="0 auto"
-          w="100%"
-          px={8}
-        >
+      <Flex direction="column" align="center">
+        <Flex direction="column" align="center" w="100%" maxW="990px" p={6}>
           {children}
         </Flex>
       </Flex>

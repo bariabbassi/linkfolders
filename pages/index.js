@@ -1,12 +1,6 @@
-import {
-  Box,
-  SimpleGrid,
-  Heading,
-  Text,
-  Button,
-  Image
-} from '@chakra-ui/react';
+import { Box, SimpleGrid, Heading, Text, Button } from '@chakra-ui/react';
 import NextLink from 'next/link';
+import NextImage from 'next/image';
 
 import LandingShell from '@/components/Landing/LandingShell';
 
@@ -25,10 +19,11 @@ const Feature = ({ emoji, title, text }) => {
     </Box>
   );
 };
+
 const Home = () => {
   return (
     <LandingShell>
-      <Box w="100%" textAlign="center" mt={10} mb={20}>
+      <Box w="100%" align="center" mt={10} mb={20}>
         <Heading as="h1" mb={6} size="3xl" letterSpacing="tighter">
           All your links in one place.
         </Heading>
@@ -47,15 +42,13 @@ const Home = () => {
           </Button>
         </NextLink>
       </Box>
-      <Box
-        w="100%"
-        mb={24}
-        boxShadow="md"
-        borderRadius="2xl"
-        overflow="hidden"
-        borderWidth="1px"
-      >
-        <Image src="/screenshot.png" alt="Screenshot" />
+      <Box w="100%" mb={24}>
+        <NextImage
+          src="/screenshot.png"
+          alt="Screenshot"
+          width={1249}
+          height={793}
+        />
       </Box>
 
       <Box w="100%" mb={20}>

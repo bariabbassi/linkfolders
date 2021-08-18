@@ -22,33 +22,25 @@ const SignupShell = ({ children }) => {
 
   return (
     <Box backgroundColor="" h="100vh">
-      {/* <Head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              if (document.cookie && document.cookie.includes('linkfolders-auth')) {
-                window.location.href = "/"
-              }
-            `
-          }}
-        />
-      </Head> */}
-      <Flex backgroundColor="white" mb={[8, 16]} w="%100">
+      <Flex
+        direction="column"
+        align="center"
+        w="100%"
+        backgroundColor="white"
+        mb={[8, 16]}
+      >
         <Flex
           align="center"
-          justify="flex-start"
-          p={3}
-          maxW="1250px"
-          margin="0 auto"
-          w="full"
-          px={8}
+          justify="space-between"
           h="60px"
+          w="100%"
+          maxW="1250px"
+          p={2}
         >
           <NextLink href="/" passHref>
             <Button
               as="a"
               variant="ghost"
-              mr={3}
               leftIcon={<LinkfoldersIcon width="8" height="8" mb={2} />}
             >
               <Heading size="sm">Linkfolders</Heading>
@@ -56,17 +48,8 @@ const SignupShell = ({ children }) => {
           </NextLink>
         </Flex>
       </Flex>
-      <Flex mb={5} direction="column" align="center">
-        <Flex
-          direction="column"
-          align="center"
-          justify="flex-start"
-          p={3}
-          maxW="400px"
-          margin="0 auto"
-          w="100%"
-          px={8}
-        >
+      <Flex direction="column" align="center">
+        <Flex direction="column" align="center" w="100%" maxW="400px" p={6}>
           {children}
         </Flex>
       </Flex>
