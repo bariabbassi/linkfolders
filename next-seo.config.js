@@ -1,7 +1,6 @@
-const title =
-  'Linkfolders – Put multiple links in your Instagram bio and TikTok bio...';
+const title = 'Linkfolders – Save links and mange bookmarks';
 const description =
-  'Put multiple links in your Instagram bio and TikTok bio and drive traffic from your link in bio to your online course, Shopify store, affiliate links, podcast, or YouTube videos.';
+  'The easiest way to save links and manage bookmarks: access bookmarks anywhere, cut down on open tabs, and speed up your workflow.';
 
 const SEO = {
   title,

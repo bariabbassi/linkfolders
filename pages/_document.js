@@ -1,8 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
-export const siteTitle = 'Linkfolders';
-export const description = 'A your links in one place';
-
 class MyDocument extends Document {
   render() {
     return (
@@ -10,7 +7,11 @@ class MyDocument extends Document {
         <Head>
           <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
           <meta content="#ffffff" name="theme-color" />
-          <meta content="#ffffff" name="msapplication-TileColor" />
+          <meta content="#ffc40d" name="msapplication-TileColor" />
+          <meta
+            content="/favicons/browserconfig.xml"
+            name="msapplication-config"
+          />
           <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
           <link href="/favicons/favicon.ico" rel="shortcut icon" />
           <link href="/favicons/site.webmanifest" rel="manifest" />
@@ -37,15 +38,6 @@ class MyDocument extends Document {
             href="/favicons/safari-pinned-tab.svg"
             color="#f5b200"
           />
-          <meta name="og:title" content={siteTitle} />
-          <meta name="description" content={description} />
-          <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
-          <meta
-            content="/favicons/browserconfig.xml"
-            name="msapplication-config"
-          />
-          <meta name="msapplication-TileColor" content="#ffc40d" />
-          <meta name="theme-color" content="#ffffff" />
         </Head>
         <body>
           <Main />

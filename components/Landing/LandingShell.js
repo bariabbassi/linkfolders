@@ -21,12 +21,11 @@ const LandingShell = ({ children }) => {
 
   return (
     <Box backgroundColor="" h="100vh">
-      <Flex backgroundColor="white" mb={[8, 16]} w="100%">
+      <Flex w="100%" backgroundColor="white" mb={[8, 16]}>
         <Flex
-          alignItems="center"
-          justifyContent="space-between"
-          px={8}
-          py={4}
+          align="center"
+          justify="space-between"
+          p={3}
           maxW="1250px"
           m="0 auto"
           w="100%"
@@ -73,8 +72,8 @@ const LandingShell = ({ children }) => {
           direction="column"
           align="center"
           justify="flex-start"
-          p={4}
-          maxW="1250px"
+          p={3}
+          maxW="990px"
           margin="0 auto"
           w="100%"
           px={8}
