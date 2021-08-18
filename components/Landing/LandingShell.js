@@ -73,8 +73,8 @@ const LandingShell = ({ children }) => {
           direction="column"
           align="center"
           justify="flex-start"
-          p={4}
-          maxW="1250px"
+          p={3}
+          maxW="990px"
           margin="0 auto"
           w="100%"
           px={8}
