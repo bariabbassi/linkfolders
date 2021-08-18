@@ -37,8 +37,7 @@ const SignupShell = ({ children }) => {
         <Flex
           align="center"
           justify="flex-start"
-          pt={4}
-          pb={4}
+          p={3}
           maxW="1250px"
           margin="0 auto"
           w="full"
@@ -62,7 +61,7 @@ const SignupShell = ({ children }) => {
           direction="column"
           align="center"
           justify="flex-start"
-          p={4}
+          p={3}
           maxW="400px"
           margin="0 auto"
           w="100%"
