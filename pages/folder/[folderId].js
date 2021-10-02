@@ -31,7 +31,7 @@ const FolderPage = () => {
   if (data?.error !== undefined) {
     return (
       <SidebarShell>
-        <Heading size="lg">Sorry! This page doesn't existe.</Heading>
+        <Heading size="lg">Sorry! This page doesn't exist.</Heading>
       </SidebarShell>
     );
   }
